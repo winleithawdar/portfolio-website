@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #f5f1ec;
+  --surface: #fbf8f4;
+  --surface-soft: #f1ebee;
+  --surface-strong: #e7dee5;
+  --foreground: #30273a;
+  --muted: #6d6277;
+  --accent: #6c5f8d;
+  --accent-strong: #4b3f6e;
+  --accent-soft: #ece5f3;
+  --border: rgba(75, 63, 110, 0.14);
+  --border-strong: rgba(75, 63, 110, 0.22);
+  --shadow: 0 16px 36px rgba(75, 63, 110, 0.08);
+  --ring: rgba(108, 95, 141, 0.35);
+}
+
+.dark {
+  --background: #18131f;
+  --surface: #221b2c;
+  --surface-soft: #2a2235;
+  --surface-strong: #342a42;
+  --foreground: #f2ebf3;
+  --muted: #b6aabf;
+  --accent: #c3afd1;
+  --accent-strong: #dfcfe7;
+  --accent-soft: #31283d;
+  --border: rgba(223, 207, 231, 0.14);
+  --border-strong: rgba(223, 207, 231, 0.22);
+  --shadow: 0 18px 42px rgba(5, 4, 10, 0.32);
+  --ring: rgba(195, 175, 209, 0.4);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), sans-serif;
+}
+
+::selection {
+  background-color: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+a,
+button {
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.page-shell {
+  width: min(100% - 1.5rem, 74rem);
+  margin-inline: auto;
+}
+
+.floating-panel {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.soft-panel {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.focus-ring {
+  outline: none;
+}
+
+.focus-ring:focus-visible {
+  box-shadow:
+    0 0 0 2px var(--background),
+    0 0 0 4px var(--ring);
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
