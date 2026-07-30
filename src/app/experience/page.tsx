@@ -140,7 +140,7 @@ const organizationGroups: OrganizationGroup[] = [
     logo: "/logos/experience/the-forward-society.jpg",
     location: "Myanmar",
     personalNotes: [
-      "The Forward Society will always hold a special place in my heart, as I helped shape the organization across operations, project development, student affairs, facilitation, and design.",
+      "The Forward Society will always hold a special place in my heart. It became one of my longest and most formative community experiences, giving me the opportunity to contribute across operations, project development, student affairs, facilitation, and design while supporting young people in meaningful ways.",
       "Recognized as Volunteer of the Term three times across different roles, including Facilitator, Graphic Designer, and Project Development Officer.",
     ],
     positions: [

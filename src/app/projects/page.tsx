@@ -93,38 +93,37 @@ const projectItems: ProjectItem[] = [
     screenshotSrc: "/images/projects/openeval.png",
   },
   {
-    title: "TariffEase",
+    title: "Resource-Constrained Scheduling Solver",
     year: "2025",
     format: "Team Project",
     domain: "Tech",
     description:
-      "Secure application project built for collaborative software development, combining authenticated user flows, PostgreSQL storage, and trade-data API integration.",
+      "Python-based solver project for resource-constrained project scheduling, combining heuristic search, exact optimization, and comparative evaluation workflows.",
     highlights: [
-      "Built with JWT authentication for secure user registration and login flows.",
-      "Designed around user-owned data, where each user can only access their own records.",
-      "Integrated external trade data through the WITS API alongside a PostgreSQL-backed backend architecture.",
+      "Built a heuristic RCPSP solver for scheduling under resource constraints across benchmark instances.",
+      "Extended the project with an exact branch-and-bound solver to support optimality checks and solver comparison.",
+      "Structured evaluation workflows for benchmark datasets, including batch runs, CSV outputs, and comparative analysis.",
     ],
     technologies: [
-      "Spring Boot",
-      "Spring Security",
-      "PostgreSQL",
-      "JWT",
-      "AWS RDS",
-      "Maven",
-      "WITS API",
+      "Python",
+      "Heuristic Search",
+      "Branch and Bound",
+      "RCPSP",
+      "PSPLIB",
+      "Data Analysis",
     ],
     links: [
       {
         label: "Source Code",
-        href: "https://github.com/Sprou-t/cs203",
+        href: "https://github.com/winleithawdar/CS202",
       },
     ],
-    note: "CS203: Collaborative Software Development",
+    note: "CS202: Design & Analysis of Algorithms",
     credit:
-      "Team: Chai Yi Khuen, Htet Shwe Win Than, Lau Wei Bin, Tai Wei Sin, Win Lei Thawdar",
+      "Team: Chai Yi Khuen, Chong Wei Choon, Lau Wei Bin, Win Lei Thawdar, Yeo Ben Shin",
     previewStyle: "dashboard",
-    previewLabel: "TariffEase project preview",
-    screenshotSrc: "/images/projects/tariffease.png",
+    previewLabel: "Scheduling solver project preview",
+    screenshotSrc: "/images/projects/cs202-placeholder.svg",
   },
   {
     title: "Pawsitive",
@@ -160,28 +159,38 @@ const projectItems: ProjectItem[] = [
     screenshotSrc: "/images/projects/pawsitive.png",
   },
   {
-    title: "Portfolio Website V1",
+    title: "TariffEase",
     year: "2025",
-    format: "Personal Project",
+    format: "Team Project",
     domain: "Tech",
     description:
-      "Earlier version of my personal portfolio website, built before this current redesign and development iteration.",
+      "Secure application project built for collaborative software development, combining authenticated user flows, PostgreSQL storage, and trade-data API integration.",
     highlights: [
-      "Built as a scalable personal website with reusable components and a polished responsive system.",
-      "Designed to balance professionalism with a more personal and visual presentation style.",
+      "Built with JWT authentication for secure user registration and login flows.",
+      "Designed around user-owned data, where each user can only access their own records.",
+      "Integrated external trade data through the WITS API alongside a PostgreSQL-backed backend architecture.",
     ],
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "next-themes"],
+    technologies: [
+      "Spring Boot",
+      "Spring Security",
+      "PostgreSQL",
+      "JWT",
+      "AWS RDS",
+      "Maven",
+      "WITS API",
+    ],
     links: [
-      { label: "Live Demo", href: "https://winleithawdar.vercel.app" },
       {
         label: "Source Code",
-        href: "https://github.com/winleithawdar/portfolio",
+        href: "https://github.com/Sprou-t/cs203",
       },
     ],
-    credit: "Solo Project",
-    previewStyle: "portfolio",
-    previewLabel: "Portfolio preview",
-    screenshotSrc: "/images/projects/portfolio.png",
+    note: "CS203: Collaborative Software Development",
+    credit:
+      "Team: Chai Yi Khuen, Htet Shwe Win Than, Lau Wei Bin, Tai Wei Sin, Win Lei Thawdar",
+    previewStyle: "dashboard",
+    previewLabel: "TariffEase project preview",
+    screenshotSrc: "/images/projects/tariffease.png",
   },
   {
     title: "AutoGreen.sg",
@@ -282,31 +291,6 @@ const projectItems: ProjectItem[] = [
     screenshotSrc: "/images/projects/ellipsis-tech-series.png",
   },
   {
-    title: "SMU Nest",
-    year: "2025",
-    format: "Team Project",
-    domain: "Creative",
-    description:
-      "Mobile prototype that helps students find affordable housing with student-verified reviews and travel-time context.",
-    highlights: [
-      "Shaped around student-specific filters, trust signals, and more useful housing context.",
-      "Grounded the prototype in clearer UX flows and practical information design decisions.",
-    ],
-    technologies: ["Figma", "Prototyping", "UX Research"],
-    links: [
-      {
-        label: "Figma",
-        href: "https://www.figma.com/proto/qcTJButXewYbUqDiTp5pwJ/SMU-Nest-Prototype?node-id=11-8",
-      },
-    ],
-    note: "IS211: Interaction Design & Prototyping",
-    credit:
-      "Team: Ho Xin Yu, Htet Shwe Win Than, Kaitlin Gardner, Sierra Colvin, Win Lei Thawdar",
-    previewStyle: "mobile",
-    previewLabel: "Mobile preview",
-    screenshotSrc: "/images/projects/smu-nest.png",
-  },
-  {
     title: "AfterClass UI Competition",
     year: "2025",
     format: "Team Project",
@@ -330,31 +314,6 @@ const projectItems: ProjectItem[] = [
     previewStyle: "figma",
     previewLabel: "Interface preview",
     screenshotSrc: "/images/projects/afterclass-ui.png",
-  },
-  {
-    title: "Parade Card Game",
-    year: "2025",
-    format: "Team Project",
-    domain: "Tech",
-    description:
-      "Java implementation with Human vs AI and multiplayer architecture, including scoring, hints, and undo features.",
-    highlights: [
-      "Implemented structured gameplay logic with support for Human vs AI and multiplayer modes.",
-      "Included quality-of-play features such as hints, undo functionality, and score handling.",
-    ],
-    technologies: ["Java", "Object-Oriented Programming", "Game Logic", "AI"],
-    links: [
-      {
-        label: "Source Code",
-        href: "https://github.com/wltdwinnie/ParadeCardGame",
-      },
-    ],
-    note: "CS102: Java Fundamentals",
-    credit:
-      "Team: Aum Jiwoo, Brandon Boo, Chua Qihan, Darrius Ng, Rayner Sim, Win Lei Thawdar",
-    previewStyle: "cards",
-    previewLabel: "Game preview",
-    screenshotSrc: "/images/projects/parade-card-game.png",
   },
   {
     title: "Graphic Design Portfolio",
@@ -384,6 +343,80 @@ const projectItems: ProjectItem[] = [
     previewStyle: "portfolio",
     previewLabel: "Design portfolio preview",
     screenshotSrc: "/images/projects/graphic-design-portfolio.png",
+  },
+  {
+    title: "Parade Card Game",
+    year: "2025",
+    format: "Team Project",
+    domain: "Tech",
+    description:
+      "Java implementation with Human vs AI and multiplayer architecture, including scoring, hints, and undo features.",
+    highlights: [
+      "Implemented structured gameplay logic with support for Human vs AI and multiplayer modes.",
+      "Included quality-of-play features such as hints, undo functionality, and score handling.",
+    ],
+    technologies: ["Java", "Object-Oriented Programming", "Game Logic", "AI"],
+    links: [
+      {
+        label: "Source Code",
+        href: "https://github.com/wltdwinnie/ParadeCardGame",
+      },
+    ],
+    note: "CS102: Java Fundamentals",
+    credit:
+      "Team: Aum Jiwoo, Brandon Boo, Chua Qihan, Darrius Ng, Rayner Sim, Win Lei Thawdar",
+    previewStyle: "cards",
+    previewLabel: "Game preview",
+    screenshotSrc: "/images/projects/parade-card-game.png",
+  },
+  {
+    title: "SMU Nest",
+    year: "2025",
+    format: "Team Project",
+    domain: "Creative",
+    description:
+      "Mobile prototype that helps students find affordable housing with student-verified reviews and travel-time context.",
+    highlights: [
+      "Shaped around student-specific filters, trust signals, and more useful housing context.",
+      "Grounded the prototype in clearer UX flows and practical information design decisions.",
+    ],
+    technologies: ["Figma", "Prototyping", "UX Research"],
+    links: [
+      {
+        label: "Figma",
+        href: "https://www.figma.com/proto/qcTJButXewYbUqDiTp5pwJ/SMU-Nest-Prototype?node-id=11-8",
+      },
+    ],
+    note: "IS211: Interaction Design & Prototyping",
+    credit:
+      "Team: Ho Xin Yu, Htet Shwe Win Than, Kaitlin Gardner, Sierra Colvin, Win Lei Thawdar",
+    previewStyle: "mobile",
+    previewLabel: "Mobile preview",
+    screenshotSrc: "/images/projects/smu-nest.png",
+  },
+  {
+    title: "Portfolio Website V1",
+    year: "2025",
+    format: "Personal Project",
+    domain: "Tech",
+    description:
+      "Earlier version of my personal portfolio website, built before this current redesign and development iteration.",
+    highlights: [
+      "Built as a scalable personal website with reusable components and a polished responsive system.",
+      "Designed to balance professionalism with a more personal and visual presentation style.",
+    ],
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "next-themes"],
+    links: [
+      { label: "Live Demo", href: "https://winleithawdar.vercel.app" },
+      {
+        label: "Source Code",
+        href: "https://github.com/winleithawdar/portfolio",
+      },
+    ],
+    credit: "Solo Project",
+    previewStyle: "portfolio",
+    previewLabel: "Portfolio preview",
+    screenshotSrc: "/images/projects/portfolio.png",
   },
 ];
 
