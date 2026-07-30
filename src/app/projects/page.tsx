@@ -485,6 +485,10 @@ function PaletteIcon({ className = "h-4 w-4" }: { className?: string }) {
   );
 }
 
+function mixColor(variable: string, opacity: number) {
+  return `color-mix(in srgb, var(${variable}) ${opacity}%, transparent)`;
+}
+
 function getLinkIcon(label: string) {
   const normalized = label.toLowerCase();
 
@@ -525,7 +529,12 @@ function ProjectLinksRow({ project }: { project: ProjectItem }) {
             rel="noreferrer"
             title={link.label}
             aria-label={`${project.title}: ${link.label}`}
-            className="focus-ring inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] bg-[color:var(--surface-soft)] px-4 py-2 text-sm text-[color:var(--foreground)] shadow-[0_12px_24px_rgba(75,63,110,0.06)] transition hover:-translate-y-0.5 hover:border-[color:var(--border-strong)] hover:bg-[color:var(--surface)] hover:text-[color:var(--accent-strong)]"
+            className="focus-ring inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm shadow-[0_12px_24px_rgba(75,63,110,0.06)] transition hover:-translate-y-0.5"
+            style={{
+              borderColor: "var(--border)",
+              backgroundColor: "var(--surface-soft)",
+              color: "var(--foreground)",
+            }}
           >
             <LinkIcon className="h-4 w-4 shrink-0" />
             <span>{link.label}</span>
@@ -543,26 +552,32 @@ function ProjectPreview({ project }: { project: ProjectItem }) {
     switch (project.previewStyle) {
       case "browser":
         return (
-          <div className="grid h-full grid-rows-[auto_1fr] rounded-[1.7rem] border border-[color:var(--border)] bg-[color:var(--surface)]/92 p-4">
+          <div
+            className="grid h-full grid-rows-[auto_1fr] rounded-[1.7rem] border p-4"
+            style={{ borderColor: "var(--border)", backgroundColor: mixColor("--surface", 92) }}
+          >
             <div className="flex items-center gap-2 pb-3">
-              <span className="h-2.5 w-2.5 rounded-full bg-[color:var(--accent-strong)]/25" />
-              <span className="h-2.5 w-2.5 rounded-full bg-[color:var(--accent)]/28" />
-              <span className="h-2.5 w-2.5 rounded-full bg-[color:var(--accent)]/16" />
+            <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: mixColor("--accent-strong", 25) }} />
+            <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: mixColor("--accent", 28) }} />
+            <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: mixColor("--accent", 16) }} />
             </div>
             <div className="grid grid-cols-[0.7fr_1.3fr] gap-3">
-              <div className="rounded-[1.2rem] bg-[color:var(--accent-soft)]/85 p-3">
-                <div className="h-8 rounded-full bg-[color:var(--surface)]/80" />
+              <div className="rounded-[1.2rem] p-3" style={{ backgroundColor: mixColor("--accent-soft", 85) }}>
+                <div className="h-8 rounded-full" style={{ backgroundColor: mixColor("--surface", 80) }} />
                 <div className="mt-3 space-y-2">
-                  <div className="h-2 rounded-full bg-[color:var(--surface)]/70" />
-                  <div className="h-2 rounded-full bg-[color:var(--surface)]/58" />
-                  <div className="h-2 w-4/5 rounded-full bg-[color:var(--surface)]/48" />
+                  <div className="h-2 rounded-full" style={{ backgroundColor: mixColor("--surface", 70) }} />
+                  <div className="h-2 rounded-full" style={{ backgroundColor: mixColor("--surface", 58) }} />
+                  <div className="h-2 w-4/5 rounded-full" style={{ backgroundColor: mixColor("--surface", 48) }} />
                 </div>
               </div>
-              <div className="space-y-3 rounded-[1.2rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)]/78 p-3">
-                <div className="h-20 rounded-[1rem] bg-[color:var(--accent-soft)]/68" />
+              <div
+                className="space-y-3 rounded-[1.2rem] border p-3"
+                style={{ borderColor: "var(--border)", backgroundColor: mixColor("--surface-soft", 78) }}
+              >
+                <div className="h-20 rounded-2xl" style={{ backgroundColor: mixColor("--accent-soft", 68) }} />
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="h-14 rounded-[0.95rem] bg-[color:var(--surface)]" />
-                  <div className="h-14 rounded-[0.95rem] bg-[color:var(--surface)]" />
+                  <div className="h-14 rounded-[0.95rem]" style={{ backgroundColor: "var(--surface)" }} />
+                  <div className="h-14 rounded-[0.95rem]" style={{ backgroundColor: "var(--surface)" }} />
                 </div>
               </div>
             </div>
@@ -570,105 +585,167 @@ function ProjectPreview({ project }: { project: ProjectItem }) {
         );
       case "dashboard":
         return (
-          <div className="grid h-full grid-rows-[auto_1fr] rounded-[1.7rem] border border-[color:var(--border)] bg-[color:var(--surface)]/92 p-4">
+          <div
+            className="grid h-full grid-rows-[auto_1fr] rounded-[1.7rem] border p-4"
+            style={{ borderColor: "var(--border)", backgroundColor: mixColor("--surface", 92) }}
+          >
             <div className="flex items-center justify-between pb-3">
-              <div className="h-3 w-20 rounded-full bg-[color:var(--accent-soft)]" />
-              <div className="h-9 w-9 rounded-full border border-[color:var(--border)] bg-[color:var(--surface-soft)]" />
+              <div className="h-3 w-20 rounded-full" style={{ backgroundColor: "var(--accent-soft)" }} />
+              <div
+                className="h-9 w-9 rounded-full border"
+                style={{ borderColor: "var(--border)", backgroundColor: "var(--surface-soft)" }}
+              />
             </div>
             <div className="grid gap-3">
               <div className="grid grid-cols-[1.2fr_0.8fr] gap-3">
-                <div className="rounded-[1.2rem] bg-[color:var(--accent-soft)]/84 p-4">
-                  <div className="h-2 w-20 rounded-full bg-[color:var(--accent)]/35" />
-                  <div className="mt-3 h-16 rounded-[1rem] bg-[color:var(--surface)]/76" />
+                <div className="rounded-[1.2rem] p-4" style={{ backgroundColor: mixColor("--accent-soft", 84) }}>
+                  <div className="h-2 w-20 rounded-full" style={{ backgroundColor: mixColor("--accent", 35) }} />
+                  <div className="mt-3 h-16 rounded-2xl" style={{ backgroundColor: mixColor("--surface", 76) }} />
                 </div>
-                <div className="rounded-[1.2rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)] p-4">
-                  <div className="h-10 rounded-[0.9rem] bg-[color:var(--surface)]" />
-                  <div className="mt-3 h-2 rounded-full bg-[color:var(--accent)]/24" />
-                  <div className="mt-2 h-2 w-3/4 rounded-full bg-[color:var(--accent)]/18" />
+                <div
+                  className="rounded-[1.2rem] border p-4"
+                  style={{ borderColor: "var(--border)", backgroundColor: "var(--surface-soft)" }}
+                >
+                  <div className="h-10 rounded-[0.9rem]" style={{ backgroundColor: "var(--surface)" }} />
+                  <div className="mt-3 h-2 rounded-full" style={{ backgroundColor: mixColor("--accent", 24) }} />
+                  <div className="mt-2 h-2 w-3/4 rounded-full" style={{ backgroundColor: mixColor("--accent", 18) }} />
                 </div>
               </div>
               <div className="grid grid-cols-3 gap-3">
-                <div className="h-16 rounded-[1rem] bg-[color:var(--surface)]" />
-                <div className="h-16 rounded-[1rem] bg-[color:var(--accent-soft)]/72" />
-                <div className="h-16 rounded-[1rem] bg-[color:var(--surface)]" />
+                <div className="h-16 rounded-2xl" style={{ backgroundColor: "var(--surface)" }} />
+                <div className="h-16 rounded-2xl" style={{ backgroundColor: mixColor("--accent-soft", 72) }} />
+                <div className="h-16 rounded-2xl" style={{ backgroundColor: "var(--surface)" }} />
               </div>
             </div>
           </div>
         );
       case "housing":
         return (
-          <div className="grid h-full grid-cols-[0.95fr_1.05fr] gap-3 rounded-[1.7rem] border border-[color:var(--border)] bg-[color:var(--surface)]/92 p-4">
-            <div className="rounded-[1.2rem] bg-[color:var(--accent-soft)]/8 p-3">
-              <div className="h-full rounded-[1rem] border border-dashed border-[color:var(--border-strong)] bg-[color:var(--surface-soft)]/72 p-3">
+          <div
+            className="grid h-full grid-cols-[0.95fr_1.05fr] gap-3 rounded-[1.7rem] border p-4"
+            style={{ borderColor: "var(--border)", backgroundColor: mixColor("--surface", 92) }}
+          >
+            <div className="rounded-[1.2rem] p-3" style={{ backgroundColor: mixColor("--accent-soft", 8) }}>
+              <div
+                className="h-full rounded-2xl border border-dashed p-3"
+                style={{ borderColor: "var(--border-strong)", backgroundColor: mixColor("--surface-soft", 72) }}
+              >
                 <div className="flex h-full items-end justify-between">
-                  <div className="h-16 w-10 rounded-t-[1rem] bg-[color:var(--accent)]/20" />
-                  <div className="h-24 w-12 rounded-t-[1rem] bg-[color:var(--accent-strong)]/22" />
-                  <div className="h-12 w-9 rounded-t-[0.85rem] bg-[color:var(--accent)]/20" />
+                  <div className="h-16 w-10 rounded-t-2xl" style={{ backgroundColor: mixColor("--accent", 20) }} />
+                  <div className="h-24 w-12 rounded-t-2xl" style={{ backgroundColor: mixColor("--accent-strong", 22) }} />
+                  <div className="h-12 w-9 rounded-t-[0.85rem]" style={{ backgroundColor: mixColor("--accent", 20) }} />
                 </div>
               </div>
             </div>
-            <div className="space-y-3 rounded-[1.2rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)] p-3">
-              <div className="h-24 rounded-[1rem] bg-[color:var(--surface)]" />
+            <div
+              className="space-y-3 rounded-[1.2rem] border p-3"
+              style={{ borderColor: "var(--border)", backgroundColor: "var(--surface-soft)" }}
+            >
+              <div className="h-24 rounded-2xl" style={{ backgroundColor: "var(--surface)" }} />
               <div className="grid grid-cols-2 gap-3">
-                <div className="h-16 rounded-[0.95rem] bg-[color:var(--surface)]" />
-                <div className="h-16 rounded-[0.95rem] bg-[color:var(--accent-soft)]/75" />
+                <div className="h-16 rounded-[0.95rem]" style={{ backgroundColor: "var(--surface)" }} />
+                <div className="h-16 rounded-[0.95rem]" style={{ backgroundColor: mixColor("--accent-soft", 75) }} />
               </div>
-              <div className="h-2 w-4/5 rounded-full bg-[color:var(--accent)]/20" />
+              <div className="h-2 w-4/5 rounded-full" style={{ backgroundColor: mixColor("--accent", 20) }} />
             </div>
           </div>
         );
       case "figma":
         return (
-          <div className="grid h-full grid-cols-3 gap-3 rounded-[1.7rem] border border-[color:var(--border)] bg-[color:var(--surface)]/92 p-4">
-            <div className="rounded-[1.1rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)] p-3">
-              <div className="h-24 rounded-[0.95rem] bg-[color:var(--accent-soft)]/82" />
-              <div className="mt-3 h-2 rounded-full bg-[color:var(--accent)]/22" />
+          <div
+            className="grid h-full grid-cols-3 gap-3 rounded-[1.7rem] border p-4"
+            style={{ borderColor: "var(--border)", backgroundColor: mixColor("--surface", 92) }}
+          >
+            <div
+              className="rounded-[1.1rem] border p-3"
+              style={{ borderColor: "var(--border)", backgroundColor: "var(--surface-soft)" }}
+            >
+              <div className="h-24 rounded-[0.95rem]" style={{ backgroundColor: mixColor("--accent-soft", 82) }} />
+              <div className="mt-3 h-2 rounded-full" style={{ backgroundColor: mixColor("--accent", 22) }} />
             </div>
-            <div className="rounded-[1.1rem] border border-[color:var(--border)] bg-[color:var(--surface)] p-3">
-              <div className="h-16 rounded-[0.95rem] bg-[color:var(--accent-soft)]/65" />
-              <div className="mt-3 h-16 rounded-[0.95rem] bg-[color:var(--surface-soft)]" />
+            <div
+              className="rounded-[1.1rem] border p-3"
+              style={{ borderColor: "var(--border)", backgroundColor: "var(--surface)" }}
+            >
+              <div className="h-16 rounded-[0.95rem]" style={{ backgroundColor: mixColor("--accent-soft", 65) }} />
+              <div className="mt-3 h-16 rounded-[0.95rem]" style={{ backgroundColor: "var(--surface-soft)" }} />
             </div>
-            <div className="rounded-[1.1rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)] p-3">
-              <div className="h-full rounded-[0.95rem] bg-[color:var(--surface)]" />
+            <div
+              className="rounded-[1.1rem] border p-3"
+              style={{ borderColor: "var(--border)", backgroundColor: "var(--surface-soft)" }}
+            >
+              <div className="h-full rounded-[0.95rem]" style={{ backgroundColor: "var(--surface)" }} />
             </div>
           </div>
         );
       case "mobile":
         return (
-          <div className="flex h-full items-center justify-center rounded-[1.7rem] border border-[color:var(--border)] bg-[color:var(--surface)]/92 p-4">
-            <div className="w-[9rem] rounded-[1.9rem] border border-[color:var(--border-strong)] bg-[color:var(--surface-soft)] p-3 shadow-[0_16px_30px_rgba(75,63,110,0.08)]">
-              <div className="mx-auto h-1.5 w-12 rounded-full bg-[color:var(--accent)]/25" />
-              <div className="mt-4 h-24 rounded-[1rem] bg-[color:var(--accent-soft)]/8 p-3">
-                <div className="h-full rounded-[0.95rem] border border-dashed border-[color:var(--border-strong)]" />
+          <div
+            className="flex h-full items-center justify-center rounded-[1.7rem] border p-4"
+            style={{ borderColor: "var(--border)", backgroundColor: mixColor("--surface", 92) }}
+          >
+            <div
+              className="w-36 rounded-[1.9rem] border p-3 shadow-[0_16px_30px_rgba(75,63,110,0.08)]"
+              style={{ borderColor: "var(--border-strong)", backgroundColor: "var(--surface-soft)" }}
+            >
+              <div className="mx-auto h-1.5 w-12 rounded-full" style={{ backgroundColor: mixColor("--accent", 25) }} />
+              <div className="mt-4 h-24 rounded-2xl p-3" style={{ backgroundColor: mixColor("--accent-soft", 8) }}>
+                <div className="h-full rounded-[0.95rem] border border-dashed" style={{ borderColor: "var(--border-strong)" }} />
               </div>
               <div className="mt-4 space-y-3">
-                <div className="h-12 rounded-[0.95rem] bg-[color:var(--surface)]" />
-                <div className="h-12 rounded-[0.95rem] bg-[color:var(--surface)]" />
+                <div className="h-12 rounded-[0.95rem]" style={{ backgroundColor: "var(--surface)" }} />
+                <div className="h-12 rounded-[0.95rem]" style={{ backgroundColor: "var(--surface)" }} />
               </div>
             </div>
           </div>
         );
       case "cards":
         return (
-          <div className="relative h-full rounded-[1.7rem] border border-[color:var(--border)] bg-[color:var(--surface)]/92 p-4">
-            <div className="absolute left-[18%] top-[18%] h-32 w-24 rotate-[-8deg] rounded-[1.2rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)] shadow-[0_14px_24px_rgba(75,63,110,0.08)]" />
-            <div className="absolute left-[36%] top-[12%] h-32 w-24 rotate-[6deg] rounded-[1.2rem] border border-[color:var(--border)] bg-[color:var(--accent-soft)]/78 shadow-[0_14px_24px_rgba(75,63,110,0.08)]" />
-            <div className="absolute left-[53%] top-[22%] h-32 w-24 rotate-[14deg] rounded-[1.2rem] border border-[color:var(--border)] bg-[color:var(--surface)] shadow-[0_14px_24px_rgba(75,63,110,0.08)]" />
+          <div
+            className="relative h-full rounded-[1.7rem] border p-4"
+            style={{ borderColor: "var(--border)", backgroundColor: mixColor("--surface", 92) }}
+          >
+            <div
+              className="absolute left-[18%] top-[18%] h-32 w-24 rotate-[-8deg] rounded-[1.2rem] border shadow-[0_14px_24px_rgba(75,63,110,0.08)]"
+              style={{ borderColor: "var(--border)", backgroundColor: "var(--surface-soft)" }}
+            />
+            <div
+              className="absolute left-[36%] top-[12%] h-32 w-24 rounded-[1.2rem] border shadow-[0_14px_24px_rgba(75,63,110,0.08)]"
+              style={{
+                borderColor: "var(--border)",
+                backgroundColor: mixColor("--accent-soft", 78),
+                transform: "rotate(6deg)",
+              }}
+            />
+            <div
+              className="absolute left-[53%] top-[22%] h-32 w-24 rounded-[1.2rem] border shadow-[0_14px_24px_rgba(75,63,110,0.08)]"
+              style={{
+                borderColor: "var(--border)",
+                backgroundColor: "var(--surface)",
+                transform: "rotate(14deg)",
+              }}
+            />
           </div>
         );
       case "portfolio":
         return (
-          <div className="grid h-full grid-cols-[1.05fr_0.95fr] gap-3 rounded-[1.7rem] border border-[color:var(--border)] bg-[color:var(--surface)]/92 p-4">
+          <div
+            className="grid h-full grid-cols-[1.05fr_0.95fr] gap-3 rounded-[1.7rem] border p-4"
+            style={{ borderColor: "var(--border)", backgroundColor: mixColor("--surface", 92) }}
+          >
             <div className="space-y-3">
-              <div className="h-24 rounded-[1.1rem] bg-[color:var(--accent-soft)]/84" />
+              <div className="h-24 rounded-[1.1rem]" style={{ backgroundColor: mixColor("--accent-soft", 84) }} />
               <div className="grid grid-cols-2 gap-3">
-                <div className="h-16 rounded-[0.95rem] bg-[color:var(--surface-soft)]" />
-                <div className="h-16 rounded-[0.95rem] bg-[color:var(--surface)]" />
+                <div className="h-16 rounded-[0.95rem]" style={{ backgroundColor: "var(--surface-soft)" }} />
+                <div className="h-16 rounded-[0.95rem]" style={{ backgroundColor: "var(--surface)" }} />
               </div>
             </div>
             <div className="space-y-3">
-              <div className="h-14 rounded-[0.95rem] bg-[color:var(--surface)]" />
-              <div className="h-28 rounded-[1.15rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)]" />
+              <div className="h-14 rounded-[0.95rem]" style={{ backgroundColor: "var(--surface)" }} />
+              <div
+                className="h-28 rounded-[1.15rem] border"
+                style={{ borderColor: "var(--border)", backgroundColor: "var(--surface-soft)" }}
+              />
             </div>
           </div>
         );
@@ -676,7 +753,10 @@ function ProjectPreview({ project }: { project: ProjectItem }) {
   })();
 
   const screenContent = project.screenshotSrc ? (
-    <div className="relative h-full w-full overflow-hidden rounded-[1rem] bg-[color:var(--surface)]">
+    <div
+      className="relative h-full w-full overflow-hidden rounded-2xl"
+      style={{ backgroundColor: "var(--surface)" }}
+    >
       <Image
         src={project.screenshotSrc}
         alt={`${project.title} preview`}
@@ -686,7 +766,10 @@ function ProjectPreview({ project }: { project: ProjectItem }) {
       />
     </div>
   ) : (
-    <div className="h-full w-full overflow-hidden rounded-[1rem] bg-[color:var(--surface)]">
+    <div
+      className="h-full w-full overflow-hidden rounded-2xl"
+      style={{ backgroundColor: "var(--surface)" }}
+    >
       {previewInner}
     </div>
   );
@@ -695,19 +778,34 @@ function ProjectPreview({ project }: { project: ProjectItem }) {
     "group relative block overflow-hidden rounded-[2rem] bg-transparent p-0 transition hover:-translate-y-1 focus-ring";
 
   const laptopFrame = (
-    <div className="rounded-[1.6rem] border border-[color:var(--border)] bg-[color:var(--surface)] p-2.5 shadow-[0_18px_36px_rgba(75,63,110,0.1)] transition group-hover:border-[color:var(--border-strong)] group-hover:shadow-[0_22px_42px_rgba(75,63,110,0.12)]">
-      <div className="relative aspect-[16/10] overflow-hidden rounded-[1.05rem] bg-[#111019] p-1.5">
+    <div
+      className="rounded-[1.6rem] border p-2.5 shadow-[0_18px_36px_rgba(75,63,110,0.1)] transition group-hover:shadow-[0_22px_42px_rgba(75,63,110,0.12)]"
+      style={{ borderColor: "var(--border)", backgroundColor: "var(--surface)" }}
+    >
+      <div
+        className="relative overflow-hidden rounded-[1.05rem] p-1.5"
+        style={{ aspectRatio: "16 / 10", backgroundColor: "#111019" }}
+      >
         <div className="relative h-full w-full overflow-hidden rounded-[0.8rem]">
           {screenContent}
-          <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-[rgba(17,16,25,0.05)] transition group-hover:bg-[rgba(17,16,25,0.12)]">
-            <span className="inline-flex h-14 w-14 items-center justify-center rounded-full border border-white/14 bg-[rgba(251,248,244,0.08)] text-white shadow-[0_16px_28px_rgba(0,0,0,0.14)] transition group-hover:scale-105 group-hover:bg-[rgba(251,248,244,0.12)]">
+          <div
+            className="pointer-events-none absolute inset-0 flex items-center justify-center transition"
+            style={{ backgroundColor: "rgba(17, 16, 25, 0.05)" }}
+          >
+            <span
+              className="inline-flex h-14 w-14 items-center justify-center rounded-full border text-white shadow-[0_16px_28px_rgba(0,0,0,0.14)] transition group-hover:scale-105"
+              style={{
+                borderColor: "rgba(255, 255, 255, 0.14)",
+                backgroundColor: "rgba(251, 248, 244, 0.08)",
+              }}
+            >
               <ArrowUpRightIcon className="h-5 w-5" />
             </span>
           </div>
         </div>
       </div>
       <div className="mt-2 flex justify-center">
-        <div className="h-1.5 w-20 rounded-full bg-[color:var(--border-strong)]/90" />
+        <div className="h-1.5 w-20 rounded-full" style={{ backgroundColor: mixColor("--border-strong", 90) }} />
       </div>
     </div>
   );
@@ -752,40 +850,55 @@ export default function ProjectsPage() {
           >
             <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(22rem,27rem)] lg:items-start lg:gap-8">
               <div className="min-w-0">
-                <div className="flex flex-wrap items-center gap-2 text-sm text-[color:var(--muted)]">
-                  <span className="paper-tag px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em]">
+                <div
+                  className="flex flex-wrap items-center gap-2 text-sm"
+                  style={{ color: "var(--muted)" }}
+                >
+                  <span className="paper-tag project-meta-tag px-3 py-1 font-semibold uppercase">
                     {project.year}
                   </span>
-                  <span className="paper-tag px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em]">
+                  <span className="paper-tag project-meta-tag px-3 py-1 font-semibold uppercase">
                     {project.format}
                   </span>
-                  <span className="paper-tag px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em]">
+                  <span className="paper-tag project-meta-tag px-3 py-1 font-semibold uppercase">
                     {project.domain}
                   </span>
                 </div>
 
                 <div className="mt-5 flex items-start justify-between gap-4">
                   <div className="min-w-0">
-                    <h2 className="font-[family-name:var(--font-display)] text-[2rem] tracking-[-0.045em] text-[color:var(--foreground)] md:text-[2.35rem]">
+                    <h2 className="project-title">
                       {project.title}
                     </h2>
-                    <p className="mt-3 max-w-3xl text-sm leading-7 text-[color:var(--foreground)]/78 md:text-[0.98rem]">
+                    <p
+                      className="mt-3 max-w-3xl text-sm leading-7 md:text-base"
+                      style={{ color: mixColor("--foreground", 78) }}
+                    >
                       {project.description}
                     </p>
                   </div>
                 </div>
 
                 {project.note ? (
-                  <p className="mt-4 text-sm leading-7 text-[color:var(--accent-strong)]">
+                  <p
+                    className="mt-4 text-sm leading-7"
+                    style={{ color: "var(--accent-strong)" }}
+                  >
                     {project.note.includes("|") ? (
                       <>
-                        <span className="font-semibold text-[color:var(--foreground)]">
+                        <span
+                          className="font-semibold"
+                          style={{ color: "var(--foreground)" }}
+                        >
                           {project.note.split("|")[0]?.trim()}
                         </span>{" "}
                         | {project.note.split("|").slice(1).join("|").trim()}
                       </>
                     ) : (
-                      <span className="font-semibold text-[color:var(--foreground)]">
+                      <span
+                        className="font-semibold"
+                        style={{ color: "var(--foreground)" }}
+                      >
                         {project.note}
                       </span>
                     )}
@@ -793,16 +906,25 @@ export default function ProjectsPage() {
                 ) : null}
 
                 {project.credit ? (
-                  <p className="mt-2 text-sm leading-7 text-[color:var(--muted)]">
+                  <p
+                    className="mt-2 text-sm leading-7"
+                    style={{ color: "var(--muted)" }}
+                  >
                     {project.credit.startsWith("Team:") ? (
                       <>
-                        <span className="font-semibold text-[color:var(--foreground)]">
+                        <span
+                          className="font-semibold"
+                          style={{ color: "var(--foreground)" }}
+                        >
                           Team:
                         </span>{" "}
                         {project.credit.slice(5).trim()}
                       </>
                     ) : (
-                      <span className="font-semibold text-[color:var(--foreground)]">
+                      <span
+                        className="font-semibold"
+                        style={{ color: "var(--foreground)" }}
+                      >
                         {project.credit}
                       </span>
                     )}
@@ -810,18 +932,20 @@ export default function ProjectsPage() {
                 ) : null}
 
                 <section className="mt-6">
-                  <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-[color:var(--muted)]">
+                  <h3 className="project-section-label text-sm font-semibold uppercase">
                     {project.highlightLabel ?? "Highlights"}
                   </h3>
                   <ul className="mt-4 space-y-3">
                     {project.highlights.map((highlight) => (
                       <li
                         key={highlight}
-                        className="flex gap-3 text-sm leading-7 text-[color:var(--foreground)]/78"
+                        className="flex gap-3 text-sm leading-7"
+                        style={{ color: mixColor("--foreground", 78) }}
                       >
                         <span
                           aria-hidden="true"
-                          className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--accent-strong)]"
+                          className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full"
+                          style={{ backgroundColor: "var(--accent-strong)" }}
                         />
                         <span>{highlight}</span>
                       </li>
@@ -834,14 +958,19 @@ export default function ProjectsPage() {
             </div>
 
             <section className="mt-7">
-              <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-[color:var(--muted)]">
+              <h3 className="project-section-label text-sm font-semibold uppercase">
                 Stack
               </h3>
               <div className="mt-4 flex flex-wrap gap-2.5">
                 {project.technologies.map((technology) => (
                   <span
                     key={technology}
-                    className="rounded-full border border-[color:var(--border)] bg-[color:var(--surface-soft)] px-3 py-1.5 text-[0.72rem] font-medium uppercase tracking-[0.12em] text-[color:var(--muted)]"
+                    className="project-stack-chip rounded-full border px-3 py-1.5 font-medium uppercase"
+                    style={{
+                      borderColor: "var(--border)",
+                      backgroundColor: "var(--surface-soft)",
+                      color: "var(--muted)",
+                    }}
                   >
                     {technology}
                   </span>

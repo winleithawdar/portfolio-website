@@ -141,6 +141,34 @@ button {
   box-shadow: 0 10px 20px rgba(75, 63, 110, 0.05);
 }
 
+.project-meta-tag {
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+}
+
+.project-title {
+  font-family: var(--font-display), serif;
+  font-size: 2rem;
+  letter-spacing: -0.045em;
+  color: var(--foreground);
+}
+
+.project-section-label {
+  letter-spacing: 0.18em;
+  color: var(--muted);
+}
+
+.project-stack-chip {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+}
+
+@media (min-width: 48rem) {
+  .project-title {
+    font-size: 2.35rem;
+  }
+}
+
 .focus-ring {
   outline: none;
 }

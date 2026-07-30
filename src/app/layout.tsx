@@ -38,6 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
+        suppressHydrationWarning
         className={`${bodyFont.variable} ${displayFont.variable} ${scriptFont.variable} min-h-screen antialiased`}
       >
         <ThemeProvider
