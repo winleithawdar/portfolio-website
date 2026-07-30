@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Manrope, Newsreader } from "next/font/google";
+import { Allura, Libre_Baskerville, Manrope } from "next/font/google";
 import "./globals.css";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -10,14 +10,24 @@ const bodyFont = Manrope({
   subsets: ["latin"],
 });
 
-const displayFont = Newsreader({
+const displayFont = Libre_Baskerville({
   variable: "--font-display",
   subsets: ["latin"],
+  weight: ["400", "700"],
+});
+
+const scriptFont = Allura({
+  variable: "--font-script",
+  subsets: ["latin"],
+  weight: "400",
 });
 
 export const metadata: Metadata = {
   title: "Win Lei Thawdar | Portfolio",
   description: "Personal portfolio of Win Lei Thawdar.",
+  icons: {
+    icon: "/icon.svg",
+  },
 };
 
 export default function RootLayout({
@@ -28,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${bodyFont.variable} ${displayFont.variable} min-h-screen antialiased`}
+        className={`${bodyFont.variable} ${displayFont.variable} ${scriptFont.variable} min-h-screen antialiased`}
       >
         <ThemeProvider
           attribute="class"

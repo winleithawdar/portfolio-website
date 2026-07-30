@@ -1,13 +1,21 @@
-# Win Lei Thawdar Portfolio
+# Win Lei Thawdar | Portfolio
 
-Minimal personal portfolio skeleton built with Next.js App Router, TypeScript, Tailwind CSS, and `npm`. The content is intentionally sparse so it can be expanded later without undoing placeholder-heavy sections.
+Personal portfolio website built with Next.js App Router, TypeScript, Tailwind CSS, and `npm`. The site is designed as a clean, expandable base for showcasing education, experience, projects, and future writing.
+
+## Project overview
+
+- Responsive personal portfolio with a shared floating header and persistent theme toggle
+- Introductory home hero with profile image, project CTA, contact CTA, and social links
+- Timeline-based education and experience pages
+- Project showcase page with previews, links, highlights, and team context
+- Light mode by default, with dark mode support powered by `next-themes`
 
 ## Tech stack
 
-- Next.js
-- React
+- Next.js 16
+- React 19
 - TypeScript
-- Tailwind CSS
+- Tailwind CSS 4
 - `next-themes`
 - ESLint
 
@@ -29,33 +37,44 @@ npm run dev
 
 ## Available commands
 
-- `npm run dev` starts the local development server.
-- `npm run build` creates the production build.
-- `npm run start` serves the production build locally.
-- `npm run lint` runs ESLint.
+- `npm run dev` starts the local development server
+- `npm run build` creates the production build
+- `npm run start` serves the production build locally
+- `npm run lint` runs ESLint
 
 ## Page routes
 
-- `/`
-- `/about`
+- `/` home
+- `/education`
 - `/experience`
 - `/projects`
-- `/journal`
+- `/about` redirects to `/education`
 
 ## Folder structure
 
 ```text
+public/
+  images/
+    profile/
+    projects/
+  logos/
+    education/
+    experience/
+
 src/
   app/
     about/
+    education/
     experience/
-    journal/
     projects/
     globals.css
+    icon.svg
     layout.tsx
     page.tsx
   components/
+    home-hero.tsx
     icons.tsx
+    page-intro-accent.tsx
     page-intro.tsx
     site-footer.tsx
     site-header.tsx
@@ -67,17 +86,18 @@ src/
 
 ## Theme direction
 
-- Light mode is the default theme.
-- Theme selection persists between visits through `next-themes`.
-- The palette leans on muted lavender, dusty lilac, warm beige, soft off-white, and deep plum accents.
-- The overall direction is calm, editorial, spacious, and easy to expand.
+- Calm, editorial, spacious, and personal
+- Soft lavender and muted plum accents over warm beige and off-white neutrals
+- Minimal motion, subtle borders, rounded forms, and clean contrast in both themes
+- Light mode is the default theme
+- Theme selection persists between visits
 
-## Vercel deployment
+## Deployment on Vercel
 
 1. Push the repository to GitHub.
 2. Import the repository into [Vercel](https://vercel.com/).
 3. Keep the framework preset as `Next.js`.
 4. Install command: `npm install`
 5. Build command: `npm run build`
-6. Output setting: leave the default Next.js configuration.
+6. Output settings: leave the default Next.js configuration.
 7. Deploy.

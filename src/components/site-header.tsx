@@ -1,44 +1,100 @@
 "use client";
 
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { LinktreeIcon } from "@/components/icons";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { navItems, socialLinks } from "@/lib/navigation";
+import { navItems } from "@/lib/navigation";
 
 function HeaderActions() {
   return (
     <div className="flex items-center gap-2">
+      <a
+        href="https://linktr.ee/winleithawdar"
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Linktree"
+        title="Linktree"
+        className="focus-ring inline-flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--border)] bg-[color:var(--surface-soft)] text-[color:var(--foreground)] hover:border-[color:var(--border-strong)] hover:bg-[color:var(--surface-strong)]"
+      >
+        <LinktreeIcon className="h-4.5 w-4.5" />
+      </a>
       <ThemeToggle />
-      {socialLinks.map(({ href, label, icon: Icon }) => (
-        <a
-          key={label}
-          href={href}
-          target="_blank"
-          rel="noreferrer"
-          aria-label={label}
-          title={`${label} placeholder link`}
-          className="focus-ring inline-flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--border)] bg-[color:var(--surface-soft)] text-[color:var(--foreground)] hover:border-[color:var(--border-strong)] hover:bg-[color:var(--surface-strong)]"
-        >
-          <Icon className="h-4.5 w-4.5" />
-        </a>
-      ))}
     </div>
   );
 }
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const navListRef = useRef<HTMLUListElement | null>(null);
+  const linkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
+  const [indicatorStyle, setIndicatorStyle] = useState<CSSProperties>({
+    opacity: 0,
+  });
+
+  useEffect(() => {
+    const navList = navListRef.current;
+
+    if (!navList) {
+      return;
+    }
+
+    const updateIndicator = () => {
+      const targetLink = linkRefs.current[pathname];
+
+      if (!targetLink) {
+        setIndicatorStyle((current) =>
+          current.opacity === 0 ? current : { opacity: 0 },
+        );
+        return;
+      }
+
+      setIndicatorStyle({
+        opacity: 1,
+        width: `${targetLink.offsetWidth}px`,
+        height: `${targetLink.offsetHeight}px`,
+        transform: `translate3d(${targetLink.offsetLeft}px, 0, 0)`,
+      });
+    };
+
+    updateIndicator();
+
+    const resizeObserver = new ResizeObserver(() => {
+      updateIndicator();
+    });
+
+    resizeObserver.observe(navList);
+
+    navItems.forEach(({ href }) => {
+      const link = linkRefs.current[href];
+
+      if (link) {
+        resizeObserver.observe(link);
+      }
+    });
+
+    window.addEventListener("resize", updateIndicator);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", updateIndicator);
+    };
+  }, [pathname]);
 
   return (
-    <header className="page-shell pt-4 md:pt-7">
-      <div className="floating-panel rounded-[2rem] px-4 py-4 md:px-5">
-        <div className="flex flex-col gap-4 md:grid md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:items-center">
-          <div className="flex items-center justify-between gap-4 md:justify-self-start">
+    <header className="sticky top-0 z-40 pt-4 md:pt-5">
+      <div className="page-shell backdrop-blur-[6px]">
+        <div className="flex flex-col gap-3 md:grid md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:items-center">
+          <div className="flex items-center justify-between gap-3 md:justify-self-start">
             <Link
               href="/"
-              className="focus-ring rounded-full px-1 py-1 font-[family-name:var(--font-display)] text-xl tracking-[-0.03em] text-[color:var(--foreground)] hover:text-[color:var(--accent-strong)]"
+              aria-label="Win Lei Thawdar home"
+              className="focus-ring inline-flex min-w-0 rounded-full px-1 py-1 transition hover:-translate-y-0.5"
             >
-              Win Lei Thawdar
+              <span className="font-[family-name:var(--font-script)] text-[2rem] leading-none tracking-[-0.03em] text-[color:var(--foreground)] md:text-[2.2rem]">
+                Winnie
+              </span>
             </Link>
             <div className="md:hidden">
               <HeaderActions />
@@ -49,7 +105,15 @@ export function SiteHeader() {
             aria-label="Primary"
             className="no-scrollbar overflow-x-auto md:justify-self-center"
           >
-            <ul className="inline-flex min-w-max items-center gap-1 rounded-full border border-[color:var(--border)] bg-[color:var(--surface-soft)] px-2 py-2">
+            <ul
+              ref={navListRef}
+              className="nav-pill relative inline-flex min-w-max items-center gap-1 rounded-full border border-[color:var(--border)] bg-transparent px-1.5 py-1.5 shadow-none"
+            >
+              <span
+                aria-hidden="true"
+                className="nav-pill-indicator absolute left-0 top-1.5 rounded-full bg-[color:var(--accent-strong)] shadow-sm"
+                style={indicatorStyle}
+              />
               {navItems.map(({ href, label }) => {
                 const isActive = pathname === href;
 
@@ -57,11 +121,14 @@ export function SiteHeader() {
                   <li key={href}>
                     <Link
                       href={href}
+                      ref={(element) => {
+                        linkRefs.current[href] = element;
+                      }}
                       aria-current={isActive ? "page" : undefined}
-                      className={`focus-ring inline-flex rounded-full px-4 py-2 text-sm font-medium ${
+                      className={`focus-ring relative z-10 inline-flex rounded-full px-4 py-2 text-sm font-medium ${
                         isActive
-                          ? "bg-[color:var(--accent-strong)] text-[color:var(--surface)] shadow-sm"
-                          : "text-[color:var(--muted)] hover:bg-[color:var(--surface)] hover:text-[color:var(--foreground)]"
+                          ? "text-[color:var(--surface)]"
+                          : "text-[color:var(--muted)] hover:text-[color:var(--foreground)]"
                       }`}
                     >
                       {label}

@@ -1,14 +1,5 @@
-import { PageIntro } from "@/components/page-intro";
+import { redirect } from "next/navigation";
 
 export default function AboutPage() {
-  return (
-    <section aria-labelledby="about-title" className="max-w-3xl">
-      <PageIntro
-        label="About"
-        title="About"
-        description="A short introduction and background details will be added here later."
-        titleId="about-title"
-      />
-    </section>
-  );
+  redirect("/education");
 }
