@@ -29,14 +29,14 @@ const organizationGroups: OrganizationGroup[] = [
     websiteUrl: "https://mui-robotics.asia/en/",
     linkedinUrl: "https://www.linkedin.com/company/mui-robotics/",
     dateRange: "May 2026 - Present",
-    duration: "4 mos",
+    duration: "3 mos",
     logo: "/logos/experience/mui-robotics.jpg",
     location: "Thailand",
     positions: [
       {
         role: "Technology Intern (AI/ML)",
         dateRange: "May 2026 - Present",
-        duration: "4 mos",
+        duration: "3 mos",
         highlights: [
           "Developed Python workflows to analyze and preprocess electronic nose and electronic tongue sensor data for sensory intelligence applications.",
           "Investigated machine learning techniques for signal preprocessing, feature engineering, model evaluation, and odor prediction using real-world sensory datasets.",
@@ -345,29 +345,29 @@ export default function ExperiencePage() {
       />
 
       <div className="space-y-5">
-        {experienceSections.map((section) => (
+        {experienceSections.map((section, sectionIndex) => (
           <section
             key={section.title}
             aria-labelledby={section.title}
             className="elevated-card rounded-[2.2rem] px-6 py-7 md:px-8 md:py-8"
           >
-            <div className="mb-6">
-              <h2
-                id={section.title}
-                className="text-sm font-semibold uppercase tracking-[0.18em] text-[color:var(--muted)]"
-              >
-                {section.title}
-              </h2>
-            </div>
+              <div className="mb-6">
+                <h2
+                  id={section.title}
+                  className="text-sm font-semibold uppercase tracking-[0.18em] text-[color:var(--muted)]"
+                >
+                  {section.title}
+                </h2>
+              </div>
 
-            <div className="space-y-0">
-                {section.items.map((group, index) => (
-                  <article
-                    key={`${group.organization}-${group.dateRange}`}
-                    className={`relative pl-10 ${
-                      index === section.items.length - 1 ? "" : "pb-10"
-                    }`}
-                  >
+              <div className="space-y-0">
+                  {section.items.map((group, index) => (
+                    <article
+                      key={`${group.organization}-${group.dateRange}`}
+                      className={`relative pl-10 ${
+                        index === section.items.length - 1 ? "" : "pb-10"
+                      }`}
+                    >
                     {index !== section.items.length - 1 ? (
                       <span
                         aria-hidden="true"
@@ -625,9 +625,9 @@ export default function ExperiencePage() {
                         <p>{group.duration}</p>
                       </div>
                     </div>
-                  </article>
-                ))}
-            </div>
+                    </article>
+                  ))}
+                </div>
           </section>
         ))}
       </div>

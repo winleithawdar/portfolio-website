@@ -208,3 +208,67 @@ export function LinktreeIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function CompassIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" {...props}>
+      <circle cx="12" cy="12" r="8.5" strokeWidth="1.8" />
+      <path
+        d="m9 15 2.1-6.1L17 7l-2 5.9L9 15Z"
+        strokeLinejoin="round"
+        strokeWidth="1.8"
+      />
+      <circle cx="12" cy="12" r="1.1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+export function PeopleIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" {...props}>
+      <circle cx="9" cy="9" r="2.75" strokeWidth="1.8" />
+      <circle cx="16.5" cy="10" r="2.25" strokeWidth="1.8" />
+      <path
+        d="M4.75 18c.45-2.58 2.5-4 5.25-4s4.8 1.42 5.25 4"
+        strokeLinecap="round"
+        strokeWidth="1.8"
+      />
+      <path
+        d="M14.5 17.75c.34-1.7 1.6-2.8 3.5-3.15"
+        strokeLinecap="round"
+        strokeWidth="1.8"
+      />
+    </svg>
+  );
+}
+
+export function LeafIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" {...props}>
+      <path
+        d="M18.5 5.5c-6.8 0-11 4.08-11 9.4 0 2.1 1.46 3.6 3.55 3.6 5.34 0 9.45-4.3 9.45-11.1 0-1.05-.45-1.9-2-1.9Z"
+        strokeLinejoin="round"
+        strokeWidth="1.8"
+      />
+      <path
+        d="M9 16c2.1-2.6 4.4-4.76 7.5-6.5"
+        strokeLinecap="round"
+        strokeWidth="1.8"
+      />
+    </svg>
+  );
+}
+
+export function SparkIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" {...props}>
+      <path
+        d="m12 3 1.95 5.05L19 10l-5.05 1.95L12 17l-1.95-5.05L5 10l5.05-1.95L12 3Z"
+        strokeLinejoin="round"
+        strokeWidth="1.8"
+      />
+      <path d="M19.5 4.5v2M20.5 5.5h-2" strokeLinecap="round" strokeWidth="1.8" />
+      <path d="M4.5 17.5v2M5.5 18.5h-2" strokeLinecap="round" strokeWidth="1.8" />
+    </svg>
+  );
+}

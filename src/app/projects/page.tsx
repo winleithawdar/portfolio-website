@@ -1109,7 +1109,7 @@ export default function ProjectsPage() {
       />
 
       <section className="space-y-5">
-        {sortedProjectItems.map((project) => (
+        {sortedProjectItems.map((project, index) => (
           <ProjectCard
             key={`${project.title}-${project.year}`}
             project={project}

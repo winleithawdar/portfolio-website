@@ -261,6 +261,60 @@ button {
   animation: hero-ring-breathe 8.5s ease-in-out infinite;
 }
 
+.home-feature-block::after,
+.home-mini-block::after,
+.home-overview-card::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.home-feature-block::after,
+.home-mini-block::after {
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.home-feature-block {
+  position: relative;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 16px 34px rgba(75, 63, 110, 0.05);
+}
+
+.home-mini-block {
+  position: relative;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: 0 12px 28px rgba(75, 63, 110, 0.04);
+}
+
+.home-overview-card {
+  position: relative;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: 0 16px 34px rgba(75, 63, 110, 0.06);
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.home-overview-card::after {
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.home-overview-card:hover {
+  transform: translateY(-0.3rem);
+  border-color: var(--border-strong);
+  box-shadow: 0 24px 46px rgba(75, 63, 110, 0.09);
+}
+
 @keyframes hero-orb-float {
   0%,
   100% {

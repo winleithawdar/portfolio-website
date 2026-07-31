@@ -54,8 +54,8 @@ function HeroAction({
 function ScrollCue() {
   return (
     <a
-      href="#home-overview"
-      aria-label="Scroll to overview"
+      href="#home-story"
+      aria-label="Scroll to story"
       className="focus-ring inline-flex flex-col items-center gap-2 text-[color:var(--muted)] transition hover:-translate-y-0.5 hover:text-[color:var(--accent-strong)]"
     >
       <span className="text-[0.68rem] font-semibold uppercase tracking-[0.22em]">
@@ -263,7 +263,7 @@ export function HomeHero() {
                 {heroActions}
               </div>
 
-              <div className="mt-7 hidden max-w-2xl border-t border-[color:var(--border)] pt-5 md:block lg:max-w-[34rem]">
+              <div className="mt-7 hidden max-w-2xl pt-5 md:block lg:max-w-[34rem]">
                 <div className="space-y-3">
                   <p className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-[color:var(--muted)]">
                     Connect with me
@@ -281,7 +281,7 @@ export function HomeHero() {
                   {heroActions}
                 </div>
 
-                <div className="space-y-3 border-t border-[color:var(--border)] pt-4">
+                <div className="space-y-3 pt-4">
                   <p className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-[color:var(--muted)]">
                     Connect with me
                   </p>
