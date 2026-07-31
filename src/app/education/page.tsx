@@ -154,7 +154,7 @@ export default function EducationPage() {
 
                 <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                   <div className="min-w-0 flex-1">
-                    <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
+                    <div className="flex min-w-0 gap-4">
                       {item.logo ? (
                         <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-[1.1rem] border border-[color:var(--border)] bg-white p-2">
                           <Image
@@ -172,68 +172,78 @@ export default function EducationPage() {
                           {item.institution}
                         </h2>
                         {item.location ? (
-                          <p className="mt-1 text-sm text-[color:var(--foreground)]/72">
+                          <p className="mt-1 hidden text-sm text-[color:var(--foreground)]/72 md:block">
                             {item.location}
                           </p>
                         ) : null}
-                        <p className="mt-2 text-base leading-7 text-[color:var(--foreground)]/82">
-                          {item.credential}
-                        </p>
-
-                        {item.result || item.note ? (
-                          <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-[color:var(--muted)]">
-                            {item.result ? <p>Result: {item.result}</p> : null}
-                            {item.note ? <p>{item.note}</p> : null}
-                          </div>
-                        ) : null}
-
-                        {hasDetails ? (
-                          <div className="mt-6 space-y-6">
-                            {item.sections?.map((section) => {
-                              const bulletClassName =
-                                section.tone === "accent"
-                                  ? "bg-[color:var(--accent-strong)]"
-                                  : "bg-[color:var(--border-strong)]";
-                              const textClassName =
-                                section.tone === "accent"
-                                  ? "text-[color:var(--foreground)]/80"
-                                  : "text-[color:var(--foreground)]/72";
-
-                              return (
-                                <section
-                                  key={`${item.institution}-${section.heading}`}
-                                  aria-labelledby={`education-section-${index}-${section.heading}`}
-                                >
-                                  <h3
-                                    id={`education-section-${index}-${section.heading}`}
-                                    className="text-sm font-semibold uppercase tracking-[0.18em] text-[color:var(--muted)]"
-                                  >
-                                    {section.heading}
-                                  </h3>
-                                  <ul className="mt-4 space-y-2">
-                                    {section.items.map((entry) => (
-                                      <li
-                                        key={entry}
-                                        className={`flex gap-3 text-sm leading-6 ${textClassName}`}
-                                      >
-                                        <span
-                                          aria-hidden="true"
-                                          className={`mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full ${bulletClassName}`}
-                                        />
-                                        <span>{entry}</span>
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </section>
-                              );
-                            })}
-                          </div>
-                        ) : null}
                       </div>
+                    </div>
+
+                    <div className="space-y-1 text-sm md:hidden">
+                      {item.location ? (
+                        <p className="text-[color:var(--foreground)]/72">{item.location}</p>
+                      ) : null}
+                      <p className="text-[color:var(--muted)]">{item.period}</p>
+                    </div>
+
+                    <div className="min-w-0">
+                      <p className="mt-2 text-base leading-7 text-[color:var(--foreground)]/82">
+                        {item.credential}
+                      </p>
+
+                      {item.result || item.note ? (
+                        <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-[color:var(--muted)]">
+                          {item.result ? <p>Result: {item.result}</p> : null}
+                          {item.note ? <p>{item.note}</p> : null}
+                        </div>
+                      ) : null}
+
+                      {hasDetails ? (
+                        <div className="mt-6 space-y-6">
+                          {item.sections?.map((section) => {
+                            const bulletClassName =
+                              section.tone === "accent"
+                                ? "bg-[color:var(--accent-strong)]"
+                                : "bg-[color:var(--border-strong)]";
+                            const textClassName =
+                              section.tone === "accent"
+                                ? "text-[color:var(--foreground)]/80"
+                                : "text-[color:var(--foreground)]/72";
+
+                            return (
+                              <section
+                                key={`${item.institution}-${section.heading}`}
+                                aria-labelledby={`education-section-${index}-${section.heading}`}
+                              >
+                                <h3
+                                  id={`education-section-${index}-${section.heading}`}
+                                  className="text-sm font-semibold uppercase tracking-[0.18em] text-[color:var(--muted)]"
+                                >
+                                  {section.heading}
+                                </h3>
+                                <ul className="mt-4 space-y-2">
+                                  {section.items.map((entry) => (
+                                    <li
+                                      key={entry}
+                                      className={`flex gap-3 text-sm leading-6 ${textClassName}`}
+                                    >
+                                      <span
+                                        aria-hidden="true"
+                                        className={`mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full ${bulletClassName}`}
+                                      />
+                                      <span>{entry}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </section>
+                            );
+                          })}
+                        </div>
+                      ) : null}
                     </div>
                   </div>
 
-                  <p className="shrink-0 text-sm text-[color:var(--muted)] md:pl-6 md:text-right">
+                  <p className="hidden shrink-0 text-sm text-[color:var(--muted)] md:block md:pl-6 md:text-right">
                     {item.period}
                   </p>
                 </div>

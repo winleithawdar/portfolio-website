@@ -420,6 +420,10 @@ const projectItems: ProjectItem[] = [
   },
 ];
 
+const sortedProjectItems = [...projectItems].sort(
+  (left, right) => Number(right.year) - Number(left.year),
+);
+
 function ArrowUpRightIcon({ className = "h-4 w-4" }: { className?: string }) {
   return (
     <svg
@@ -876,7 +880,7 @@ export default function ProjectsPage() {
       />
 
       <section className="space-y-5">
-        {projectItems.map((project) => (
+        {sortedProjectItems.map((project) => (
           <article
             key={`${project.title}-${project.year}`}
             className="elevated-card overflow-hidden rounded-[2.2rem] px-5 py-5 md:px-6 md:py-6"

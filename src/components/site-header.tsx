@@ -83,10 +83,10 @@ export function SiteHeader() {
   }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-40 pt-4 md:pt-5">
+    <header className="sticky top-0 z-40 pt-3 md:pt-5">
       <div className="page-shell backdrop-blur-[6px]">
-        <div className="flex flex-col gap-3 md:grid md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:items-center">
-          <div className="flex items-center justify-between gap-3 md:justify-self-start">
+        <div className="flex items-center gap-3 md:grid md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:items-center md:gap-3">
+          <div className="hidden md:flex md:justify-self-start">
             <Link
               href="/"
               aria-label="Win Lei Thawdar home"
@@ -96,22 +96,19 @@ export function SiteHeader() {
                 Winnie
               </span>
             </Link>
-            <div className="md:hidden">
-              <HeaderActions />
-            </div>
           </div>
 
           <nav
             aria-label="Primary"
-            className="no-scrollbar overflow-x-auto md:justify-self-center"
+            className="no-scrollbar min-w-0 flex-1 overflow-x-auto md:flex-none md:justify-self-center"
           >
             <ul
               ref={navListRef}
-              className="nav-pill relative inline-flex min-w-max items-center gap-1 rounded-full border border-[color:var(--border)] bg-transparent px-1.5 py-1.5 shadow-none"
+              className="nav-pill relative inline-flex min-w-max items-center gap-0.5 rounded-full border border-[color:var(--border)] bg-transparent px-1 py-1 shadow-none md:gap-1 md:px-1.5 md:py-1.5"
             >
               <span
                 aria-hidden="true"
-                className="nav-pill-indicator absolute left-0 top-1.5 rounded-full bg-[color:var(--accent-strong)] shadow-sm"
+                className="nav-pill-indicator absolute left-0 top-1 rounded-full bg-[color:var(--accent-strong)] shadow-sm md:top-1.5"
                 style={indicatorStyle}
               />
               {navItems.map(({ href, label }) => {
@@ -125,7 +122,7 @@ export function SiteHeader() {
                         linkRefs.current[href] = element;
                       }}
                       aria-current={isActive ? "page" : undefined}
-                      className={`focus-ring relative z-10 inline-flex rounded-full px-4 py-2 text-sm font-medium ${
+                      className={`focus-ring relative z-10 inline-flex rounded-full px-3 py-2 text-sm font-medium md:px-4 ${
                         isActive
                           ? "text-[color:var(--surface)]"
                           : "text-[color:var(--muted)] hover:text-[color:var(--foreground)]"
@@ -139,7 +136,7 @@ export function SiteHeader() {
             </ul>
           </nav>
 
-          <div className="hidden md:flex md:justify-self-end">
+          <div className="flex shrink-0 md:justify-self-end">
             <HeaderActions />
           </div>
         </div>
