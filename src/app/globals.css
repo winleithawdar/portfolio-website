@@ -201,6 +201,104 @@ button {
   text-shadow: 0 0 0 currentColor;
 }
 
+.hero-orb {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(80px);
+  will-change: transform, opacity;
+  mix-blend-mode: screen;
+}
+
+.hero-orb-left {
+  left: max(2rem, 5vw);
+  top: 14%;
+  height: min(28rem, 46vw);
+  width: min(28rem, 46vw);
+  background:
+    radial-gradient(circle at 35% 35%, rgba(223, 207, 231, 0.28), transparent 62%),
+    radial-gradient(circle at 70% 65%, rgba(195, 175, 209, 0.22), transparent 70%);
+  animation: hero-orb-float 12s ease-in-out infinite;
+}
+
+.hero-orb-right {
+  right: max(1rem, 3vw);
+  top: 18%;
+  height: min(34rem, 54vw);
+  width: min(34rem, 54vw);
+  background:
+    radial-gradient(circle at 40% 45%, rgba(223, 207, 231, 0.24), transparent 58%),
+    radial-gradient(circle at 72% 60%, rgba(195, 175, 209, 0.18), transparent 72%);
+  animation: hero-orb-float 15s ease-in-out infinite reverse;
+}
+
+.hero-mesh {
+  position: absolute;
+  inset: 8% 6% 10%;
+  background:
+    radial-gradient(circle at 22% 30%, rgba(255, 255, 255, 0.045), transparent 0.45rem),
+    radial-gradient(circle at 68% 20%, rgba(255, 255, 255, 0.038), transparent 0.38rem),
+    radial-gradient(circle at 82% 46%, rgba(255, 255, 255, 0.032), transparent 0.42rem),
+    radial-gradient(circle at 36% 72%, rgba(255, 255, 255, 0.03), transparent 0.42rem);
+  opacity: 0.8;
+  mask-image: radial-gradient(circle at center, black 38%, transparent 90%);
+}
+
+.hero-sparkle {
+  position: absolute;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(223, 207, 231, 0.85) 45%, transparent 72%);
+  box-shadow: 0 0 18px rgba(223, 207, 231, 0.28);
+  will-change: transform, opacity;
+  animation: hero-sparkle-drift 8s ease-in-out infinite;
+}
+
+.hero-portrait-ring {
+  position: absolute;
+  inset: 7% 13%;
+  border-radius: 999px;
+  border: 1px solid rgba(223, 207, 231, 0.14);
+  box-shadow: 0 0 0 1px rgba(223, 207, 231, 0.06);
+  animation: hero-ring-breathe 8.5s ease-in-out infinite;
+}
+
+@keyframes hero-orb-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0.9rem, -1.3rem, 0) scale(1.06);
+  }
+}
+
+@keyframes hero-sparkle-drift {
+  0%,
+  100% {
+    opacity: 0.22;
+    transform: translate3d(0, 0, 0) scale(0.92);
+  }
+  40% {
+    opacity: 0.88;
+    transform: translate3d(0.2rem, -0.55rem, 0) scale(1.22);
+  }
+  65% {
+    opacity: 0.38;
+    transform: translate3d(-0.16rem, -0.95rem, 0) scale(0.98);
+  }
+}
+
+@keyframes hero-ring-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.62;
+  }
+  50% {
+    transform: scale(1.035);
+    opacity: 0.88;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -214,7 +312,10 @@ button {
 
   body::before,
   .soft-panel::after,
-  .floating-panel::after {
+  .floating-panel::after,
+  .hero-orb,
+  .hero-sparkle,
+  .hero-portrait-ring {
     display: none;
   }
 }

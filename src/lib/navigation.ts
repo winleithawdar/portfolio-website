@@ -1,6 +1,7 @@
 import type { ComponentType, SVGProps } from "react";
 import {
   DevpostIcon,
+  FacebookIcon,
   GitHubIcon,
   InstagramIcon,
   LinkedInIcon,
@@ -41,6 +42,11 @@ export const heroSocialLinks: SocialLink[] = [
     icon: InstagramIcon,
   },
   {
+    href: "https://www.facebook.com/winleithawdar",
+    label: "Facebook",
+    icon: FacebookIcon,
+  },
+  {
     href: "https://devpost.com/winleithawdar",
     label: "Devpost",
     icon: DevpostIcon,
@@ -62,6 +68,11 @@ export const footerSocialLinks: SocialLink[] = [
     href: "https://instagram.com/winleithawdar",
     label: "Instagram",
     icon: InstagramIcon,
+  },
+  {
+    href: "https://www.facebook.com/winleithawdar",
+    label: "Facebook",
+    icon: FacebookIcon,
   },
   {
     href: "https://devpost.com/winleithawdar",

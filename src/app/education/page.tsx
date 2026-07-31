@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { PageIntro } from "@/components/page-intro";
+import { FacebookIcon, GlobeIcon } from "@/components/icons";
 
 type EducationSection = {
   heading: string;
@@ -12,6 +13,8 @@ type EducationItem = {
   credential: string;
   period: string;
   location?: string;
+  websiteUrl?: string;
+  facebookUrl?: string;
   result?: string;
   note?: string;
   logo?: string;
@@ -25,6 +28,7 @@ const educationItems: EducationItem[] = [
       "Bachelor of Science (Computer Science), Specialisation in Artificial Intelligence, Second Major in Strategic Management",
     period: "Aug 2024 - Apr 2028",
     location: "Singapore",
+    websiteUrl: "https://www.smu.edu.sg/",
     note: "ASEAN Undergraduate Scholarship",
     logo: "/logos/education/smu.jpg",
     sections: [
@@ -42,19 +46,35 @@ const educationItems: EducationItem[] = [
     ],
   },
   {
-    institution: "Royal Academic Institute & KAI Glocal School",
+    institution: "Royal Academic Institute & KAI Global School",
     credential: "Ontario Secondary School Diploma (OSSD)",
     period: "Dec 2022 - Dec 2023",
     location: "Myanmar & Canada",
+    websiteUrl: "https://kaiglobalschool.com/",
     result: "93%",
-    note: "OSSD Scholarship",
+    note: "RAI Scholarship Award",
     logo: "/logos/education/rai.jpg",
     sections: [
+      {
+        heading: "Achievements",
+        tone: "accent",
+        items: [
+          "Highest marks in Computer Science (ICS4U) at 97%",
+          "Highest marks in Business Management (BOH4M) at 96%",
+        ],
+      },
       {
         heading: "Subjects taken",
         tone: "muted",
         items: [
-          "Business Leadership: Management Fundamentals, English Literature, Computer Science, Calculus & Vectors, Advanced Functions, Literacy Course, Chemistry, Physics",
+          "Business Leadership: Management Fundamentals (BOH4M)",
+          "English Literature (ENG4U)",
+          "Computer Science (ICS4U)",
+          "Calculus & Vectors (MCV4U)",
+          "Advanced Functions (MHF4U)",
+          "Literacy Course (OLC4O)",
+          "Chemistry (SCH4U)",
+          "Physics (SPH4U)",
         ],
       },
       {
@@ -66,17 +86,30 @@ const educationItems: EducationItem[] = [
   },
   {
     institution: "Institute of International Professionalism",
-    credential: "International General Certificate of Secondary Education (IGCSE)",
-    period: "Jun 2021 - Nov 2023",
+    credential:
+      "International General Certificate of Secondary Education (IGCSE), Cambridge CIE",
+    period: "Jul 2021 - Nov 2023",
     location: "Myanmar",
+    facebookUrl: "https://www.facebook.com/IIPInternationalSchool/",
     result: "7A*",
     logo: "/logos/education/iip.jpg",
     sections: [
       {
+        heading: "Achievements",
+        tone: "accent",
+        items: ["Achieved the Excellent Award for getting A* in all subjects"],
+      },
+      {
         heading: "Subjects taken",
         tone: "muted",
         items: [
-          "Chemistry, Computer Science, English as a Second Language, Information and Communication Technology, Mathematics, Additional Mathematics, Physics",
+          "Chemistry (0620)",
+          "Computer Science (0478)",
+          "English as a Second Language (0510)",
+          "Information and Communication Technology (0417)",
+          "Mathematics (0580)",
+          "Mathematics Additional (0606)",
+          "Physics (0625)",
         ],
       },
     ],
@@ -86,6 +119,8 @@ const educationItems: EducationItem[] = [
     credential: "Grade 10",
     period: "Jun 2019 - Feb 2020",
     location: "Myanmar",
+    facebookUrl:
+      "https://www.facebook.com/p/KAUNG-SONE-Private-School-61554011201550/",
     result: "A",
     logo: "/logos/education/kaung-sone.jpg",
     sections: [
@@ -101,9 +136,15 @@ const educationItems: EducationItem[] = [
     credential: "Kindergarten-Grade 9",
     period: "Jun 2010 - Feb 2019",
     location: "Myanmar",
+    facebookUrl: "https://www.facebook.com/BishopHome/",
     result: "A",
     logo: "/logos/education/bems1.jpg",
     sections: [
+      {
+        heading: "Achievements",
+        tone: "accent",
+        items: ["99% in Mathematics in Grade 8 and Grade 9"],
+      },
       {
         heading: "Subjects taken",
         tone: "muted",
@@ -168,9 +209,35 @@ export default function EducationPage() {
                       ) : null}
 
                       <div className="min-w-0 flex-1">
-                        <h2 className="font-[family-name:var(--font-display)] text-2xl tracking-[-0.04em] text-[color:var(--foreground)] md:text-[2rem]">
-                          {item.institution}
-                        </h2>
+                        <div className="flex flex-wrap items-center gap-2">
+                          <h2 className="font-[family-name:var(--font-display)] text-2xl tracking-[-0.04em] text-[color:var(--foreground)] md:text-[2rem]">
+                            {item.institution}
+                          </h2>
+                          {item.websiteUrl ? (
+                            <a
+                              href={item.websiteUrl}
+                              target="_blank"
+                              rel="noreferrer"
+                              aria-label={`${item.institution} website`}
+                              title={`${item.institution} website`}
+                              className="focus-ring inline-flex h-8 w-8 items-center justify-center rounded-[0.9rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)] text-[color:var(--muted)] transition hover:-translate-y-0.5 hover:border-[color:var(--border-strong)] hover:text-[color:var(--accent-strong)]"
+                            >
+                              <GlobeIcon className="h-4 w-4" />
+                            </a>
+                          ) : null}
+                          {item.facebookUrl ? (
+                            <a
+                              href={item.facebookUrl}
+                              target="_blank"
+                              rel="noreferrer"
+                              aria-label={`${item.institution} Facebook`}
+                              title={`${item.institution} Facebook`}
+                              className="focus-ring inline-flex h-8 w-8 items-center justify-center rounded-[0.9rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)] text-[color:var(--muted)] transition hover:-translate-y-0.5 hover:border-[color:var(--border-strong)] hover:text-[color:var(--accent-strong)]"
+                            >
+                              <FacebookIcon className="h-4 w-4" />
+                            </a>
+                          ) : null}
+                        </div>
                         {item.location ? (
                           <p className="mt-1 hidden text-sm text-[color:var(--foreground)]/72 md:block">
                             {item.location}
@@ -221,20 +288,30 @@ export default function EducationPage() {
                                 >
                                   {section.heading}
                                 </h3>
-                                <ul className="mt-4 space-y-2">
-                                  {section.items.map((entry) => (
-                                    <li
-                                      key={entry}
-                                      className={`flex gap-3 text-sm leading-6 ${textClassName}`}
-                                    >
-                                      <span
-                                        aria-hidden="true"
-                                        className={`mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full ${bulletClassName}`}
-                                      />
-                                      <span>{entry}</span>
-                                    </li>
-                                  ))}
-                                </ul>
+                                {section.heading === "Subjects taken" ? (
+                                  <p className={`mt-4 text-sm leading-6 ${textClassName}`}>
+                                    {section.items.join(", ")}
+                                  </p>
+                                ) : section.items.length === 1 ? (
+                                  <p className={`mt-4 text-sm leading-6 ${textClassName}`}>
+                                    {section.items[0]}
+                                  </p>
+                                ) : (
+                                  <ul className="mt-4 space-y-2">
+                                    {section.items.map((entry) => (
+                                      <li
+                                        key={entry}
+                                        className={`flex gap-3 text-sm leading-6 ${textClassName}`}
+                                      >
+                                        <span
+                                          aria-hidden="true"
+                                          className={`mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full ${bulletClassName}`}
+                                        />
+                                        <span>{entry}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                )}
                               </section>
                             );
                           })}

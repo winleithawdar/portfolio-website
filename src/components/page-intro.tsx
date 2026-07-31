@@ -35,7 +35,7 @@ export function PageIntro({
           >
             {title}
           </h1>
-          <p className="mt-4 max-w-full truncate text-sm leading-8 text-[color:var(--muted)] md:text-base">
+          <p className="mt-4 max-w-full text-sm leading-7 text-[color:var(--muted)] md:text-base md:leading-8">
             {description}
           </p>
         </div>

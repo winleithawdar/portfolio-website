@@ -45,7 +45,7 @@ export default function HomePage() {
 
             <h2
               id="home-overview-title"
-              className="max-w-3xl font-[family-name:var(--font-display)] text-4xl leading-tight tracking-[-0.05em] text-[color:var(--foreground)] md:text-5xl"
+              className="max-w-3xl font-[family-name:var(--font-display)] text-4xl leading-tight tracking-[-0.05em] text-[color:var(--foreground)] md:max-w-5xl md:text-5xl"
             >
               Explore the main sections of the site.
             </h2>

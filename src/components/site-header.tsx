@@ -29,6 +29,7 @@ export function SiteHeader() {
   const pathname = usePathname();
   const navListRef = useRef<HTMLUListElement | null>(null);
   const linkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [indicatorStyle, setIndicatorStyle] = useState<CSSProperties>({
     opacity: 0,
   });
@@ -85,7 +86,61 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 pt-3 md:pt-5">
       <div className="page-shell backdrop-blur-[6px]">
-        <div className="flex items-center gap-3 md:grid md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:items-center md:gap-3">
+        <div className="flex items-center justify-between gap-3 md:hidden">
+          <button
+            type="button"
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-primary-nav"
+            aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            onClick={() => {
+              setMobileMenuOpen((current) => !current);
+            }}
+            className="focus-ring inline-flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--border)] bg-[color:var(--surface-soft)] text-[color:var(--foreground)] hover:border-[color:var(--border-strong)] hover:bg-[color:var(--surface-strong)]"
+          >
+            <span className="flex flex-col gap-1.5">
+              <span className="h-0.5 w-4 rounded-full bg-current" />
+              <span className="h-0.5 w-4 rounded-full bg-current" />
+              <span className="h-0.5 w-4 rounded-full bg-current" />
+            </span>
+          </button>
+
+          <HeaderActions />
+        </div>
+
+        {mobileMenuOpen ? (
+          <nav
+            id="mobile-primary-nav"
+            aria-label="Mobile primary"
+            className="mt-3 rounded-[1.6rem] border border-[color:var(--border)] bg-[color:var(--surface)] p-2 shadow-[0_14px_28px_rgba(75,63,110,0.08)] md:hidden"
+          >
+            <ul className="space-y-1">
+              {navItems.map(({ href, label }) => {
+                const isActive = pathname === href;
+
+                return (
+                  <li key={href}>
+                    <Link
+                      href={href}
+                      aria-current={isActive ? "page" : undefined}
+                      onClick={() => {
+                        setMobileMenuOpen(false);
+                      }}
+                      className={`focus-ring flex rounded-[1rem] px-4 py-3 text-sm font-medium ${
+                        isActive
+                          ? "bg-[color:var(--accent-strong)] text-[color:var(--surface)]"
+                          : "text-[color:var(--foreground)] hover:bg-[color:var(--surface-soft)]"
+                      }`}
+                    >
+                      {label}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+        ) : null}
+
+        <div className="hidden md:grid md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:items-center md:gap-3">
           <div className="hidden md:flex md:justify-self-start">
             <Link
               href="/"
@@ -100,11 +155,11 @@ export function SiteHeader() {
 
           <nav
             aria-label="Primary"
-            className="no-scrollbar min-w-0 flex-1 overflow-x-auto md:flex-none md:justify-self-center"
+            className="w-full md:justify-self-center"
           >
             <ul
               ref={navListRef}
-              className="nav-pill relative inline-flex min-w-max items-center gap-0.5 rounded-full border border-[color:var(--border)] bg-transparent px-1 py-1 shadow-none md:gap-1 md:px-1.5 md:py-1.5"
+              className="nav-pill relative grid w-full grid-cols-4 items-center gap-0.5 rounded-full border border-[color:var(--border)] bg-transparent px-1 py-1 shadow-none md:inline-flex md:min-w-max md:w-auto md:gap-1 md:px-1.5 md:py-1.5"
             >
               <span
                 aria-hidden="true"
@@ -122,7 +177,7 @@ export function SiteHeader() {
                         linkRefs.current[href] = element;
                       }}
                       aria-current={isActive ? "page" : undefined}
-                      className={`focus-ring relative z-10 inline-flex rounded-full px-3 py-2 text-sm font-medium md:px-4 ${
+                      className={`focus-ring relative z-10 inline-flex justify-center rounded-full px-1 py-2 text-[0.82rem] font-medium md:px-4 md:text-sm ${
                         isActive
                           ? "text-[color:var(--surface)]"
                           : "text-[color:var(--muted)] hover:text-[color:var(--foreground)]"
@@ -136,7 +191,7 @@ export function SiteHeader() {
             </ul>
           </nav>
 
-          <div className="flex shrink-0 md:justify-self-end">
+          <div className="hidden shrink-0 md:flex md:justify-self-end">
             <HeaderActions />
           </div>
         </div>

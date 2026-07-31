@@ -60,8 +60,7 @@ const projectItems: ProjectItem[] = [
         href: "https://github.com/SMUAIClub/SMUAI-website",
       },
     ],
-    note: "Developer | SMU Artificial Intelligence Club | Feb 2026 - Jul 2026",
-    credit: "Solo Project",
+    credit: "Individual Project | SMUAI",
     previewStyle: "browser",
     previewLabel: "Website preview",
     screenshotSrc: "/images/projects/smuai.png",
@@ -85,7 +84,7 @@ const projectItems: ProjectItem[] = [
         href: "https://github.com/darriusnjh/OpenEval",
       },
     ],
-    note: "OpenAI Codex Hackathon - Singapore | Saturday, February 28, 2026",
+    note: "OpenAI Codex Hackathon - Singapore",
     credit:
       "Team: Anson Koh, Darrius Ng, Htet Shwe Win Than, Win Lei Thawdar",
     previewStyle: "dashboard",
@@ -113,6 +112,10 @@ const projectItems: ProjectItem[] = [
       "Data Analysis",
     ],
     links: [
+      {
+        label: "Presentation",
+        href: "https://canva.link/x0oetcx6cus08yq",
+      },
       {
         label: "Source Code",
         href: "https://github.com/winleithawdar/CS202",
@@ -181,6 +184,10 @@ const projectItems: ProjectItem[] = [
     ],
     links: [
       {
+        label: "Pitch Video",
+        href: "https://youtu.be/lD-b_ihxFCU?si=IF_Oos7mdT9C6LRo",
+      },
+      {
         label: "Source Code",
         href: "https://github.com/Sprou-t/cs203",
       },
@@ -205,8 +212,8 @@ const projectItems: ProjectItem[] = [
       "Designed features such as no-cutlery, paperless receipts, and greener delivery defaults.",
     ],
     technologies: [
-      "Next.js 15",
-      "React 19",
+      "Next.js",
+      "React",
       "TypeScript",
       "Tailwind CSS",
       "Chrome Extension",
@@ -285,7 +292,7 @@ const projectItems: ProjectItem[] = [
         href: "https://www.figma.com/proto/B8xQeuv59qQjf3CX5nNfwm/TechSeries2025?node-id=0-1&t=2LwEM4QBOwiweyFx-1",
       },
     ],
-    credit: "Solo Project",
+    credit: "Individual Project | Ellipsis",
     previewStyle: "figma",
     previewLabel: "Design preview",
     screenshotSrc: "/images/projects/ellipsis-tech-series.png",
@@ -339,7 +346,7 @@ const projectItems: ProjectItem[] = [
         href: "https://www.canva.com/design/DAGuor6sXg4/u4ZjrrmetCGemY4mpusWUg/view",
       },
     ],
-    credit: "Solo Project",
+    credit: "Individual Project",
     previewStyle: "portfolio",
     previewLabel: "Design portfolio preview",
     screenshotSrc: "/images/projects/graphic-design-portfolio.png",
@@ -358,6 +365,10 @@ const projectItems: ProjectItem[] = [
     technologies: ["Java", "Object-Oriented Programming", "Game Logic", "AI"],
     links: [
       {
+        label: "Presentation",
+        href: "https://canva.link/zd6ec9ckcktrilo",
+      },
+      {
         label: "Source Code",
         href: "https://github.com/wltdwinnie/ParadeCardGame",
       },
@@ -371,7 +382,7 @@ const projectItems: ProjectItem[] = [
   },
   {
     title: "SMU Nest",
-    year: "2025",
+    year: "2024",
     format: "Team Project",
     domain: "Creative",
     description:
@@ -386,13 +397,21 @@ const projectItems: ProjectItem[] = [
         label: "Figma",
         href: "https://www.figma.com/proto/qcTJButXewYbUqDiTp5pwJ/SMU-Nest-Prototype?node-id=11-8",
       },
+      {
+        label: "Pitch Video",
+        href: "https://youtu.be/Co_I1f2JQw0?si=omQOqLgtnMIrkxoJ",
+      },
+      {
+        label: "Demo Video",
+        href: "https://youtu.be/d-yWqSmo-Sc?si=vSoEDNOaFK-jEKjY",
+      },
     ],
     note: "IS211: Interaction Design & Prototyping",
     credit:
       "Team: Ho Xin Yu, Htet Shwe Win Than, Kaitlin Gardner, Sierra Colvin, Win Lei Thawdar",
     previewStyle: "mobile",
     previewLabel: "Mobile preview",
-    screenshotSrc: "/images/projects/smu-nest.png",
+    screenshotSrc: "/images/projects/smunest.png",
   },
   {
     title: "Portfolio Website V1",
@@ -413,16 +432,24 @@ const projectItems: ProjectItem[] = [
         href: "https://github.com/winleithawdar/portfolio",
       },
     ],
-    credit: "Solo Project",
+    credit: "Individual Project",
     previewStyle: "portfolio",
     previewLabel: "Portfolio preview",
     screenshotSrc: "/images/projects/portfolio.png",
   },
 ];
 
-const sortedProjectItems = [...projectItems].sort(
-  (left, right) => Number(right.year) - Number(left.year),
-);
+const sortedProjectItems = [...projectItems].sort((left, right) => {
+  if (left.title === "Graphic Design Portfolio") {
+    return 1;
+  }
+
+  if (right.title === "Graphic Design Portfolio") {
+    return -1;
+  }
+
+  return Number(right.year) - Number(left.year);
+});
 
 function ArrowUpRightIcon({ className = "h-4 w-4" }: { className?: string }) {
   return (
@@ -550,6 +577,105 @@ function getLinkIcon(label: string) {
 
 function getPrimaryLink(project: ProjectItem) {
   return project.links[0] ?? null;
+}
+
+function ProjectMetaDetails({
+  project,
+  className = "",
+}: {
+  project: ProjectItem;
+  className?: string;
+}) {
+  if (!project.note && !project.credit) {
+    return null;
+  }
+
+  return (
+    <div className={className}>
+      {project.note ? (
+        <p
+          className="text-sm leading-7"
+          style={{ color: "var(--accent-strong)" }}
+        >
+          {project.note.includes("|") ? (
+            <>
+              <span
+                className="font-semibold"
+                style={{ color: "var(--foreground)" }}
+              >
+                {project.note.split("|")[0]?.trim()}
+              </span>{" "}
+              | {project.note.split("|").slice(1).join("|").trim()}
+            </>
+          ) : (
+            <span
+              className="font-semibold"
+              style={{ color: "var(--foreground)" }}
+            >
+              {project.note}
+            </span>
+          )}
+        </p>
+      ) : null}
+
+      {project.credit ? (
+        <p
+          className={project.note ? "mt-2 text-sm leading-7" : "text-sm leading-7"}
+          style={{ color: "var(--muted)" }}
+        >
+          {project.credit.startsWith("Team:") ? (
+            <>
+              <span
+                className="font-semibold"
+                style={{ color: "var(--foreground)" }}
+              >
+                Team:
+              </span>{" "}
+              {project.credit.slice(5).trim()}
+            </>
+          ) : (
+            <span
+              className="font-semibold"
+              style={{ color: "var(--foreground)" }}
+            >
+              {project.credit}
+            </span>
+          )}
+        </p>
+      ) : null}
+    </div>
+  );
+}
+
+function ProjectStackSection({
+  project,
+  className = "",
+}: {
+  project: ProjectItem;
+  className?: string;
+}) {
+  return (
+    <section className={className}>
+      <h3 className="project-section-label text-sm font-semibold uppercase">
+        Stack
+      </h3>
+      <div className="mt-4 flex flex-wrap gap-2.5">
+        {project.technologies.map((technology) => (
+          <span
+            key={technology}
+            className="project-stack-chip rounded-full border px-3 py-1.5 font-medium uppercase"
+            style={{
+              borderColor: "var(--border)",
+              backgroundColor: "var(--surface-soft)",
+              color: "var(--muted)",
+            }}
+          >
+            {technology}
+          </span>
+        ))}
+      </div>
+    </section>
+  );
 }
 
 function ProjectLinksRow({ project }: { project: ProjectItem }) {
@@ -868,6 +994,109 @@ function ProjectPreview({ project }: { project: ProjectItem }) {
   );
 }
 
+function ProjectCard({ project }: { project: ProjectItem }) {
+  return (
+    <article
+      key={`${project.title}-${project.year}`}
+      className="elevated-card overflow-hidden rounded-[2.2rem] px-5 py-5 md:px-6 md:py-6"
+    >
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(22rem,27rem)] lg:items-start lg:gap-8">
+        <div className="min-w-0">
+          <div
+            className="flex flex-wrap items-center gap-2 text-sm"
+            style={{ color: "var(--muted)" }}
+          >
+            <span className="paper-tag project-meta-tag px-3 py-1 font-semibold uppercase">
+              {project.year}
+            </span>
+          </div>
+
+          <div className="mt-5 flex items-start justify-between gap-4">
+            <div className="min-w-0">
+              <h2 className="project-title">{project.title}</h2>
+              <p
+                className="mt-3 max-w-3xl text-sm leading-7 md:text-base"
+                style={{ color: mixColor("--foreground", 78) }}
+              >
+                {project.description}
+              </p>
+            </div>
+          </div>
+
+          <ProjectMetaDetails project={project} className="mt-4 lg:hidden" />
+
+          <section className="mt-6 hidden md:block">
+            <h3 className="project-section-label text-sm font-semibold uppercase">
+              {project.highlightLabel ?? "Highlights"}
+            </h3>
+            <ul className="mt-4 space-y-2">
+              {project.highlights.map((highlight) => (
+                <li
+                  key={highlight}
+                  className="flex gap-3 text-sm leading-6"
+                  style={{ color: mixColor("--foreground", 78) }}
+                >
+                  <span
+                    aria-hidden="true"
+                    className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full"
+                    style={{ backgroundColor: "var(--accent-strong)" }}
+                  />
+                  <span>{highlight}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <ProjectStackSection project={project} className="mt-7 hidden md:block" />
+        </div>
+
+        <div>
+          <ProjectPreview project={project} />
+          <ProjectMetaDetails
+            project={project}
+            className="mt-4 hidden text-center lg:block"
+          />
+        </div>
+      </div>
+
+      <details
+        className="group mt-6 overflow-hidden rounded-[1.35rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)] md:hidden"
+      >
+        <summary className="focus-ring flex cursor-pointer list-none items-center justify-center px-4 py-3 text-sm font-semibold text-[color:var(--foreground)] transition hover:text-[color:var(--accent-strong)] [&::-webkit-details-marker]:hidden">
+          <span className="group-open:hidden">See more</span>
+          <span className="hidden group-open:inline">See less</span>
+        </summary>
+
+        <div className="border-t border-[color:var(--border)] px-4 pb-5 pt-4">
+          <section>
+            <h3 className="project-section-label text-sm font-semibold uppercase">
+              {project.highlightLabel ?? "Highlights"}
+            </h3>
+            <ul className="mt-4 space-y-2">
+              {project.highlights.map((highlight) => (
+                <li
+                  key={highlight}
+                  className="flex gap-3 text-sm leading-6"
+                  style={{ color: mixColor("--foreground", 78) }}
+                >
+                  <span
+                    aria-hidden="true"
+                    className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full"
+                    style={{ backgroundColor: "var(--accent-strong)" }}
+                  />
+                  <span>{highlight}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <ProjectStackSection project={project} className="mt-7" />
+        </div>
+      </details>
+    </article>
+  );
+}
+
 export default function ProjectsPage() {
   return (
     <section aria-labelledby="projects-title" className="w-full space-y-6">
@@ -881,140 +1110,10 @@ export default function ProjectsPage() {
 
       <section className="space-y-5">
         {sortedProjectItems.map((project) => (
-          <article
+          <ProjectCard
             key={`${project.title}-${project.year}`}
-            className="elevated-card overflow-hidden rounded-[2.2rem] px-5 py-5 md:px-6 md:py-6"
-          >
-            <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(22rem,27rem)] lg:items-start lg:gap-8">
-              <div className="min-w-0">
-                <div
-                  className="flex flex-wrap items-center gap-2 text-sm"
-                  style={{ color: "var(--muted)" }}
-                >
-                  <span className="paper-tag project-meta-tag px-3 py-1 font-semibold uppercase">
-                    {project.year}
-                  </span>
-                  <span className="paper-tag project-meta-tag px-3 py-1 font-semibold uppercase">
-                    {project.format}
-                  </span>
-                  <span className="paper-tag project-meta-tag px-3 py-1 font-semibold uppercase">
-                    {project.domain}
-                  </span>
-                </div>
-
-                <div className="mt-5 flex items-start justify-between gap-4">
-                  <div className="min-w-0">
-                    <h2 className="project-title">
-                      {project.title}
-                    </h2>
-                    <p
-                      className="mt-3 max-w-3xl text-sm leading-7 md:text-base"
-                      style={{ color: mixColor("--foreground", 78) }}
-                    >
-                      {project.description}
-                    </p>
-                  </div>
-                </div>
-
-                {project.note ? (
-                  <p
-                    className="mt-4 text-sm leading-7"
-                    style={{ color: "var(--accent-strong)" }}
-                  >
-                    {project.note.includes("|") ? (
-                      <>
-                        <span
-                          className="font-semibold"
-                          style={{ color: "var(--foreground)" }}
-                        >
-                          {project.note.split("|")[0]?.trim()}
-                        </span>{" "}
-                        | {project.note.split("|").slice(1).join("|").trim()}
-                      </>
-                    ) : (
-                      <span
-                        className="font-semibold"
-                        style={{ color: "var(--foreground)" }}
-                      >
-                        {project.note}
-                      </span>
-                    )}
-                  </p>
-                ) : null}
-
-                {project.credit ? (
-                  <p
-                    className="mt-2 text-sm leading-7"
-                    style={{ color: "var(--muted)" }}
-                  >
-                    {project.credit.startsWith("Team:") ? (
-                      <>
-                        <span
-                          className="font-semibold"
-                          style={{ color: "var(--foreground)" }}
-                        >
-                          Team:
-                        </span>{" "}
-                        {project.credit.slice(5).trim()}
-                      </>
-                    ) : (
-                      <span
-                        className="font-semibold"
-                        style={{ color: "var(--foreground)" }}
-                      >
-                        {project.credit}
-                      </span>
-                    )}
-                  </p>
-                ) : null}
-
-                <section className="mt-6">
-                  <h3 className="project-section-label text-sm font-semibold uppercase">
-                    {project.highlightLabel ?? "Highlights"}
-                  </h3>
-                  <ul className="mt-4 space-y-3">
-                    {project.highlights.map((highlight) => (
-                      <li
-                        key={highlight}
-                        className="flex gap-3 text-sm leading-7"
-                        style={{ color: mixColor("--foreground", 78) }}
-                      >
-                        <span
-                          aria-hidden="true"
-                          className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full"
-                          style={{ backgroundColor: "var(--accent-strong)" }}
-                        />
-                        <span>{highlight}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-              </div>
-
-              <ProjectPreview project={project} />
-            </div>
-
-            <section className="mt-7">
-              <h3 className="project-section-label text-sm font-semibold uppercase">
-                Stack
-              </h3>
-              <div className="mt-4 flex flex-wrap gap-2.5">
-                {project.technologies.map((technology) => (
-                  <span
-                    key={technology}
-                    className="project-stack-chip rounded-full border px-3 py-1.5 font-medium uppercase"
-                    style={{
-                      borderColor: "var(--border)",
-                      backgroundColor: "var(--surface-soft)",
-                      color: "var(--muted)",
-                    }}
-                  >
-                    {technology}
-                  </span>
-                ))}
-              </div>
-            </section>
-          </article>
+            project={project}
+          />
         ))}
       </section>
     </section>
