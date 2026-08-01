@@ -74,7 +74,7 @@ export function SiteFooter() {
         <div className="flex flex-col gap-1.5 pt-1 text-sm text-[color:var(--muted)] md:flex-row md:items-center md:justify-between">
           <p>© 2026 Win Lei Thawdar</p>
           <div className="flex flex-col gap-1 text-xs md:items-end">
-            <p>Last updated: July 2026</p>
+            <p>Last updated: August 2026</p>
           </div>
         </div>
       </div>

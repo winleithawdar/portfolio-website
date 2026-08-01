@@ -93,7 +93,7 @@ const projectItems: ProjectItem[] = [
   },
   {
     title: "Resource-Constrained Scheduling Solver",
-    year: "2025",
+    year: "2026",
     format: "Team Project",
     domain: "Tech",
     description:
@@ -130,7 +130,7 @@ const projectItems: ProjectItem[] = [
   },
   {
     title: "Pawsitive",
-    year: "2025",
+    year: "2026",
     format: "Team Project",
     domain: "Tech",
     description:

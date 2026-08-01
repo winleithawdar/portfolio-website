@@ -69,7 +69,7 @@ function ScrollCue() {
 }
 
 export function HomeHero() {
-  const heroFocusAreas = ["Computer Science", "AI", "Product", "Design"];
+  const heroFocusAreas = ["AI", "Product", "Design"];
   const heroSparkles = [
     { left: "8%", top: "20%", size: "0.5rem", delay: "0s", duration: "7.2s" },
     { left: "18%", top: "72%", size: "0.38rem", delay: "1.6s", duration: "8.4s" },
@@ -77,6 +77,11 @@ export function HomeHero() {
     { left: "58%", top: "68%", size: "0.56rem", delay: "2.3s", duration: "9.1s" },
     { left: "74%", top: "24%", size: "0.34rem", delay: "1.1s", duration: "7.8s" },
     { left: "88%", top: "60%", size: "0.46rem", delay: "2.8s", duration: "8.7s" },
+    { left: "12%", top: "48%", size: "0.3rem", delay: "0.7s", duration: "6.9s" },
+    { left: "28%", top: "34%", size: "0.28rem", delay: "2.1s", duration: "8.1s" },
+    { left: "52%", top: "42%", size: "0.32rem", delay: "1.4s", duration: "7.5s" },
+    { left: "68%", top: "14%", size: "0.26rem", delay: "3s", duration: "8.8s" },
+    { left: "82%", top: "78%", size: "0.3rem", delay: "1.9s", duration: "7.1s" },
   ] as const;
   const [scrollProgress, setScrollProgress] = useState(0);
 
@@ -293,8 +298,8 @@ export function HomeHero() {
 
               <div className="flex justify-end">
                 <div className="relative flex h-[14rem] w-full max-w-[8.75rem] items-center justify-center overflow-visible">
-                  <div className="relative h-full w-full overflow-hidden rounded-[999px] border border-[color:var(--accent)]/38 bg-[color:var(--surface-strong)] shadow-[0_22px_40px_rgba(75,63,110,0.14)]">
-                    <div className="pointer-events-none absolute inset-[0.5rem] z-10 rounded-[999px] border border-white/65 dark:border-white/28" />
+                  <div className="relative h-full w-full overflow-hidden rounded-[999px] border border-[rgba(108,95,141,0.34)] bg-[color:var(--surface-strong)] shadow-[0_22px_40px_rgba(75,63,110,0.14)] dark:border-[color:var(--accent)]/38">
+                    <div className="pointer-events-none absolute inset-[0.5rem] z-10 rounded-[999px] border border-[rgba(108,95,141,0.22)] dark:border-white/28" />
                     <Image
                       src="/images/profile/my-profile.png"
                       alt="Portrait of Win Lei Thawdar"
@@ -320,8 +325,8 @@ export function HomeHero() {
                 style={portraitGlowStyle}
               />
               <div aria-hidden="true" className="hero-portrait-ring" />
-              <div className="relative h-[82%] w-[70%] overflow-hidden rounded-[999px] border border-[color:var(--accent)]/38 bg-[color:var(--surface-strong)] shadow-[0_30px_58px_rgba(75,63,110,0.15)] sm:h-[76%] sm:w-[64%] md:h-[68%] md:w-[58%]">
-                <div className="pointer-events-none absolute inset-[0.7rem] z-10 rounded-[999px] border border-white/65 dark:border-white/28" />
+              <div className="relative h-[82%] w-[70%] overflow-hidden rounded-[999px] border border-[rgba(108,95,141,0.34)] bg-[color:var(--surface-strong)] shadow-[0_30px_58px_rgba(75,63,110,0.15)] dark:border-[color:var(--accent)]/38 sm:h-[76%] sm:w-[64%] md:h-[68%] md:w-[58%]">
+                <div className="pointer-events-none absolute inset-[0.7rem] z-10 rounded-[999px] border border-[rgba(108,95,141,0.22)] dark:border-white/28" />
                 <Image
                   src="/images/profile/my-profile.png"
                   alt="Portrait of Win Lei Thawdar"

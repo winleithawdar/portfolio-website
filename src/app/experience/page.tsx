@@ -29,14 +29,14 @@ const organizationGroups: OrganizationGroup[] = [
     websiteUrl: "https://mui-robotics.asia/en/",
     linkedinUrl: "https://www.linkedin.com/company/mui-robotics/",
     dateRange: "May 2026 - Present",
-    duration: "3 mos",
+    duration: "4 mos",
     logo: "/logos/experience/mui-robotics.jpg",
     location: "Thailand",
     positions: [
       {
         role: "Technology Intern (AI/ML)",
         dateRange: "May 2026 - Present",
-        duration: "3 mos",
+        duration: "4 mos",
         highlights: [
           "Developed Python workflows to analyze and preprocess electronic nose and electronic tongue sensor data for sensory intelligence applications.",
           "Investigated machine learning techniques for signal preprocessing, feature engineering, model evaluation, and odor prediction using real-world sensory datasets.",
@@ -51,14 +51,14 @@ const organizationGroups: OrganizationGroup[] = [
     websiteUrl: "https://www.smuai.org/",
     linkedinUrl: "https://www.linkedin.com/company/smuai/",
     dateRange: "May 2025 - Present",
-    duration: "1 yr 3 mos",
+    duration: "1 yr 4 mos",
     logo: "/logos/experience/smuai.jpg",
     location: "Singapore",
     positions: [
       {
         role: "Vice President",
         dateRange: "May 2026 - Present",
-        duration: "3 mos",
+        duration: "4 mos",
         highlights: [
           "Oversee the club’s direction across departments, helping guide priorities, initiatives, and execution alongside the executive committee.",
           "Work closely with the President on strategic alignment to ensure SMUAI’s plans, operations, and public direction stay consistent with the club’s long-term vision.",
@@ -328,7 +328,7 @@ const experienceSections = [
     items: organizationGroups.filter((group) => group.category === "work"),
   },
   {
-    title: "Leadership & Community Involvement",
+    title: "Leadership & Community",
     items: organizationGroups.filter((group) => group.category === "leadership"),
   },
 ] as const;
@@ -382,188 +382,195 @@ export default function ExperiencePage() {
                       <span className="h-2.5 w-2.5 rounded-full bg-[color:var(--accent-strong)]" />
                     </span>
 
-                    <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-                      <div className="min-w-0 flex-1">
-                        <div className="flex min-w-0 gap-4">
-                          {group.logo ? (
-                            <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-[1.1rem] border border-[color:var(--border)] bg-white p-2">
-                              <Image
-                                src={group.logo}
-                                alt={`${group.organization} logo`}
-                                width={56}
-                                height={56}
-                                className="h-full w-full object-contain"
-                              />
-                            </div>
-                          ) : null}
-
-                          <div className="min-w-0 flex-1">
-                            <div className="flex flex-wrap items-center gap-2">
-                              <h3 className="font-[family-name:var(--font-display)] text-2xl tracking-[-0.04em] text-[color:var(--foreground)] md:text-[2rem]">
-                                {group.organization}
-                              </h3>
-                              {group.linkedinUrl ? (
-                                <a
-                                  href={group.linkedinUrl}
-                                  target="_blank"
-                                  rel="noreferrer"
-                                  aria-label={`${group.organization} LinkedIn`}
-                                  title={`${group.organization} LinkedIn`}
-                                  className="focus-ring inline-flex h-8 w-8 items-center justify-center rounded-[0.9rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)] text-[color:var(--muted)] transition hover:-translate-y-0.5 hover:border-[color:var(--border-strong)] hover:text-[color:var(--accent-strong)]"
-                                >
-                                  <LinkedInIcon className="h-4 w-4" />
-                                </a>
-                              ) : null}
-                              {group.websiteUrl ? (
-                                <a
-                                  href={group.websiteUrl}
-                                  target="_blank"
-                                  rel="noreferrer"
-                                  aria-label={`${group.organization} website`}
-                                  title={`${group.organization} website`}
-                                  className="focus-ring inline-flex h-8 w-8 items-center justify-center rounded-[0.9rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)] text-[color:var(--muted)] transition hover:-translate-y-0.5 hover:border-[color:var(--border-strong)] hover:text-[color:var(--accent-strong)]"
-                                >
-                                  <GlobeIcon className="h-4 w-4" />
-                                </a>
-                              ) : null}
-                            </div>
-                            {group.location ? (
-                              <p className="mt-1 text-sm text-[color:var(--foreground)]/72">
-                                {group.location}
-                              </p>
+                    <div className="space-y-5">
+                      <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                        <div className="min-w-0 flex-1">
+                          <div className="flex min-w-0 gap-4">
+                            {group.logo ? (
+                              <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-[1.1rem] border border-[color:var(--border)] bg-white p-2">
+                                <Image
+                                  src={group.logo}
+                                  alt={`${group.organization} logo`}
+                                  width={56}
+                                  height={56}
+                                  className="h-full w-full object-contain"
+                                />
+                              </div>
                             ) : null}
-                          </div>
-                        </div>
 
-                        <div className="mt-3 space-y-1 text-sm md:hidden">
-                          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[color:var(--muted)]">
-                            <p>{group.dateRange}</p>
-                            <span
-                              aria-hidden="true"
-                              className="h-1 w-1 rounded-full bg-[color:var(--border-strong)]"
-                            />
-                            <p>{group.duration}</p>
-                          </div>
-                        </div>
-
-                        <div className="mt-5 space-y-4">
-                          {group.positions.map((position) => (
-                            <section
-                              key={`${position.role}-${position.dateRange}`}
-                              className="w-full rounded-[1.6rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)]/55 px-4 py-4 md:px-5 md:py-5"
-                            >
-                              <div className="flex gap-3">
-                                <span
-                                  aria-hidden="true"
-                                  className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-[1rem] border border-[color:var(--border)] bg-[color:var(--surface)] text-[color:var(--accent-strong)]"
-                                >
-                                  <svg
-                                    viewBox="0 0 20 20"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    className="h-5 w-5"
+                            <div className="min-w-0 flex-1">
+                              <div className="flex flex-wrap items-center gap-2">
+                                <h3 className="font-[family-name:var(--font-display)] text-2xl tracking-[-0.04em] text-[color:var(--foreground)] md:text-[2rem]">
+                                  {group.organization}
+                                </h3>
+                                {group.linkedinUrl ? (
+                                  <a
+                                    href={group.linkedinUrl}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    aria-label={`${group.organization} LinkedIn`}
+                                    title={`${group.organization} LinkedIn`}
+                                    className="focus-ring inline-flex h-8 w-8 items-center justify-center rounded-[0.9rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)] text-[color:var(--muted)] transition hover:-translate-y-0.5 hover:border-[color:var(--border-strong)] hover:text-[color:var(--accent-strong)]"
                                   >
-                                    <path
-                                      d="M6.25 6.5V5.75A1.75 1.75 0 0 1 8 4h4a1.75 1.75 0 0 1 1.75 1.75v.75"
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                      strokeWidth="1.6"
-                                    />
-                                    <rect
-                                      x="3.5"
-                                      y="6.5"
-                                      width="13"
-                                      height="9.5"
-                                      rx="2"
-                                      strokeWidth="1.6"
-                                    />
-                                    <path
-                                      d="M3.5 10.25h13"
-                                      strokeLinecap="round"
-                                      strokeWidth="1.6"
-                                    />
-                                  </svg>
-                                </span>
-                                <div className="min-w-0 flex-1">
-                                  <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-                                    <div>
-                                      <h4 className="text-base font-semibold tracking-[-0.02em] text-[color:var(--foreground)]">
-                                        {position.role}
-                                      </h4>
-                                      <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-[color:var(--muted)]">
-                                        <p>{position.dateRange}</p>
-                                        <span
-                                          aria-hidden="true"
-                                          className="h-1 w-1 rounded-full bg-[color:var(--border-strong)]"
-                                        />
-                                        <p>{position.duration}</p>
-                                      </div>
-                                    </div>
-                                  </div>
+                                    <LinkedInIcon className="h-4 w-4" />
+                                  </a>
+                                ) : null}
+                                {group.websiteUrl ? (
+                                  <a
+                                    href={group.websiteUrl}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    aria-label={`${group.organization} website`}
+                                    title={`${group.organization} website`}
+                                    className="focus-ring inline-flex h-8 w-8 items-center justify-center rounded-[0.9rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)] text-[color:var(--muted)] transition hover:-translate-y-0.5 hover:border-[color:var(--border-strong)] hover:text-[color:var(--accent-strong)]"
+                                  >
+                                    <GlobeIcon className="h-4 w-4" />
+                                  </a>
+                                ) : null}
+                              </div>
+                              {group.location ? (
+                                <p className="mt-1 text-sm text-[color:var(--foreground)]/72">
+                                  {group.location}
+                                </p>
+                              ) : null}
+                            </div>
+                          </div>
 
-                                  <ul className="mt-4 hidden space-y-2 md:block">
-                                    {position.highlights.map((highlight) => (
-                                      <li
-                                        key={highlight}
-                                        className="flex gap-3 text-sm leading-6 text-[color:var(--foreground)]/78"
-                                      >
-                                        <span
-                                          aria-hidden="true"
-                                          className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--accent-strong)]"
-                                        />
-                                        <span>{highlight}</span>
-                                      </li>
-                                    ))}
-                                  </ul>
+                          <div className="mt-3 space-y-1 text-sm md:hidden">
+                            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[color:var(--muted)]">
+                              <p>{group.dateRange}</p>
+                              <span
+                                aria-hidden="true"
+                                className="h-1 w-1 rounded-full bg-[color:var(--border-strong)]"
+                              />
+                              <p>{group.duration}</p>
+                            </div>
+                          </div>
+                        </div>
 
-                                  <details className="group mt-4 md:hidden">
-                                    <summary className="focus-ring inline-flex cursor-pointer list-none items-center gap-1.5 text-[0.74rem] font-semibold uppercase tracking-[0.16em] text-[color:var(--muted)] transition hover:text-[color:var(--accent-strong)] [&::-webkit-details-marker]:hidden">
-                                      <span className="group-open:hidden">View highlights</span>
-                                      <span className="hidden group-open:inline">Hide highlights</span>
+                        <div className="hidden shrink-0 space-y-1 text-sm text-[color:var(--muted)] md:block md:pl-4">
+                          <p>{group.dateRange}</p>
+                          <p>{group.duration}</p>
+                        </div>
+                      </div>
+
+                      <div className="space-y-4">
+                        {group.positions.map((position) => (
+                          <section
+                            key={`${position.role}-${position.dateRange}`}
+                            className="w-full rounded-[1.6rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)]/55 px-4 py-4 md:px-5 md:py-5"
+                          >
+                            <div className="flex gap-3">
+                              <span
+                                aria-hidden="true"
+                                className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-[1rem] border border-[color:var(--border)] bg-[color:var(--surface)] text-[color:var(--accent-strong)]"
+                              >
+                                <svg
+                                  viewBox="0 0 20 20"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  className="h-5 w-5"
+                                >
+                                  <path
+                                    d="M6.25 6.5V5.75A1.75 1.75 0 0 1 8 4h4a1.75 1.75 0 0 1 1.75 1.75v.75"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="1.6"
+                                  />
+                                  <rect
+                                    x="3.5"
+                                    y="6.5"
+                                    width="13"
+                                    height="9.5"
+                                    rx="2"
+                                    strokeWidth="1.6"
+                                  />
+                                  <path
+                                    d="M3.5 10.25h13"
+                                    strokeLinecap="round"
+                                    strokeWidth="1.6"
+                                  />
+                                </svg>
+                              </span>
+                              <div className="min-w-0 flex-1">
+                                <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                                  <div>
+                                    <h4 className="text-base font-semibold tracking-[-0.02em] text-[color:var(--foreground)]">
+                                      {position.role}
+                                    </h4>
+                                    <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-[color:var(--muted)]">
+                                      <p>{position.dateRange}</p>
                                       <span
                                         aria-hidden="true"
-                                        className="inline-flex h-4 w-4 items-center justify-center text-[0.65rem] transition group-open:rotate-180"
-                                      >
-                                        <svg
-                                          viewBox="0 0 20 20"
-                                          fill="none"
-                                          stroke="currentColor"
-                                          className="h-3 w-3"
-                                        >
-                                          <path
-                                            d="m5.5 7.5 4.5 5 4.5-5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth="1.7"
-                                          />
-                                        </svg>
-                                      </span>
-                                    </summary>
-                                    <div className="mt-3 rounded-[1rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)]/72 px-4 py-4">
-                                      <ul className="space-y-2">
-                                        {position.highlights.map((highlight) => (
-                                          <li
-                                            key={highlight}
-                                            className="flex gap-3 text-sm leading-6 text-[color:var(--foreground)]/78"
-                                          >
-                                            <span
-                                              aria-hidden="true"
-                                              className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--accent-strong)]"
-                                            />
-                                            <span>{highlight}</span>
-                                          </li>
-                                        ))}
-                                      </ul>
+                                        className="h-1 w-1 rounded-full bg-[color:var(--border-strong)]"
+                                      />
+                                      <p>{position.duration}</p>
                                     </div>
-                                  </details>
+                                  </div>
                                 </div>
+
+                                <ul className="mt-4 hidden space-y-2 md:block">
+                                  {position.highlights.map((highlight) => (
+                                    <li
+                                      key={highlight}
+                                      className="flex gap-3 text-sm leading-6 text-[color:var(--foreground)]/78"
+                                    >
+                                      <span
+                                        aria-hidden="true"
+                                        className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--accent-strong)]"
+                                      />
+                                      <span>{highlight}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+
+                                <details className="group mt-4 md:hidden">
+                                  <summary className="focus-ring inline-flex cursor-pointer list-none items-center gap-1.5 text-[0.74rem] font-semibold uppercase tracking-[0.16em] text-[color:var(--muted)] transition hover:text-[color:var(--accent-strong)] [&::-webkit-details-marker]:hidden">
+                                    <span className="group-open:hidden">View highlights</span>
+                                    <span className="hidden group-open:inline">Hide highlights</span>
+                                    <span
+                                      aria-hidden="true"
+                                      className="inline-flex h-4 w-4 items-center justify-center text-[0.65rem] transition group-open:rotate-180"
+                                    >
+                                      <svg
+                                        viewBox="0 0 20 20"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        className="h-3 w-3"
+                                      >
+                                        <path
+                                          d="m5.5 7.5 4.5 5 4.5-5"
+                                          strokeLinecap="round"
+                                          strokeLinejoin="round"
+                                          strokeWidth="1.7"
+                                        />
+                                      </svg>
+                                    </span>
+                                  </summary>
+                                  <div className="mt-3 rounded-[1rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)]/72 px-4 py-4">
+                                    <ul className="space-y-2">
+                                      {position.highlights.map((highlight) => (
+                                        <li
+                                          key={highlight}
+                                          className="flex gap-3 text-sm leading-6 text-[color:var(--foreground)]/78"
+                                        >
+                                          <span
+                                            aria-hidden="true"
+                                            className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--accent-strong)]"
+                                          />
+                                          <span>{highlight}</span>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  </div>
+                                </details>
                               </div>
-                            </section>
-                          ))}
-                        </div>
+                            </div>
+                          </section>
+                        ))}
 
                         {group.personalNotes ? (
-                          <div className="mt-5 hidden w-full rounded-[1.5rem] bg-[color:var(--accent-soft)]/65 px-4 py-4 md:block md:px-5">
+                          <div className="hidden w-full rounded-[1.5rem] bg-[color:var(--accent-soft)]/65 px-4 py-4 md:block md:px-5">
                             <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[color:var(--muted)]">
                               Personal Note
                             </p>
@@ -579,51 +586,46 @@ export default function ExperiencePage() {
                             </div>
                           </div>
                         ) : null}
+                      </div>
 
-                        {group.personalNotes ? (
-                          <details className="group mt-5 md:hidden">
-                            <summary className="focus-ring inline-flex cursor-pointer list-none items-center gap-1.5 text-[0.74rem] font-semibold uppercase tracking-[0.16em] text-[color:var(--muted)] transition hover:text-[color:var(--accent-strong)] [&::-webkit-details-marker]:hidden">
-                              <span className="group-open:hidden">Personal note</span>
-                              <span className="hidden group-open:inline">Hide personal note</span>
-                              <span
-                                aria-hidden="true"
-                                className="inline-flex h-4 w-4 items-center justify-center text-[0.65rem] transition group-open:rotate-180"
+                      {group.personalNotes ? (
+                        <details className="group md:hidden">
+                          <summary className="focus-ring inline-flex cursor-pointer list-none items-center gap-1.5 text-[0.74rem] font-semibold uppercase tracking-[0.16em] text-[color:var(--muted)] transition hover:text-[color:var(--accent-strong)] [&::-webkit-details-marker]:hidden">
+                            <span className="group-open:hidden">Personal note</span>
+                            <span className="hidden group-open:inline">Hide personal note</span>
+                            <span
+                              aria-hidden="true"
+                              className="inline-flex h-4 w-4 items-center justify-center text-[0.65rem] transition group-open:rotate-180"
+                            >
+                              <svg
+                                viewBox="0 0 20 20"
+                                fill="none"
+                                stroke="currentColor"
+                                className="h-3 w-3"
                               >
-                                <svg
-                                  viewBox="0 0 20 20"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  className="h-3 w-3"
+                                <path
+                                  d="m5.5 7.5 4.5 5 4.5-5"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth="1.7"
+                                />
+                              </svg>
+                            </span>
+                          </summary>
+                          <div className="mt-3 rounded-[1.2rem] bg-[color:var(--accent-soft)]/65 px-4 py-4">
+                            <div className="space-y-2">
+                              {group.personalNotes.map((note) => (
+                                <p
+                                  key={note}
+                                  className="text-sm leading-6 text-[color:var(--muted)]"
                                 >
-                                  <path
-                                    d="m5.5 7.5 4.5 5 4.5-5"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="1.7"
-                                  />
-                                </svg>
-                              </span>
-                            </summary>
-                            <div className="mt-3 rounded-[1.2rem] bg-[color:var(--accent-soft)]/65 px-4 py-4">
-                              <div className="space-y-2">
-                                {group.personalNotes.map((note) => (
-                                  <p
-                                    key={note}
-                                    className="text-sm leading-6 text-[color:var(--muted)]"
-                                  >
-                                    {note}
-                                  </p>
-                                ))}
-                              </div>
+                                  {note}
+                                </p>
+                              ))}
                             </div>
-                          </details>
-                        ) : null}
-                      </div>
-
-                      <div className="hidden shrink-0 space-y-1 text-sm text-[color:var(--muted)] md:block md:pl-6 md:text-right">
-                        <p>{group.dateRange}</p>
-                        <p>{group.duration}</p>
-                      </div>
+                          </div>
+                        </details>
+                      ) : null}
                     </div>
                     </article>
                   ))}

@@ -54,7 +54,7 @@ body::before {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.3;
+  opacity: 0.42;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cpath d='M24 39h58' stroke='%236c5f8d' stroke-opacity='.1' stroke-width='1'/%3E%3Cpath d='M156 71h40' stroke='%236c5f8d' stroke-opacity='.08' stroke-width='1'/%3E%3Cpath d='M36 170h34' stroke='%236c5f8d' stroke-opacity='.08' stroke-width='1'/%3E%3Ccircle cx='49' cy='88' r='1.5' fill='%236c5f8d' fill-opacity='.12'/%3E%3Ccircle cx='153' cy='154' r='1.5' fill='%236c5f8d' fill-opacity='.12'/%3E%3Ccircle cx='183' cy='41' r='1.5' fill='%236c5f8d' fill-opacity='.1'/%3E%3Cpath d='M112 116l10-10 10 10-10 10z' fill='none' stroke='%236c5f8d' stroke-opacity='.08'/%3E%3C/svg%3E");
   background-size: 220px 220px;
 }
@@ -206,7 +206,13 @@ button {
   border-radius: 999px;
   filter: blur(80px);
   will-change: transform, opacity;
+  mix-blend-mode: multiply;
+  opacity: 0.9;
+}
+
+.dark .hero-orb {
   mix-blend-mode: screen;
+  opacity: 1;
 }
 
 .hero-orb-left {
@@ -215,8 +221,8 @@ button {
   height: min(28rem, 46vw);
   width: min(28rem, 46vw);
   background:
-    radial-gradient(circle at 35% 35%, rgba(223, 207, 231, 0.28), transparent 62%),
-    radial-gradient(circle at 70% 65%, rgba(195, 175, 209, 0.22), transparent 70%);
+    radial-gradient(circle at 35% 35%, rgba(108, 95, 141, 0.22), transparent 58%),
+    radial-gradient(circle at 70% 65%, rgba(75, 63, 110, 0.14), transparent 70%);
   animation: hero-orb-float 12s ease-in-out infinite;
 }
 
@@ -226,39 +232,71 @@ button {
   height: min(34rem, 54vw);
   width: min(34rem, 54vw);
   background:
+    radial-gradient(circle at 40% 45%, rgba(108, 95, 141, 0.2), transparent 56%),
+    radial-gradient(circle at 72% 60%, rgba(75, 63, 110, 0.12), transparent 72%);
+  animation: hero-orb-float 15s ease-in-out infinite reverse;
+}
+
+.dark .hero-orb-left {
+  background:
+    radial-gradient(circle at 35% 35%, rgba(223, 207, 231, 0.28), transparent 62%),
+    radial-gradient(circle at 70% 65%, rgba(195, 175, 209, 0.22), transparent 70%);
+}
+
+.dark .hero-orb-right {
+  background:
     radial-gradient(circle at 40% 45%, rgba(223, 207, 231, 0.24), transparent 58%),
     radial-gradient(circle at 72% 60%, rgba(195, 175, 209, 0.18), transparent 72%);
-  animation: hero-orb-float 15s ease-in-out infinite reverse;
 }
 
 .hero-mesh {
   position: absolute;
   inset: 8% 6% 10%;
   background:
+    radial-gradient(circle at 22% 30%, rgba(108, 95, 141, 0.11), transparent 0.45rem),
+    radial-gradient(circle at 68% 20%, rgba(108, 95, 141, 0.09), transparent 0.38rem),
+    radial-gradient(circle at 82% 46%, rgba(75, 63, 110, 0.08), transparent 0.42rem),
+    radial-gradient(circle at 36% 72%, rgba(75, 63, 110, 0.07), transparent 0.42rem);
+  opacity: 0.8;
+  mask-image: radial-gradient(circle at center, black 38%, transparent 90%);
+}
+
+.dark .hero-mesh {
+  background:
     radial-gradient(circle at 22% 30%, rgba(255, 255, 255, 0.045), transparent 0.45rem),
     radial-gradient(circle at 68% 20%, rgba(255, 255, 255, 0.038), transparent 0.38rem),
     radial-gradient(circle at 82% 46%, rgba(255, 255, 255, 0.032), transparent 0.42rem),
     radial-gradient(circle at 36% 72%, rgba(255, 255, 255, 0.03), transparent 0.42rem);
-  opacity: 0.8;
-  mask-image: radial-gradient(circle at center, black 38%, transparent 90%);
 }
 
 .hero-sparkle {
   position: absolute;
   border-radius: 999px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(223, 207, 231, 0.85) 45%, transparent 72%);
-  box-shadow: 0 0 18px rgba(223, 207, 231, 0.28);
+  background: radial-gradient(circle, rgba(108, 95, 141, 0.9) 0%, rgba(195, 175, 209, 0.6) 42%, transparent 72%);
+  box-shadow: 0 0 16px rgba(108, 95, 141, 0.24);
   will-change: transform, opacity;
   animation: hero-sparkle-drift 8s ease-in-out infinite;
+}
+
+.dark .hero-sparkle {
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(223, 207, 231, 0.85) 45%, transparent 72%);
+  box-shadow: 0 0 18px rgba(223, 207, 231, 0.28);
 }
 
 .hero-portrait-ring {
   position: absolute;
   inset: 7% 13%;
   border-radius: 999px;
+  border: 1px solid rgba(108, 95, 141, 0.22);
+  box-shadow:
+    0 0 0 1px rgba(108, 95, 141, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+  animation: hero-ring-breathe 8.5s ease-in-out infinite;
+}
+
+.dark .hero-portrait-ring {
   border: 1px solid rgba(223, 207, 231, 0.14);
   box-shadow: 0 0 0 1px rgba(223, 207, 231, 0.06);
-  animation: hero-ring-breathe 8.5s ease-in-out infinite;
 }
 
 .home-feature-block::after,
