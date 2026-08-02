@@ -193,8 +193,11 @@ export function HomeHero() {
       aria-labelledby="home-title"
       className="relative left-1/2 -mt-4 w-screen -translate-x-1/2 md:-mt-5 lg:-mt-11 lg:min-h-[calc(100svh-5.25rem)]"
     >
-      <div className="relative overflow-hidden lg:flex lg:min-h-[calc(100svh-5.25rem)] lg:items-center">
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+      <div className="relative lg:flex lg:min-h-[calc(100svh-5.25rem)] lg:items-center">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 -top-28 bottom-0 overflow-hidden md:-top-32 lg:-top-40"
+        >
           <div
             className="hero-orb hero-orb-left"
             style={leftAuraStyle}

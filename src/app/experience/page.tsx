@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { PageIntro } from "@/components/page-intro";
 import { GlobeIcon, LinkedInIcon } from "@/components/icons";
+import { ScrollReveal } from "@/components/scroll-reveal";
 
 type Position = {
   role: string;
@@ -336,22 +337,27 @@ const experienceSections = [
 export default function ExperiencePage() {
   return (
     <section aria-labelledby="experience-title" className="w-full space-y-6">
-      <PageIntro
-        accent="experience"
-        label="Experience"
-        title="Work & Leadership Journey"
-        description="A chronological timeline of organizations, roles, and resume-style highlights."
-        titleId="experience-title"
-      />
+      <ScrollReveal y={20}>
+        <PageIntro
+          label="Experience"
+          title="Work & Leadership Journey"
+          description="A chronological timeline of organizations, roles, and resume-style highlights."
+          titleId="experience-title"
+        />
+      </ScrollReveal>
 
-      <div className="space-y-5">
+      <div className="space-y-4 md:space-y-5">
         {experienceSections.map((section, sectionIndex) => (
-          <section
+          <ScrollReveal
             key={section.title}
-            aria-labelledby={section.title}
-            className="elevated-card rounded-[2.2rem] px-6 py-7 md:px-8 md:py-8"
+            delayMs={sectionIndex * 70}
+            y={22}
           >
-              <div className="mb-6">
+            <section
+              aria-labelledby={section.title}
+              className="elevated-card rounded-[1.85rem] px-4 py-5 md:rounded-[2.2rem] md:px-8 md:py-8"
+            >
+              <div className="mb-4 md:mb-6">
                 <h2
                   id={section.title}
                   className="text-sm font-semibold uppercase tracking-[0.18em] text-[color:var(--muted)]"
@@ -364,30 +370,30 @@ export default function ExperiencePage() {
                   {section.items.map((group, index) => (
                     <article
                       key={`${group.organization}-${group.dateRange}`}
-                      className={`relative pl-10 ${
-                        index === section.items.length - 1 ? "" : "pb-10"
+                      className={`relative pl-8 md:pl-10 ${
+                        index === section.items.length - 1 ? "" : "pb-7 md:pb-10"
                       }`}
                     >
                     {index !== section.items.length - 1 ? (
                       <span
                         aria-hidden="true"
-                        className="absolute left-[0.7rem] top-7 bottom-0 w-px bg-[color:var(--border)]"
+                        className="absolute left-[0.55rem] top-6 bottom-0 w-px bg-[color:var(--border)] md:left-[0.7rem] md:top-7"
                       />
                     ) : null}
 
                     <span
                       aria-hidden="true"
-                      className="absolute left-0 top-1 flex h-6 w-6 items-center justify-center rounded-full border border-[color:var(--border)] bg-[color:var(--surface)]"
+                      className="absolute left-0 top-1 flex h-5 w-5 items-center justify-center rounded-full border border-[color:var(--border)] bg-[color:var(--surface)] md:h-6 md:w-6"
                     >
-                      <span className="h-2.5 w-2.5 rounded-full bg-[color:var(--accent-strong)]" />
+                      <span className="h-2 w-2 rounded-full bg-[color:var(--accent-strong)] md:h-2.5 md:w-2.5" />
                     </span>
 
-                    <div className="space-y-5">
-                      <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                    <div className="space-y-3.5 md:space-y-5">
+                      <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
                         <div className="min-w-0 flex-1">
-                          <div className="flex min-w-0 gap-4">
+                          <div className="flex min-w-0 gap-3 md:gap-4">
                             {group.logo ? (
-                              <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-[1.1rem] border border-[color:var(--border)] bg-white p-2">
+                              <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-[0.95rem] border border-[color:var(--border)] bg-white p-2 md:h-14 md:w-14 md:rounded-[1.1rem]">
                                 <Image
                                   src={group.logo}
                                   alt={`${group.organization} logo`}
@@ -399,8 +405,8 @@ export default function ExperiencePage() {
                             ) : null}
 
                             <div className="min-w-0 flex-1">
-                              <div className="flex flex-wrap items-center gap-2">
-                                <h3 className="font-[family-name:var(--font-display)] text-2xl tracking-[-0.04em] text-[color:var(--foreground)] md:text-[2rem]">
+                              <div className="flex flex-wrap items-center gap-1.5 md:gap-2">
+                                <h3 className="font-[family-name:var(--font-display)] text-[1.26rem] leading-tight tracking-[-0.04em] text-[color:var(--foreground)] md:text-[2rem]">
                                   {group.organization}
                                 </h3>
                                 {group.linkedinUrl ? (
@@ -410,7 +416,7 @@ export default function ExperiencePage() {
                                     rel="noreferrer"
                                     aria-label={`${group.organization} LinkedIn`}
                                     title={`${group.organization} LinkedIn`}
-                                    className="focus-ring inline-flex h-8 w-8 items-center justify-center rounded-[0.9rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)] text-[color:var(--muted)] transition hover:-translate-y-0.5 hover:border-[color:var(--border-strong)] hover:text-[color:var(--accent-strong)]"
+                                    className="focus-ring inline-flex h-7 w-7 items-center justify-center rounded-[0.8rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)] text-[color:var(--muted)] transition hover:-translate-y-0.5 hover:border-[color:var(--border-strong)] hover:text-[color:var(--accent-strong)] md:h-8 md:w-8 md:rounded-[0.9rem]"
                                   >
                                     <LinkedInIcon className="h-4 w-4" />
                                   </a>
@@ -422,22 +428,22 @@ export default function ExperiencePage() {
                                     rel="noreferrer"
                                     aria-label={`${group.organization} website`}
                                     title={`${group.organization} website`}
-                                    className="focus-ring inline-flex h-8 w-8 items-center justify-center rounded-[0.9rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)] text-[color:var(--muted)] transition hover:-translate-y-0.5 hover:border-[color:var(--border-strong)] hover:text-[color:var(--accent-strong)]"
+                                    className="focus-ring inline-flex h-7 w-7 items-center justify-center rounded-[0.8rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)] text-[color:var(--muted)] transition hover:-translate-y-0.5 hover:border-[color:var(--border-strong)] hover:text-[color:var(--accent-strong)] md:h-8 md:w-8 md:rounded-[0.9rem]"
                                   >
                                     <GlobeIcon className="h-4 w-4" />
                                   </a>
                                 ) : null}
                               </div>
                               {group.location ? (
-                                <p className="mt-1 text-sm text-[color:var(--foreground)]/72">
+                                <p className="mt-0.5 text-[0.78rem] text-[color:var(--foreground)]/72 md:mt-1 md:text-sm">
                                   {group.location}
                                 </p>
                               ) : null}
                             </div>
                           </div>
 
-                          <div className="mt-3 space-y-1 text-sm md:hidden">
-                            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[color:var(--muted)]">
+                          <div className="mt-2 space-y-1 text-[0.78rem] md:hidden">
+                            <div className="flex flex-wrap items-center gap-x-2.5 gap-y-0.5 text-[color:var(--muted)]">
                               <p>{group.dateRange}</p>
                               <span
                                 aria-hidden="true"
@@ -454,16 +460,16 @@ export default function ExperiencePage() {
                         </div>
                       </div>
 
-                      <div className="space-y-4">
+                      <div className="space-y-3 md:space-y-4">
                         {group.positions.map((position) => (
                           <section
                             key={`${position.role}-${position.dateRange}`}
-                            className="w-full rounded-[1.6rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)]/55 px-4 py-4 md:px-5 md:py-5"
+                            className="w-full rounded-[1.25rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)]/55 px-3.5 py-3 md:rounded-[1.6rem] md:px-5 md:py-5"
                           >
-                            <div className="flex gap-3">
+                            <div className="flex gap-2.5 md:gap-3">
                               <span
                                 aria-hidden="true"
-                                className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-[1rem] border border-[color:var(--border)] bg-[color:var(--surface)] text-[color:var(--accent-strong)]"
+                                className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-[0.9rem] border border-[color:var(--border)] bg-[color:var(--surface)] text-[color:var(--accent-strong)] md:h-9 md:w-9 md:rounded-[1rem]"
                               >
                                 <svg
                                   viewBox="0 0 20 20"
@@ -493,12 +499,12 @@ export default function ExperiencePage() {
                                 </svg>
                               </span>
                               <div className="min-w-0 flex-1">
-                                <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                                <div className="flex flex-col gap-2 md:flex-row md:items-start md:justify-between">
                                   <div>
-                                    <h4 className="text-base font-semibold tracking-[-0.02em] text-[color:var(--foreground)]">
+                                    <h4 className="text-[0.92rem] font-semibold leading-snug tracking-[-0.02em] text-[color:var(--foreground)] md:text-base">
                                       {position.role}
                                     </h4>
-                                    <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-[color:var(--muted)]">
+                                    <div className="mt-1.5 flex flex-wrap items-center gap-x-2.5 gap-y-0.5 text-[0.78rem] text-[color:var(--muted)] md:mt-2 md:gap-x-3 md:gap-y-1 md:text-sm">
                                       <p>{position.dateRange}</p>
                                       <span
                                         aria-hidden="true"
@@ -524,8 +530,8 @@ export default function ExperiencePage() {
                                   ))}
                                 </ul>
 
-                                <details className="group mt-4 md:hidden">
-                                  <summary className="focus-ring inline-flex cursor-pointer list-none items-center gap-1.5 text-[0.74rem] font-semibold uppercase tracking-[0.16em] text-[color:var(--muted)] transition hover:text-[color:var(--accent-strong)] [&::-webkit-details-marker]:hidden">
+                                <details className="group mt-3 md:hidden">
+                                  <summary className="focus-ring inline-flex cursor-pointer list-none items-center gap-1 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[color:var(--muted)] transition hover:text-[color:var(--accent-strong)] [&::-webkit-details-marker]:hidden">
                                     <span className="group-open:hidden">View highlights</span>
                                     <span className="hidden group-open:inline">Hide highlights</span>
                                     <span
@@ -547,12 +553,12 @@ export default function ExperiencePage() {
                                       </svg>
                                     </span>
                                   </summary>
-                                  <div className="mt-3 rounded-[1rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)]/72 px-4 py-4">
-                                    <ul className="space-y-2">
+                                  <div className="mt-2.5 rounded-[0.95rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)]/72 px-3.5 py-3.5">
+                                    <ul className="space-y-1.5">
                                       {position.highlights.map((highlight) => (
                                         <li
                                           key={highlight}
-                                          className="flex gap-3 text-sm leading-6 text-[color:var(--foreground)]/78"
+                                          className="flex gap-2.5 text-[0.78rem] leading-5 text-[color:var(--foreground)]/78"
                                         >
                                           <span
                                             aria-hidden="true"
@@ -590,7 +596,7 @@ export default function ExperiencePage() {
 
                       {group.personalNotes ? (
                         <details className="group md:hidden">
-                          <summary className="focus-ring inline-flex cursor-pointer list-none items-center gap-1.5 text-[0.74rem] font-semibold uppercase tracking-[0.16em] text-[color:var(--muted)] transition hover:text-[color:var(--accent-strong)] [&::-webkit-details-marker]:hidden">
+                          <summary className="focus-ring inline-flex cursor-pointer list-none items-center gap-1 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[color:var(--muted)] transition hover:text-[color:var(--accent-strong)] [&::-webkit-details-marker]:hidden">
                             <span className="group-open:hidden">Personal note</span>
                             <span className="hidden group-open:inline">Hide personal note</span>
                             <span
@@ -612,12 +618,12 @@ export default function ExperiencePage() {
                               </svg>
                             </span>
                           </summary>
-                          <div className="mt-3 rounded-[1.2rem] bg-[color:var(--accent-soft)]/65 px-4 py-4">
-                            <div className="space-y-2">
+                          <div className="mt-2.5 rounded-[1rem] bg-[color:var(--accent-soft)]/65 px-3.5 py-3.5">
+                            <div className="space-y-1.5">
                               {group.personalNotes.map((note) => (
                                 <p
                                   key={note}
-                                  className="text-sm leading-6 text-[color:var(--muted)]"
+                                  className="text-[0.78rem] leading-5 text-[color:var(--muted)]"
                                 >
                                   {note}
                                 </p>
@@ -630,7 +636,8 @@ export default function ExperiencePage() {
                     </article>
                   ))}
                 </div>
-          </section>
+            </section>
+          </ScrollReveal>
         ))}
       </div>
     </section>

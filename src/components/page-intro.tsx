@@ -1,11 +1,8 @@
-import { PageIntroAccent } from "@/components/page-intro-accent";
-
 type PageIntroProps = {
   label: string;
   title: string;
   description: string;
   titleId: string;
-  accent: "education" | "experience" | "projects";
 };
 
 export function PageIntro({
@@ -13,37 +10,22 @@ export function PageIntro({
   title,
   description,
   titleId,
-  accent,
 }: PageIntroProps) {
   return (
-    <div className="soft-panel overflow-hidden rounded-[2.25rem] px-6 py-8 md:px-8 md:py-9 lg:px-9 lg:py-10">
-      <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-8">
-        <div className="min-w-0 flex-1">
-          <div className="flex items-start justify-between gap-4">
-            <div className="paper-tag px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.24em]">
-              {label}
-            </div>
-            <span
-              aria-hidden="true"
-              className="mt-4 h-px flex-1 bg-[color:var(--border)] md:hidden"
-            />
-          </div>
-
-          <h1
-            id={titleId}
-            className="mt-6 max-w-5xl font-[family-name:var(--font-display)] text-4xl leading-tight tracking-[-0.05em] md:text-[3.5rem] lg:text-5xl"
-          >
-            {title}
-          </h1>
-          <p className="mt-4 max-w-3xl text-sm leading-7 text-[color:var(--muted)] md:text-base md:leading-8">
-            {description}
-          </p>
-        </div>
-
-        <div className="hidden shrink-0 md:flex md:items-start md:justify-start lg:justify-end">
-          <PageIntroAccent kind={accent} />
-        </div>
+    <div className="space-y-5 px-1 md:space-y-6">
+      <div className="paper-tag w-fit px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.24em]">
+        {label}
       </div>
+
+      <h1
+        id={titleId}
+        className="max-w-5xl font-[family-name:var(--font-display)] text-[2.1rem] leading-tight tracking-[-0.05em] text-[color:var(--foreground)] md:text-[3rem] lg:text-[4.2rem]"
+      >
+        {title}
+      </h1>
+      <p className="max-w-3xl text-sm leading-7 text-[color:var(--muted)] md:text-base md:leading-8">
+        {description}
+      </p>
     </div>
   );
 }

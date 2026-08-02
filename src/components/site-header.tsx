@@ -35,7 +35,12 @@ export function SiteHeader() {
   const pathname = usePathname();
   const navListRef = useRef<HTMLUListElement | null>(null);
   const linkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
+  const mobileNavListRef = useRef<HTMLUListElement | null>(null);
+  const mobileLinkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
   const [indicatorStyle, setIndicatorStyle] = useState<CSSProperties>({
+    opacity: 0,
+  });
+  const [mobileIndicatorStyle, setMobileIndicatorStyle] = useState<CSSProperties>({
     opacity: 0,
   });
 
@@ -48,27 +53,41 @@ export function SiteHeader() {
 
   useEffect(() => {
     const navList = navListRef.current;
+    const mobileNavList = mobileNavListRef.current;
 
-    if (!navList) {
+    if (!navList && !mobileNavList) {
       return;
     }
 
     const updateIndicator = () => {
-      const targetLink = linkRefs.current[pathname];
+      const targetDesktopLink = linkRefs.current[pathname];
+      const targetMobileLink = mobileLinkRefs.current[pathname];
 
-      if (!targetLink) {
+      if (!targetDesktopLink) {
         setIndicatorStyle((current) =>
           current.opacity === 0 ? current : { opacity: 0 },
         );
-        return;
+      } else {
+        setIndicatorStyle({
+          opacity: 1,
+          width: `${targetDesktopLink.offsetWidth}px`,
+          height: `${targetDesktopLink.offsetHeight}px`,
+          transform: `translate3d(${targetDesktopLink.offsetLeft}px, 0, 0)`,
+        });
       }
 
-      setIndicatorStyle({
-        opacity: 1,
-        width: `${targetLink.offsetWidth}px`,
-        height: `${targetLink.offsetHeight}px`,
-        transform: `translate3d(${targetLink.offsetLeft}px, 0, 0)`,
-      });
+      if (!targetMobileLink) {
+        setMobileIndicatorStyle((current) =>
+          current.opacity === 0 ? current : { opacity: 0 },
+        );
+      } else {
+        setMobileIndicatorStyle({
+          opacity: 1,
+          width: `${targetMobileLink.offsetWidth}px`,
+          height: `${targetMobileLink.offsetHeight}px`,
+          transform: `translate3d(${targetMobileLink.offsetLeft}px, 0, 0)`,
+        });
+      }
     };
 
     updateIndicator();
@@ -77,7 +96,9 @@ export function SiteHeader() {
       updateIndicator();
     });
 
-    resizeObserver.observe(navList);
+    if (navList) {
+      resizeObserver.observe(navList);
+    }
 
     navItems.forEach(({ href }) => {
       const link = linkRefs.current[href];
@@ -86,6 +107,18 @@ export function SiteHeader() {
         resizeObserver.observe(link);
       }
     });
+
+    mobileNavItems.forEach(({ href }) => {
+      const link = mobileLinkRefs.current[href];
+
+      if (link) {
+        resizeObserver.observe(link);
+      }
+    });
+
+    if (mobileNavList) {
+      resizeObserver.observe(mobileNavList);
+    }
 
     window.addEventListener("resize", updateIndicator);
 
@@ -174,7 +207,15 @@ export function SiteHeader() {
         className="fixed inset-x-0 bottom-4 z-50 px-4 md:hidden"
       >
         <div className="page-shell">
-          <ul className="mx-auto flex w-full max-w-[22rem] items-center justify-between rounded-full border border-[color:var(--border)] bg-[color:var(--surface)]/92 px-3 py-2 shadow-[0_18px_36px_rgba(75,63,110,0.14)] backdrop-blur-[18px]">
+          <ul
+            ref={mobileNavListRef}
+            className="nav-pill relative mx-auto grid w-full max-w-[22rem] grid-cols-4 items-center gap-1 rounded-full border border-[color:var(--border)] bg-[color:var(--surface)]/92 px-2.5 py-2 shadow-[0_18px_36px_rgba(75,63,110,0.14)] backdrop-blur-[18px]"
+          >
+            <span
+              aria-hidden="true"
+              className="nav-pill-indicator absolute left-0 top-2 rounded-full border border-[color:var(--border)]/40 bg-[color:var(--accent-strong)] shadow-[0_12px_24px_rgba(75,63,110,0.18)]"
+              style={mobileIndicatorStyle}
+            />
             {mobileNavItems.map(({ href, label, icon: Icon }) => {
               const isActive = pathname === href;
 
@@ -182,15 +223,26 @@ export function SiteHeader() {
                 <li key={href}>
                   <Link
                     href={href}
+                    ref={(element) => {
+                      mobileLinkRefs.current[href] = element;
+                    }}
                     aria-label={label}
                     aria-current={isActive ? "page" : undefined}
-                    className={`focus-ring inline-flex h-11 w-11 items-center justify-center rounded-full transition ${
+                    className={`focus-ring relative z-10 inline-flex h-11 w-full items-center justify-center rounded-full transition duration-200 active:scale-95 ${
                       isActive
-                        ? "bg-[color:var(--accent-strong)] text-[color:var(--surface)] shadow-[0_10px_18px_rgba(75,63,110,0.16)]"
-                        : "text-[color:var(--muted)] hover:bg-[color:var(--surface-soft)] hover:text-[color:var(--foreground)]"
+                        ? "text-[color:var(--surface)]"
+                        : "text-[color:var(--muted)] hover:text-[color:var(--foreground)]"
                     }`}
                   >
-                    <Icon className="h-5 w-5" />
+                    <span
+                      className={`inline-flex items-center justify-center transition duration-300 ${
+                        isActive
+                          ? "-translate-y-0.5 scale-[1.12]"
+                          : "scale-100"
+                      }`}
+                    >
+                      <Icon className="h-5 w-5" />
+                    </span>
                   </Link>
                 </li>
               );

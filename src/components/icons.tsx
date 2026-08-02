@@ -123,6 +123,14 @@ export function YouTubeIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+export function TelegramIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+      <path d="M20.67 4.72a1.53 1.53 0 0 0-1.58-.2L3.98 10.66a1.2 1.2 0 0 0 .08 2.24l3.87 1.3 1.46 4.63a1.2 1.2 0 0 0 2.03.48l2.23-2.3 3.89 2.87a1.53 1.53 0 0 0 2.42-.88l2.02-12.72a1.53 1.53 0 0 0-.66-1.56ZM9.12 13.65l7.93-5.3-6.55 6.42a.6.6 0 0 0-.17.3l-.66 2.87-.55-1.98a.6.6 0 0 0-.38-.4l-2.37-.8 2.75-1.1Z" />
+    </svg>
+  );
+}
+
 export function DevpostIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" {...props}>

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { PageIntro } from "@/components/page-intro";
 import { FacebookIcon, GlobeIcon } from "@/components/icons";
+import { ScrollReveal } from "@/components/scroll-reveal";
 
 type EducationSection = {
   heading: string;
@@ -240,29 +241,29 @@ function EducationTimelineItem({
   return (
     <article
       key={`${item.institution}-${item.period}`}
-      className={`relative pl-10 ${
-        index === totalItems - 1 ? "" : "pb-10"
+      className={`relative pl-8 md:pl-10 ${
+        index === totalItems - 1 ? "" : "pb-7 md:pb-10"
       }`}
     >
       {index !== totalItems - 1 ? (
         <span
           aria-hidden="true"
-          className="absolute left-[0.7rem] top-7 bottom-0 w-px bg-[color:var(--border)]"
+          className="absolute left-[0.55rem] top-6 bottom-0 w-px bg-[color:var(--border)] md:left-[0.7rem] md:top-7"
         />
       ) : null}
 
       <span
         aria-hidden="true"
-        className="absolute left-0 top-1 flex h-6 w-6 items-center justify-center rounded-full border border-[color:var(--border)] bg-[color:var(--surface)]"
+        className="absolute left-0 top-1 flex h-5 w-5 items-center justify-center rounded-full border border-[color:var(--border)] bg-[color:var(--surface)] md:h-6 md:w-6"
       >
-        <span className="h-2.5 w-2.5 rounded-full bg-[color:var(--accent-strong)]" />
+        <span className="h-2 w-2 rounded-full bg-[color:var(--accent-strong)] md:h-2.5 md:w-2.5" />
       </span>
 
-      <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+      <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
         <div className="min-w-0 flex-1">
-          <div className="flex min-w-0 gap-4">
+          <div className="flex min-w-0 gap-3 md:gap-4">
             {item.logo ? (
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-[1.1rem] border border-[color:var(--border)] bg-white p-2">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-[0.95rem] border border-[color:var(--border)] bg-white p-2 md:h-14 md:w-14 md:rounded-[1.1rem]">
                 <Image
                   src={item.logo}
                   alt={`${item.institution} logo`}
@@ -274,8 +275,8 @@ function EducationTimelineItem({
             ) : null}
 
             <div className="min-w-0 flex-1">
-              <div className="flex flex-wrap items-center gap-2">
-                <h2 className="font-[family-name:var(--font-display)] text-2xl tracking-[-0.04em] text-[color:var(--foreground)] md:text-[2rem]">
+              <div className="flex flex-wrap items-center gap-1.5 md:gap-2">
+                <h2 className="font-[family-name:var(--font-display)] text-[1.24rem] leading-tight tracking-[-0.04em] text-[color:var(--foreground)] md:text-[2rem]">
                   {item.institution}
                 </h2>
                 {item.websiteUrl ? (
@@ -285,7 +286,7 @@ function EducationTimelineItem({
                     rel="noreferrer"
                     aria-label={`${item.institution} website`}
                     title={`${item.institution} website`}
-                    className="focus-ring inline-flex h-8 w-8 items-center justify-center rounded-[0.9rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)] text-[color:var(--muted)] transition hover:-translate-y-0.5 hover:border-[color:var(--border-strong)] hover:text-[color:var(--accent-strong)]"
+                    className="focus-ring inline-flex h-7 w-7 items-center justify-center rounded-[0.8rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)] text-[color:var(--muted)] transition hover:-translate-y-0.5 hover:border-[color:var(--border-strong)] hover:text-[color:var(--accent-strong)] md:h-8 md:w-8 md:rounded-[0.9rem]"
                   >
                     <GlobeIcon className="h-4 w-4" />
                   </a>
@@ -297,7 +298,7 @@ function EducationTimelineItem({
                     rel="noreferrer"
                     aria-label={`${item.institution} Facebook`}
                     title={`${item.institution} Facebook`}
-                    className="focus-ring inline-flex h-8 w-8 items-center justify-center rounded-[0.9rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)] text-[color:var(--muted)] transition hover:-translate-y-0.5 hover:border-[color:var(--border-strong)] hover:text-[color:var(--accent-strong)]"
+                    className="focus-ring inline-flex h-7 w-7 items-center justify-center rounded-[0.8rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)] text-[color:var(--muted)] transition hover:-translate-y-0.5 hover:border-[color:var(--border-strong)] hover:text-[color:var(--accent-strong)] md:h-8 md:w-8 md:rounded-[0.9rem]"
                   >
                     <FacebookIcon className="h-4 w-4" />
                   </a>
@@ -311,7 +312,7 @@ function EducationTimelineItem({
             </div>
           </div>
 
-          <div className="space-y-1 text-sm md:hidden">
+          <div className="space-y-0.5 text-[0.78rem] md:hidden">
             {item.location ? (
               <p className="text-[color:var(--foreground)]/72">{item.location}</p>
             ) : null}
@@ -319,19 +320,19 @@ function EducationTimelineItem({
           </div>
 
           <div className="min-w-0">
-            <p className="mt-2 text-base leading-7 text-[color:var(--foreground)]/82">
+            <p className="mt-1.5 text-[0.88rem] leading-5.5 text-[color:var(--foreground)]/82 md:mt-2 md:text-base md:leading-7">
               {item.credential}
             </p>
 
             {item.result || item.note ? (
-              <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-[color:var(--muted)]">
+              <div className="mt-2.5 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[0.78rem] text-[color:var(--muted)] md:mt-3 md:gap-x-4 md:gap-y-2 md:text-sm">
                 {item.result ? <p>Result: {item.result}</p> : null}
                 {item.note ? <p>{item.note}</p> : null}
               </div>
             ) : null}
 
             {hasDetails ? (
-              <div className="mt-6 space-y-6">
+              <div className="mt-4 space-y-4 md:mt-6 md:space-y-6">
                 {item.sections?.map((section) => {
                   const bulletClassName =
                     section.tone === "accent"
@@ -349,28 +350,28 @@ function EducationTimelineItem({
                     >
                       <h3
                         id={`education-section-${item.institution}-${section.heading}`}
-                        className="text-sm font-semibold uppercase tracking-[0.18em] text-[color:var(--muted)]"
+                        className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-[color:var(--muted)] md:text-sm md:tracking-[0.18em]"
                       >
                         {section.heading}
                       </h3>
                       {section.heading === "Subjects taken" ? (
-                        <p className={`mt-4 text-sm leading-6 ${textClassName}`}>
+                        <p className={`mt-2.5 text-[0.76rem] leading-5 md:mt-4 md:text-sm md:leading-6 ${textClassName}`}>
                           {section.items.join(", ")}
                         </p>
                       ) : section.items.length === 1 ? (
-                        <p className={`mt-4 text-sm leading-6 ${textClassName}`}>
+                        <p className={`mt-2.5 text-[0.76rem] leading-5 md:mt-4 md:text-sm md:leading-6 ${textClassName}`}>
                           {section.items[0]}
                         </p>
                       ) : (
-                        <ul className="mt-4 space-y-2">
+                        <ul className="mt-2.5 space-y-1.5 md:mt-4 md:space-y-2">
                           {section.items.map((entry) => (
                             <li
                               key={entry}
-                              className={`flex gap-3 text-sm leading-6 ${textClassName}`}
+                              className={`flex gap-2.5 text-[0.76rem] leading-5 md:gap-3 md:text-sm md:leading-6 ${textClassName}`}
                             >
                               <span
                                 aria-hidden="true"
-                                className={`mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full ${bulletClassName}`}
+                                className={`mt-2 h-1.25 w-1.25 shrink-0 rounded-full md:mt-2.5 md:h-1.5 md:w-1.5 ${bulletClassName}`}
                               />
                               <span>{entry}</span>
                             </li>
@@ -396,16 +397,18 @@ function EducationTimelineItem({
 export default function EducationPage() {
   return (
     <section aria-labelledby="education-title" className="w-full space-y-6">
-      <PageIntro
-        accent="education"
-        label="Education"
-        title="Academic Background"
-        description="A timeline of schools, qualifications, selected subjects, and certifications."
-        titleId="education-title"
-      />
+      <ScrollReveal y={20}>
+        <PageIntro
+          label="Education"
+          title="Academic Background"
+          description="A timeline of schools, qualifications, selected subjects, and certifications."
+          titleId="education-title"
+        />
+      </ScrollReveal>
 
-      <section className="soft-panel rounded-[2rem] px-6 py-7 md:px-8 md:py-8">
-        <div className="mb-6">
+      <ScrollReveal delayMs={70} y={22}>
+        <section className="soft-panel rounded-[1.85rem] px-4 py-5 md:rounded-[2rem] md:px-8 md:py-8">
+        <div className="mb-4 md:mb-6">
           <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-[color:var(--muted)]">
             Formal Education
           </h2>
@@ -423,8 +426,8 @@ export default function EducationPage() {
         </div>
 
         {additionalEducationItems.length > 0 ? (
-          <details className="group mt-6">
-            <summary className="focus-ring inline-flex cursor-pointer list-none items-center gap-1.5 text-sm font-semibold text-[color:var(--foreground)] transition hover:text-[color:var(--accent-strong)] [&::-webkit-details-marker]:hidden">
+          <details className="group mt-4 md:mt-6">
+            <summary className="focus-ring inline-flex cursor-pointer list-none items-center gap-1.5 text-[0.84rem] font-semibold text-[color:var(--foreground)] transition hover:text-[color:var(--accent-strong)] [&::-webkit-details-marker]:hidden md:text-sm">
               <span className="group-open:hidden">
                 See more education history
               </span>
@@ -433,7 +436,7 @@ export default function EducationPage() {
               </span>
             </summary>
 
-            <div className="mt-6 space-y-0">
+            <div className="mt-4 space-y-0 md:mt-6">
               <div className="space-y-0">
                 {additionalEducationItems.map((item, index) => (
                   <EducationTimelineItem
@@ -447,12 +450,14 @@ export default function EducationPage() {
             </div>
           </details>
         ) : null}
-      </section>
+        </section>
+      </ScrollReveal>
 
-      <section
-        aria-labelledby="education-certifications-title"
-        className="elevated-card rounded-[2rem] px-6 py-7 md:px-8 md:py-8"
-      >
+      <ScrollReveal delayMs={120} y={22}>
+        <section
+          aria-labelledby="education-certifications-title"
+          className="elevated-card rounded-[2rem] px-6 py-7 md:px-8 md:py-8"
+        >
         <div className="space-y-6">
           <div className="space-y-3">
             <h2
@@ -504,7 +509,8 @@ export default function EducationPage() {
             ))}
           </div>
         </div>
-      </section>
+        </section>
+      </ScrollReveal>
     </section>
   );
 }

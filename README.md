@@ -1,13 +1,15 @@
 # Win Lei Thawdar | Portfolio
 
-Personal portfolio website built with Next.js App Router, TypeScript, Tailwind CSS, and `npm`. The site is designed as a clean, expandable base for showcasing education, experience, projects, and future writing.
+Personal portfolio website built with Next.js App Router, TypeScript, Tailwind CSS, and `npm`. The site is designed as a clean, expandable base for showcasing education, experience, projects, skills, and personal storytelling.
 
 ## Project overview
 
 - Responsive personal portfolio with a shared floating header and persistent theme toggle
 - Introductory home hero with profile image, project CTA, contact CTA, and social links
+- Home page sections for journey, values, interactive skills overview, and quick navigation to other pages
 - Timeline-based education and experience pages
 - Project showcase page with previews, links, highlights, and team context
+- Mobile-first refinements including a bottom navigation bar and compact responsive cards
 - Light mode by default, with dark mode support powered by `next-themes`
 
 ## Tech stack
@@ -74,10 +76,10 @@ src/
   components/
     home-hero.tsx
     icons.tsx
-    page-intro-accent.tsx
     page-intro.tsx
     site-footer.tsx
     site-header.tsx
+    skills-icon-cloud.tsx
     theme-provider.tsx
     theme-toggle.tsx
   lib/

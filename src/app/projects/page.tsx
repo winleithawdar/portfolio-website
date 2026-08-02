@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { PageIntro } from "@/components/page-intro";
+import { ScrollReveal } from "@/components/scroll-reveal";
 
 type ProjectLink = {
   label: string;
@@ -1110,18 +1111,18 @@ function CompactProjectCard({ project }: { project: ProjectItem }) {
   const mobileMeta = project.note ?? project.format;
 
   return (
-    <article className="elevated-card flex h-full flex-col overflow-hidden rounded-[1.6rem] px-3 py-3 md:rounded-[1.85rem] md:px-4 md:py-4">
+    <article className="elevated-card flex h-full flex-col overflow-hidden rounded-[1.4rem] px-2.5 py-2.5 md:rounded-[1.85rem] md:px-4 md:py-4">
       <div className="flex items-start justify-between gap-2">
         <span className="paper-tag project-meta-tag px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.22em] md:px-3 md:text-[0.68rem]">
           {project.year}
         </span>
       </div>
 
-      <div className="mt-3">
+      <div className="mt-2.5">
         <div
-          className="relative overflow-hidden rounded-[1.15rem] border"
+          className="relative overflow-hidden rounded-[0.95rem] border md:rounded-[1.15rem]"
           style={{
-            aspectRatio: "4 / 3.35",
+            aspectRatio: "4 / 2.45",
             borderColor: "var(--border)",
             backgroundColor: "var(--surface-soft)",
           }}
@@ -1145,12 +1146,12 @@ function CompactProjectCard({ project }: { project: ProjectItem }) {
         </div>
       </div>
 
-      <div className="mt-3 flex min-h-0 flex-1 flex-col">
-        <h2 className="text-[1.02rem] font-semibold leading-[1.2] text-[color:var(--foreground)] md:text-[1.2rem]">
+      <div className="mt-2.5 flex min-h-0 flex-1 flex-col">
+        <h2 className="text-[0.96rem] font-semibold leading-[1.18] text-[color:var(--foreground)] md:text-[1.2rem]">
           {project.title}
         </h2>
         <p
-          className="mt-2 text-[0.72rem] uppercase tracking-[0.14em] md:text-[0.76rem]"
+          className="mt-1.5 text-[0.68rem] uppercase tracking-[0.13em] md:mt-2 md:text-[0.76rem]"
           style={{ color: "var(--muted)" }}
         >
           {truncateText(mobileMeta, 44)}
@@ -1161,7 +1162,7 @@ function CompactProjectCard({ project }: { project: ProjectItem }) {
             href={primaryLink.href}
             target="_blank"
             rel="noreferrer"
-            className="focus-ring mt-3 inline-flex items-center justify-center gap-2 rounded-full border px-3 py-2 text-[0.76rem] font-semibold transition hover:-translate-y-0.5 md:px-3.5 md:py-2.5 md:text-[0.8rem]"
+            className="focus-ring mt-2.5 inline-flex items-center justify-center gap-2 rounded-full border px-3 py-1.75 text-[0.72rem] font-semibold transition hover:-translate-y-0.5 md:mt-3 md:px-3.5 md:py-2.5 md:text-[0.8rem]"
             style={{
               borderColor: "var(--border)",
               backgroundColor: "var(--surface-soft)",
@@ -1174,31 +1175,31 @@ function CompactProjectCard({ project }: { project: ProjectItem }) {
         ) : null}
       </div>
 
-      <details className="group mt-3 overflow-hidden rounded-[1.1rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)]">
-        <summary className="focus-ring flex cursor-pointer list-none items-center justify-center px-3 py-2.5 text-[0.78rem] font-semibold text-[color:var(--foreground)] transition hover:text-[color:var(--accent-strong)] [&::-webkit-details-marker]:hidden md:text-[0.8rem]">
+      <details className="group mt-2.5 overflow-hidden rounded-[0.95rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)] md:mt-3 md:rounded-[1.1rem]">
+        <summary className="focus-ring flex cursor-pointer list-none items-center justify-center px-3 py-2 text-[0.74rem] font-semibold text-[color:var(--foreground)] transition hover:text-[color:var(--accent-strong)] [&::-webkit-details-marker]:hidden md:py-2.5 md:text-[0.8rem]">
           <span className="group-open:hidden">See more</span>
           <span className="hidden group-open:inline">See less</span>
         </summary>
 
-        <div className="border-t border-[color:var(--border)] px-3 pb-4 pt-3">
+        <div className="border-t border-[color:var(--border)] px-3 pb-3.5 pt-2.5 md:pb-4 md:pt-3">
           <p
-            className="text-[0.83rem] leading-6 md:text-[0.88rem]"
+            className="text-[0.78rem] leading-5.5 md:text-[0.88rem]"
             style={{ color: mixColor("--foreground", 78) }}
           >
             {project.description}
           </p>
 
-          <ProjectMetaDetails project={project} className="mt-3" />
+          <ProjectMetaDetails project={project} className="mt-2.5 md:mt-3" />
 
-          <section className="mt-4">
+          <section className="mt-3.5 md:mt-4">
             <h3 className="project-section-label text-[0.72rem] font-semibold uppercase">
               {project.highlightLabel ?? "Highlights"}
             </h3>
-            <ul className="mt-3 space-y-2">
+            <ul className="mt-2.5 space-y-1.5 md:mt-3 md:space-y-2">
               {project.highlights.map((highlight) => (
                 <li
                   key={highlight}
-                  className="flex gap-2.5 text-[0.8rem] leading-6 md:text-[0.84rem]"
+                  className="flex gap-2.5 text-[0.76rem] leading-5.5 md:text-[0.84rem]"
                   style={{ color: mixColor("--foreground", 78) }}
                 >
                   <span
@@ -1212,10 +1213,10 @@ function CompactProjectCard({ project }: { project: ProjectItem }) {
             </ul>
           </section>
 
-          <ProjectStackSection project={project} className="mt-5" />
+          <ProjectStackSection project={project} className="mt-4 md:mt-5" />
 
           {project.links.length > 1 ? (
-            <div className="mt-5 flex flex-wrap gap-2">
+            <div className="mt-4 flex flex-wrap gap-2 md:mt-5">
               {project.links.slice(1).map((link) => {
                 const LinkIcon = getLinkIcon(link.label);
 
@@ -1225,7 +1226,7 @@ function CompactProjectCard({ project }: { project: ProjectItem }) {
                     href={link.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="focus-ring inline-flex items-center gap-2 rounded-full border px-3 py-2 text-[0.76rem] font-medium transition hover:-translate-y-0.5 md:text-[0.8rem]"
+                    className="focus-ring inline-flex items-center gap-2 rounded-full border px-3 py-1.75 text-[0.72rem] font-medium transition hover:-translate-y-0.5 md:py-2 md:text-[0.8rem]"
                     style={{
                       borderColor: "var(--border)",
                       backgroundColor: "var(--surface)",
@@ -1248,29 +1249,36 @@ function CompactProjectCard({ project }: { project: ProjectItem }) {
 export default function ProjectsPage() {
   return (
     <section aria-labelledby="projects-title" className="w-full space-y-6">
-      <PageIntro
-        accent="projects"
-        label="Projects"
-        title="Ideas Brought to Life"
-        description="A visual collection of projects shaped through design, development, experimentation, and collaboration."
-        titleId="projects-title"
-      />
+      <ScrollReveal y={20}>
+        <PageIntro
+          label="Projects"
+          title="Ideas Brought to Life"
+          description="A visual collection of projects shaped through design, development, experimentation, and collaboration."
+          titleId="projects-title"
+        />
+      </ScrollReveal>
 
-      <section className="grid grid-cols-2 gap-3 md:gap-4 lg:hidden">
-        {sortedProjectItems.map((project) => (
-          <CompactProjectCard
+      <section className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-4 lg:hidden">
+        {sortedProjectItems.map((project, index) => (
+          <ScrollReveal
             key={`${project.title}-${project.year}-mobile`}
-            project={project}
-          />
+            delayMs={index * 45}
+            y={22}
+          >
+            <CompactProjectCard project={project} />
+          </ScrollReveal>
         ))}
       </section>
 
       <section className="hidden space-y-5 lg:block">
-        {sortedProjectItems.map((project) => (
-          <ProjectCard
+        {sortedProjectItems.map((project, index) => (
+          <ScrollReveal
             key={`${project.title}-${project.year}`}
-            project={project}
-          />
+            delayMs={index * 55}
+            y={24}
+          >
+            <ProjectCard project={project} />
+          </ScrollReveal>
         ))}
       </section>
     </section>

@@ -6,6 +6,7 @@ import {
   InstagramIcon,
   LinkedInIcon,
   SpotifyIcon,
+  TelegramIcon,
   XIcon,
   YouTubeIcon,
 } from "@/components/icons";
@@ -42,14 +43,9 @@ export const heroSocialLinks: SocialLink[] = [
     icon: InstagramIcon,
   },
   {
-    href: "https://www.facebook.com/winleithawdar",
-    label: "Facebook",
-    icon: FacebookIcon,
-  },
-  {
-    href: "https://devpost.com/winleithawdar",
-    label: "Devpost",
-    icon: DevpostIcon,
+    href: "https://t.me/winleithawdar",
+    label: "Telegram",
+    icon: TelegramIcon,
   },
 ] as const;
 
@@ -73,6 +69,11 @@ export const footerSocialLinks: SocialLink[] = [
     href: "https://www.facebook.com/winleithawdar",
     label: "Facebook",
     icon: FacebookIcon,
+  },
+  {
+    href: "https://t.me/winleithawdar",
+    label: "Telegram",
+    icon: TelegramIcon,
   },
   {
     href: "https://devpost.com/winleithawdar",
