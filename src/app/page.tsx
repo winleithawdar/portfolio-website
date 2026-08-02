@@ -159,26 +159,26 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid gap-3 md:grid-cols-2">
+          <div className="grid grid-cols-2 gap-3">
             {beyondResumePillars.map(({ icon: Icon, symbol, title, description }, index) => (
               <ScrollReveal
                 key={symbol}
-                className="home-mini-block flex gap-4 rounded-[1.45rem] px-4 py-4 md:gap-5 md:px-5 md:py-5"
+                className="home-mini-block flex flex-col gap-3 rounded-[1.25rem] px-3.5 py-3.5 md:flex-row md:gap-5 md:rounded-[1.45rem] md:px-5 md:py-5"
                 delayMs={index * 70}
                 y={22}
               >
-                <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-[1rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)] text-[color:var(--accent-strong)]">
-                  <Icon className="h-5 w-5" />
+                <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-[0.95rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)] text-[color:var(--accent-strong)] md:h-11 md:w-11 md:rounded-[1rem]">
+                  <Icon className="h-4.5 w-4.5 md:h-5 md:w-5" />
                 </span>
 
                 <div className="min-w-0 space-y-2">
-                  <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-[color:var(--muted)]">
+                  <p className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-[color:var(--muted)] md:text-[0.68rem] md:tracking-[0.22em]">
                     {symbol}
                   </p>
-                  <h3 className="font-[family-name:var(--font-display)] text-[1.55rem] leading-tight tracking-[-0.04em] text-[color:var(--foreground)] md:text-[1.7rem]">
+                  <h3 className="font-[family-name:var(--font-display)] text-[1.18rem] leading-tight tracking-[-0.04em] text-[color:var(--foreground)] md:text-[1.7rem]">
                     {title}
                   </h3>
-                  <p className="max-w-2xl text-sm leading-7 text-[color:var(--muted)] md:text-base md:leading-8">
+                  <p className="text-[0.82rem] leading-6 text-[color:var(--muted)] md:max-w-2xl md:text-base md:leading-8">
                     {description}
                   </p>
                 </div>
@@ -208,37 +208,37 @@ export default function HomePage() {
               </h2>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid grid-cols-3 gap-3 md:gap-4">
             {homeSections.map(({ href, title, description, icon: Icon, cues }, index) => (
               <ScrollReveal
                 key={href}
-                className="home-overview-card group min-h-[17rem] rounded-[1.9rem] px-5 py-5 md:px-6 md:py-6"
+                className="home-overview-card group min-h-[9.5rem] rounded-[1.25rem] px-3 py-3.5 md:min-h-[17rem] md:rounded-[1.9rem] md:px-6 md:py-6"
                 delayMs={index * 80}
                 y={24}
               >
                 <Link href={href} className="focus-ring block h-full rounded-[inherit]">
-                  <div className="relative flex h-full flex-col justify-between gap-8">
-                    <div className="flex items-start justify-between gap-4">
-                      <span className="inline-flex h-11 w-11 items-center justify-center rounded-[1rem] border border-[color:var(--border)] bg-[color:var(--surface)]/82 text-[color:var(--accent-strong)] shadow-[0_10px_22px_rgba(75,63,110,0.06)]">
-                        <Icon className="h-5 w-5" />
+                  <div className="relative flex h-full flex-col justify-between gap-4 md:gap-8">
+                    <div className="flex items-start justify-between gap-2 md:gap-4">
+                      <span className="inline-flex h-9 w-9 items-center justify-center rounded-[0.9rem] border border-[color:var(--border)] bg-[color:var(--surface)]/82 text-[color:var(--accent-strong)] shadow-[0_10px_22px_rgba(75,63,110,0.06)] md:h-11 md:w-11 md:rounded-[1rem]">
+                        <Icon className="h-4.5 w-4.5 md:h-5 md:w-5" />
                       </span>
-                      <span className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[color:var(--muted)]">
+                      <span className="text-[0.58rem] font-semibold uppercase tracking-[0.16em] text-[color:var(--muted)] md:text-[0.68rem] md:tracking-[0.2em]">
                         0{index + 1}
                       </span>
                     </div>
 
-                    <div className="space-y-4">
-                      <div className="space-y-2">
-                        <h3 className="font-[family-name:var(--font-display)] text-3xl tracking-[-0.045em] text-[color:var(--foreground)]">
+                    <div className="space-y-2 md:space-y-4">
+                      <div className="space-y-1.5 md:space-y-2">
+                        <h3 className="font-[family-name:var(--font-display)] text-[1.15rem] leading-tight tracking-[-0.04em] text-[color:var(--foreground)] md:text-3xl md:tracking-[-0.045em]">
                           {title}
                         </h3>
 
-                        <p className="max-w-sm text-sm leading-7 text-[color:var(--muted)] md:text-base md:leading-8">
+                        <p className="hidden max-w-sm text-sm leading-7 text-[color:var(--muted)] md:block md:text-base md:leading-8">
                           {description}
                         </p>
                       </div>
 
-                      <div className="flex flex-wrap gap-2">
+                      <div className="hidden flex-wrap gap-2 md:flex">
                         {cues.map((cue) => (
                           <span
                             key={cue}
@@ -251,10 +251,10 @@ export default function HomePage() {
                     </div>
 
                     <div className="flex items-center justify-between gap-3">
-                      <span className="text-sm font-medium text-[color:var(--foreground)]/84">
+                      <span className="hidden text-sm font-medium text-[color:var(--foreground)]/84 md:inline">
                         Open page
                       </span>
-                      <span className="inline-flex h-9 min-w-9 items-center justify-center rounded-full border border-[color:var(--border)] bg-[color:var(--surface)]/82 px-3 text-sm text-[color:var(--foreground)] transition group-hover:border-[color:var(--border-strong)] group-hover:text-[color:var(--accent-strong)]">
+                      <span className="inline-flex h-8 min-w-8 items-center justify-center rounded-full border border-[color:var(--border)] bg-[color:var(--surface)]/82 px-2 text-xs text-[color:var(--foreground)] transition group-hover:border-[color:var(--border-strong)] group-hover:text-[color:var(--accent-strong)] md:h-9 md:min-w-9 md:px-3 md:text-sm">
                         ↗
                       </span>
                     </div>

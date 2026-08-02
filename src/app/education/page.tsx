@@ -25,7 +25,6 @@ type CertificationItem = {
   name: string;
   issuer: string;
   issued: string;
-  credentialId?: string;
   credentialUrl: string;
   previewSrc?: string;
 };
@@ -170,7 +169,6 @@ const certificationItems: CertificationItem[] = [
     name: "Deep Learning: Convolutional Neural Networks in Python",
     issuer: "Udemy",
     issued: "Jul 2026",
-    credentialId: "UC-859f7b33-31b2-447a-98bf-04c6732cddd9",
     credentialUrl:
       "https://ude.my/UC-859f7b33-31b2-447a-98bf-04c6732cddd9",
   },
@@ -178,7 +176,6 @@ const certificationItems: CertificationItem[] = [
     name: "The Nuts and Bolts of Machine Learning",
     issuer: "Google",
     issued: "Jun 2026",
-    credentialId: "1L48WD0G6SIF",
     credentialUrl:
       "https://www.coursera.org/account/accomplishments/records/1L48WD0G6SIF",
   },
@@ -193,7 +190,6 @@ const certificationItems: CertificationItem[] = [
     name: "Foundations of Data Science",
     issuer: "Google",
     issued: "Jun 2026",
-    credentialId: "3F9SUEGUMAX8",
     credentialUrl:
       "https://www.coursera.org/account/accomplishments/records/3F9SUEGUMAX8",
   },
@@ -201,7 +197,6 @@ const certificationItems: CertificationItem[] = [
     name: "AI4I® - Literacy in AI",
     issuer: "AI Singapore",
     issued: "Aug 2025",
-    credentialId: "740716",
     credentialUrl:
       "https://learn.aisingapore.org/certificate-verification/8395C61F7E-812FABE2CB-156E0B7AA/",
   },
@@ -209,7 +204,6 @@ const certificationItems: CertificationItem[] = [
     name: "AI4E® Theory (Badge)",
     issuer: "AI Singapore",
     issued: "Aug 2025",
-    credentialId: "750743",
     credentialUrl:
       "https://learn.aisingapore.org/certificate-verification/839BBC014D-2D01AEE69905-156E0B7AA/",
   },
@@ -217,7 +211,6 @@ const certificationItems: CertificationItem[] = [
     name: "SMU .Hack Enrichment Application Programme 2025",
     issuer: "SMU .Hack",
     issued: "Jul 2025",
-    credentialId: "84128b41-0992-4e0f-9398-3ba25029ae7d",
     credentialUrl:
       "https://credsverse.com/credentials/84128b41-0992-4e0f-9398-3ba25029ae7d",
   },
@@ -225,7 +218,6 @@ const certificationItems: CertificationItem[] = [
     name: "Foundations of User Experience (UX) Design",
     issuer: "Google",
     issued: "Dec 2024",
-    credentialId: "83BPTQM55ITX",
     credentialUrl:
       "https://www.coursera.org/account/accomplishments/records/83BPTQM55ITX",
   },
@@ -474,50 +466,40 @@ export default function EducationPage() {
             </p>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2">
-            {certificationItems.map((item) => (
+          <div className="space-y-0">
+            {certificationItems.map((item, index) => (
               <article
                 key={`${item.name}-${item.issued}`}
-                className="soft-panel overflow-hidden rounded-[1.7rem] px-5 py-5"
+                className={`flex flex-col gap-4 py-5 md:flex-row md:items-center md:justify-between md:gap-6 ${
+                  index === certificationItems.length - 1
+                    ? ""
+                    : "border-b border-[color:var(--border)]"
+                }`}
               >
-                {item.previewSrc ? (
-                  <div className="mb-4 overflow-hidden rounded-[1.2rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)]">
-                    <Image
-                      src={item.previewSrc}
-                      alt={`${item.name} preview`}
-                      width={1200}
-                      height={675}
-                      className="h-auto w-full object-cover"
+                <div className="min-w-0 space-y-2">
+                  <div className="flex flex-wrap items-center gap-2 text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-[color:var(--muted)]">
+                    <span>{item.issuer}</span>
+                    <span
+                      aria-hidden="true"
+                      className="h-1 w-1 rounded-full bg-[color:var(--border-strong)]"
                     />
-                  </div>
-                ) : null}
-
-                <div className="space-y-4">
-                  <div className="space-y-2">
-                    <div className="flex flex-wrap items-center gap-2 text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-[color:var(--muted)]">
-                      <span>{item.issuer}</span>
-                      <span
-                        aria-hidden="true"
-                        className="h-1 w-1 rounded-full bg-[color:var(--border-strong)]"
-                      />
-                      <span>{item.issued}</span>
-                    </div>
-
-                    <h3 className="font-[family-name:var(--font-display)] text-[1.65rem] leading-tight tracking-[-0.04em] text-[color:var(--foreground)]">
-                      {item.name}
-                    </h3>
+                    <span>{item.issued}</span>
                   </div>
 
-                  <a
-                    href={item.credentialUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="focus-ring inline-flex items-center gap-2.5 rounded-full border border-[color:var(--border)] bg-[color:var(--surface)] px-4 py-2.5 text-sm text-[color:var(--foreground)] shadow-[0_10px_22px_rgba(75,63,110,0.04)] transition hover:-translate-y-0.5 hover:border-[color:var(--border-strong)] hover:text-[color:var(--accent-strong)]"
-                  >
-                    <GlobeIcon className="h-4 w-4 text-[color:var(--muted)]" />
-                    <span>View Credential</span>
-                  </a>
+                  <h3 className="font-[family-name:var(--font-display)] text-[1.55rem] leading-tight tracking-[-0.04em] text-[color:var(--foreground)] md:text-[1.75rem]">
+                    {item.name}
+                  </h3>
                 </div>
+
+                <a
+                  href={item.credentialUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="focus-ring inline-flex w-fit shrink-0 items-center gap-2.5 rounded-full border border-[color:var(--border)] bg-[color:var(--surface)] px-4 py-2.5 text-sm text-[color:var(--foreground)] shadow-[0_10px_22px_rgba(75,63,110,0.04)] transition hover:-translate-y-0.5 hover:border-[color:var(--border-strong)] hover:text-[color:var(--accent-strong)]"
+                >
+                  <GlobeIcon className="h-4 w-4 text-[color:var(--muted)]" />
+                  <span>View Credential</span>
+                </a>
               </article>
             ))}
           </div>

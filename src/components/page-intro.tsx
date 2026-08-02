@@ -16,8 +16,8 @@ export function PageIntro({
   accent,
 }: PageIntroProps) {
   return (
-    <div className="soft-panel overflow-hidden rounded-[2.25rem] px-6 py-8 md:px-9 md:py-10">
-      <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between md:gap-8">
+    <div className="soft-panel overflow-hidden rounded-[2.25rem] px-6 py-8 md:px-8 md:py-9 lg:px-9 lg:py-10">
+      <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-8">
         <div className="min-w-0 flex-1">
           <div className="flex items-start justify-between gap-4">
             <div className="paper-tag px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.24em]">
@@ -31,16 +31,16 @@ export function PageIntro({
 
           <h1
             id={titleId}
-            className="mt-6 font-[family-name:var(--font-display)] text-4xl leading-tight tracking-[-0.05em] md:text-5xl"
+            className="mt-6 max-w-5xl font-[family-name:var(--font-display)] text-4xl leading-tight tracking-[-0.05em] md:text-[3.5rem] lg:text-5xl"
           >
             {title}
           </h1>
-          <p className="mt-4 max-w-full text-sm leading-7 text-[color:var(--muted)] md:text-base md:leading-8">
+          <p className="mt-4 max-w-3xl text-sm leading-7 text-[color:var(--muted)] md:text-base md:leading-8">
             {description}
           </p>
         </div>
 
-        <div className="hidden shrink-0 md:flex md:items-start md:justify-end">
+        <div className="hidden shrink-0 md:flex md:items-start md:justify-start lg:justify-end">
           <PageIntroAccent kind={accent} />
         </div>
       </div>

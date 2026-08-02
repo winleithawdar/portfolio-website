@@ -69,7 +69,7 @@ function ScrollCue() {
 }
 
 export function HomeHero() {
-  const heroFocusAreas = ["AI", "Product", "Design"];
+  const heroFocusAreas = ["CS", "AI", "Product", "Design"];
   const heroSparkles = [
     { left: "8%", top: "20%", size: "0.5rem", delay: "0s", duration: "7.2s" },
     { left: "18%", top: "72%", size: "0.38rem", delay: "1.6s", duration: "8.4s" },
@@ -191,9 +191,9 @@ export function HomeHero() {
   return (
     <section
       aria-labelledby="home-title"
-      className="relative left-1/2 -mt-4 w-screen -translate-x-1/2 md:-mt-11 md:min-h-[calc(100svh-5.25rem)]"
+      className="relative left-1/2 -mt-4 w-screen -translate-x-1/2 md:-mt-5 lg:-mt-11 lg:min-h-[calc(100svh-5.25rem)]"
     >
-      <div className="relative overflow-hidden md:flex md:min-h-[calc(100svh-5.25rem)] md:items-center">
+      <div className="relative overflow-hidden lg:flex lg:min-h-[calc(100svh-5.25rem)] lg:items-center">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
           <div
             className="hero-orb hero-orb-left"
@@ -220,9 +220,98 @@ export function HomeHero() {
             />
           ))}
         </div>
-        <div className="page-shell relative grid w-full gap-8 py-4 md:min-h-[calc(100svh-5.25rem)] md:items-center md:py-4 lg:grid-cols-[minmax(0,1.05fr)_minmax(22rem,0.95fr)] lg:gap-x-12">
+        <div className="page-shell relative grid w-full gap-8 py-4 md:gap-10 md:py-8 lg:min-h-[calc(100svh-5.25rem)] lg:items-center lg:py-4 lg:grid-cols-[minmax(0,1.05fr)_minmax(22rem,0.95fr)] lg:gap-x-12">
           <div className="max-w-4xl self-center lg:pr-6">
-            <div style={headlineStyle}>
+            <div className="md:hidden" style={headlineStyle}>
+              <div className="grid grid-cols-[minmax(0,1fr)_8.8rem] items-start gap-3">
+                <div className="min-w-0">
+                  <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-[color:var(--muted)]">
+                    Hello, I&apos;m
+                  </p>
+                  <h1
+                    id="home-title"
+                    className="max-w-none text-[color:var(--accent-strong)]"
+                    style={{
+                      fontFamily:
+                        '"Iowan Old Style", "Palatino Linotype", "Book Antiqua", "Times New Roman", serif',
+                    }}
+                  >
+                    <span className="block text-[clamp(2.45rem,11vw,3.3rem)] leading-[0.9] tracking-[-0.05em]">
+                      Win Lei
+                    </span>
+                    <span className="block text-[clamp(2.45rem,11vw,3.3rem)] leading-[0.9] tracking-[-0.05em]">
+                      Thawdar
+                    </span>
+                  </h1>
+                  <p className="mt-4 text-[1rem] leading-7 text-[color:var(--foreground)]/88">
+                    Also known as <strong>Winnie</strong>.
+                  </p>
+                </div>
+
+                <div className="flex justify-end pt-1">
+                  <div className="relative flex h-[11.75rem] w-full max-w-[8.8rem] items-center justify-center overflow-visible">
+                    <div className="relative h-full w-full overflow-hidden rounded-[999px] border border-[rgba(108,95,141,0.34)] bg-[color:var(--surface-strong)] shadow-[0_22px_40px_rgba(75,63,110,0.14)] dark:border-[color:var(--accent)]/38">
+                      <div className="pointer-events-none absolute inset-[0.5rem] z-10 rounded-[999px] border border-[rgba(108,95,141,0.22)] dark:border-white/28" />
+                      <Image
+                        src="/images/profile/my-profile.png"
+                        alt="Portrait of Win Lei Thawdar"
+                        fill
+                        className="scale-[1.05] object-cover [object-position:center_18%]"
+                        sizes="140px"
+                        priority
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="hidden md:block lg:hidden" style={headlineStyle}>
+              <div className="grid grid-cols-[minmax(0,1fr)_14rem] items-start gap-7">
+                <div className="min-w-0">
+                  <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-[color:var(--muted)]">
+                    Hello, I&apos;m
+                  </p>
+                  <h1
+                    id="home-title"
+                    className="max-w-none text-[color:var(--accent-strong)]"
+                    style={{
+                      fontFamily:
+                        '"Iowan Old Style", "Palatino Linotype", "Book Antiqua", "Times New Roman", serif',
+                    }}
+                  >
+                    <span className="block text-[clamp(3.5rem,7vw,4.55rem)] leading-[0.9] tracking-[-0.05em]">
+                      Win Lei Thawdar
+                    </span>
+                  </h1>
+                  <p className="mt-5 text-[1.1rem] leading-8 text-[color:var(--foreground)]/88">
+                    Also known as <strong>Winnie</strong>.
+                  </p>
+                </div>
+
+                <div className="flex justify-end pt-2">
+                  <div className="relative flex h-[18rem] w-full max-w-[14rem] items-center justify-center overflow-visible">
+                    <div
+                      aria-hidden="true"
+                      className="absolute inset-x-[10%] top-[16%] h-[60%] rounded-[999px] bg-[color:var(--accent)]/18 blur-[46px]"
+                    />
+                    <div className="relative h-full w-full overflow-hidden rounded-[999px] border border-[rgba(108,95,141,0.34)] bg-[color:var(--surface-strong)] shadow-[0_24px_46px_rgba(75,63,110,0.14)] dark:border-[color:var(--accent)]/38">
+                      <div className="pointer-events-none absolute inset-[0.65rem] z-10 rounded-[999px] border border-[rgba(108,95,141,0.22)] dark:border-white/28" />
+                      <Image
+                        src="/images/profile/my-profile.png"
+                        alt="Portrait of Win Lei Thawdar"
+                        fill
+                        className="scale-[1.05] object-cover [object-position:center_18%]"
+                        sizes="224px"
+                        priority
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="hidden lg:block" style={headlineStyle}>
               <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-[color:var(--muted)]">
                 Hello, I&apos;m
               </p>
@@ -240,8 +329,8 @@ export function HomeHero() {
               </h1>
             </div>
 
-            <div className="mt-8 max-w-[35rem] space-y-3" style={bodyStyle}>
-              <p className="text-lg leading-8 text-[color:var(--foreground)]/88 md:text-[1.25rem] md:leading-9 [text-wrap:balance]">
+            <div className="mt-5 max-w-[35rem] space-y-3 md:mt-6 lg:mt-8" style={bodyStyle}>
+              <p className="hidden text-lg leading-8 text-[color:var(--foreground)]/88 lg:block lg:text-[1.25rem] lg:leading-9 [text-wrap:balance]">
                 Also known as <strong>Winnie</strong>.
               </p>
               <p className="text-sm leading-7 text-[color:var(--muted)] md:text-base md:leading-8 [text-wrap:balance]">
@@ -264,11 +353,11 @@ export function HomeHero() {
                 ))}
               </div>
 
-              <div className="mt-10 hidden items-center gap-3.5 md:flex md:flex-wrap">
+              <div className="mt-8 hidden items-center gap-3 md:flex md:flex-wrap lg:mt-10 lg:gap-3.5">
                 {heroActions}
               </div>
 
-              <div className="mt-7 hidden max-w-2xl pt-5 md:block lg:max-w-[34rem]">
+              <div className="mt-6 hidden max-w-2xl md:block md:pt-2 lg:mt-7 lg:max-w-[34rem] lg:pt-5">
                 <div className="space-y-3">
                   <p className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-[color:var(--muted)]">
                     Connect with me
@@ -280,41 +369,23 @@ export function HomeHero() {
               </div>
             </div>
 
-            <div className="mt-8 grid grid-cols-[minmax(0,1fr)_8.75rem] items-end gap-3 md:hidden">
-              <div className="space-y-4">
-                <div className="grid gap-2.5">
-                  {heroActions}
-                </div>
-
-                <div className="space-y-3 pt-4">
-                  <p className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-[color:var(--muted)]">
-                    Connect with me
-                  </p>
-                  <div className="flex flex-wrap items-center gap-2">
-                    {heroSocialIcons}
-                  </div>
-                </div>
+            <div className="mt-8 space-y-4 md:hidden">
+              <div className="grid grid-cols-2 gap-2.5">
+                {heroActions}
               </div>
 
-              <div className="flex justify-end">
-                <div className="relative flex h-[14rem] w-full max-w-[8.75rem] items-center justify-center overflow-visible">
-                  <div className="relative h-full w-full overflow-hidden rounded-[999px] border border-[rgba(108,95,141,0.34)] bg-[color:var(--surface-strong)] shadow-[0_22px_40px_rgba(75,63,110,0.14)] dark:border-[color:var(--accent)]/38">
-                    <div className="pointer-events-none absolute inset-[0.5rem] z-10 rounded-[999px] border border-[rgba(108,95,141,0.22)] dark:border-white/28" />
-                    <Image
-                      src="/images/profile/my-profile.png"
-                      alt="Portrait of Win Lei Thawdar"
-                      fill
-                      className="scale-[1.05] object-cover [object-position:center_18%]"
-                      sizes="140px"
-                      priority
-                    />
-                  </div>
+              <div className="space-y-3 pt-2">
+                <p className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-[color:var(--muted)]">
+                  Connect with me
+                </p>
+                <div className="flex flex-wrap items-center gap-2">
+                  {heroSocialIcons}
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="hidden justify-center pt-1 sm:pt-2 md:flex lg:justify-end">
+          <div className="hidden justify-center pt-1 sm:pt-2 lg:flex lg:justify-end">
             <div
               className="relative flex h-[20rem] w-full max-w-[18rem] items-center justify-center overflow-visible sm:h-[24rem] sm:max-w-[20rem] md:-translate-y-8 md:h-[41rem] md:max-w-[31rem] lg:-translate-y-10 lg:h-[50rem] lg:max-w-[37rem] lg:translate-x-8"
               style={portraitStyle}
