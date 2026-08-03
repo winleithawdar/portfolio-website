@@ -250,6 +250,12 @@ export function SkillsIconCloud({
   const handlePointerDown = (event: React.PointerEvent<HTMLCanvasElement>) => {
     setIsDragging(true);
     dragStartRef.current = { x: event.clientX, y: event.clientY };
+    const rect = event.currentTarget.getBoundingClientRect();
+    setPointerPosition({
+      x: event.clientX - rect.left,
+      y: event.clientY - rect.top,
+    });
+    event.preventDefault();
     event.currentTarget.setPointerCapture(event.pointerId);
   };
 
@@ -280,6 +286,10 @@ export function SkillsIconCloud({
     event.currentTarget.releasePointerCapture(event.pointerId);
   };
 
+  const handlePointerCancel = () => {
+    setIsDragging(false);
+  };
+
   return (
     <div
       ref={containerRef}
@@ -292,8 +302,9 @@ export function SkillsIconCloud({
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerCancel}
         onPointerLeave={() => setIsDragging(false)}
-        className="relative z-10 h-full w-full cursor-grab rounded-full active:cursor-grabbing"
+        className="relative z-10 h-full w-full touch-none cursor-grab rounded-full active:cursor-grabbing"
         aria-label="Interactive skills icon cloud"
         role="img"
       />
