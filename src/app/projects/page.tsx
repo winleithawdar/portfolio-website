@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 import { PageIntro } from "@/components/page-intro";
 import { ScrollReveal } from "@/components/scroll-reveal";
 
@@ -91,6 +94,34 @@ const projectItems: ProjectItem[] = [
     previewStyle: "dashboard",
     previewLabel: "Hackathon project preview",
     screenshotSrc: "/images/projects/openeval.png",
+  },
+  {
+    title: "Nomi",
+    year: "2026",
+    format: "Ellipsis Tech Series Hackathon 2026",
+    domain: "Tech",
+    description:
+      "Caregiver support tool that helps families notice meaningful changes in an older adult's routine while preserving the senior's agency.",
+    highlightLabel: "Product Highlights",
+    highlights: [
+      "Calculates personal baselines from response time, interaction frequency, missed check-ins, and wellbeing patterns.",
+      "Detects isolated anomalies and sustained changes from each senior's recent routine.",
+      "Uses senior-first verification before escalating changes into caregiver alerts.",
+      "Presents live check-ins, plain-language assessments, alerts, and visual trends in a mobile-first dashboard.",
+    ],
+    technologies: ["FastAPI", "Next.js", "SQLite", "Telegram Bot API"],
+    links: [
+      {
+        label: "Source Code",
+        href: "https://github.com/winleithawdar/nomi",
+      },
+    ],
+    note: "Ellipsis Tech Series Hackathon 2026 | Top 10 Team",
+    credit:
+      "Team: Ang Cheng Zuo, Eric Law, Julius Yeo, Su Myat Myat Htay, Su Pyae Pyae Zaw, Win Lei Thawdar",
+    previewStyle: "dashboard",
+    previewLabel: "Hackathon project preview",
+    screenshotSrc: "/images/projects/nomi.png",
   },
   {
     title: "Resource-Constrained Scheduling Solver",
@@ -440,7 +471,27 @@ const projectItems: ProjectItem[] = [
   },
 ];
 
+const priorityProjectOrder = new Map([
+  ["SMUAI Website", 0],
+  ["Nomi", 1],
+]);
+
 const sortedProjectItems = [...projectItems].sort((left, right) => {
+  const leftPriority = priorityProjectOrder.get(left.title);
+  const rightPriority = priorityProjectOrder.get(right.title);
+
+  if (leftPriority !== undefined || rightPriority !== undefined) {
+    if (leftPriority === undefined) {
+      return 1;
+    }
+
+    if (rightPriority === undefined) {
+      return -1;
+    }
+
+    return leftPriority - rightPriority;
+  }
+
   if (left.title === "Graphic Design Portfolio") {
     return 1;
   }
@@ -451,6 +502,37 @@ const sortedProjectItems = [...projectItems].sort((left, right) => {
 
   return Number(right.year) - Number(left.year);
 });
+
+const technicalProjectItems = sortedProjectItems.filter(
+  (project) => project.domain === "Tech",
+);
+
+const designProjectItems = sortedProjectItems.filter(
+  (project) => project.domain === "Creative",
+);
+
+const projectCategoryTabs = [
+  {
+    key: "all",
+    label: "All",
+    description: "Every project in one place, sorted by year with design work collected at the end.",
+    items: sortedProjectItems,
+  },
+  {
+    key: "technical",
+    label: "Technical",
+    description: "Software, AI, algorithms, full-stack systems, and product-focused builds.",
+    items: technicalProjectItems,
+  },
+  {
+    key: "design",
+    label: "Design",
+    description: "Figma prototypes, interaction design, and visual portfolio work grouped for easier browsing.",
+    items: designProjectItems,
+  },
+] as const;
+
+type ProjectCategoryTab = (typeof projectCategoryTabs)[number]["key"];
 
 function ArrowUpRightIcon({ className = "h-4 w-4" }: { className?: string }) {
   return (
@@ -1246,9 +1328,85 @@ function CompactProjectCard({ project }: { project: ProjectItem }) {
   );
 }
 
+function ProjectCategoryTabs() {
+  const [activeTab, setActiveTab] = useState<ProjectCategoryTab>("all");
+  const activeCategory = projectCategoryTabs.find(
+    (tab) => tab.key === activeTab,
+  ) ?? projectCategoryTabs[0];
+
+  return (
+    <section aria-label="Project categories" className="space-y-5">
+      <ScrollReveal y={22}>
+        <div
+          role="tablist"
+          aria-label="Project categories"
+          className="flex w-full gap-2 overflow-x-auto rounded-full border border-[color:var(--border)] bg-[color:var(--surface)] p-1 shadow-[0_12px_26px_rgba(75,63,110,0.06)] md:w-fit"
+        >
+          {projectCategoryTabs.map((tab) => {
+            const isActive = tab.key === activeTab;
+
+            return (
+              <button
+                key={tab.key}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                aria-controls="projects-category-panel"
+                id={`projects-tab-${tab.key}`}
+                onClick={() => setActiveTab(tab.key)}
+                className={`focus-ring inline-flex min-w-fit items-center rounded-full px-4 py-2 text-sm font-semibold transition ${
+                  isActive
+                    ? "bg-[color:var(--accent-soft)] text-[color:var(--accent-strong)] shadow-[0_8px_18px_rgba(75,63,110,0.08)]"
+                    : "text-[color:var(--muted)] hover:bg-[color:var(--surface-soft)] hover:text-[color:var(--foreground)]"
+                }`}
+              >
+                {tab.label}
+              </button>
+            );
+          })}
+        </div>
+
+        <p className="mt-4 max-w-2xl text-sm leading-7 text-[color:var(--muted)] md:text-base md:leading-8">
+          {activeCategory.description}
+        </p>
+      </ScrollReveal>
+
+      <div
+        id="projects-category-panel"
+        role="tabpanel"
+        aria-labelledby={`projects-tab-${activeTab}`}
+      >
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-4 lg:hidden">
+          {activeCategory.items.map((project, index) => (
+            <ScrollReveal
+              key={`${activeTab}-${project.title}-${project.year}-mobile`}
+              delayMs={index * 45}
+              y={22}
+            >
+              <CompactProjectCard project={project} />
+            </ScrollReveal>
+          ))}
+        </div>
+
+        <div className="hidden space-y-5 lg:block">
+          {activeCategory.items.map((project, index) => (
+            <ScrollReveal
+              key={`${activeTab}-${project.title}-${project.year}`}
+              delayMs={index * 55}
+              y={24}
+            >
+              <ProjectCard project={project} />
+            </ScrollReveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function ProjectsPage() {
   return (
-    <section aria-labelledby="projects-title" className="w-full space-y-6">
+    <section aria-labelledby="projects-title" className="w-full space-y-8 md:space-y-10">
       <ScrollReveal y={20}>
         <PageIntro
           label="Projects"
@@ -1258,29 +1416,7 @@ export default function ProjectsPage() {
         />
       </ScrollReveal>
 
-      <section className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-4 lg:hidden">
-        {sortedProjectItems.map((project, index) => (
-          <ScrollReveal
-            key={`${project.title}-${project.year}-mobile`}
-            delayMs={index * 45}
-            y={22}
-          >
-            <CompactProjectCard project={project} />
-          </ScrollReveal>
-        ))}
-      </section>
-
-      <section className="hidden space-y-5 lg:block">
-        {sortedProjectItems.map((project, index) => (
-          <ScrollReveal
-            key={`${project.title}-${project.year}`}
-            delayMs={index * 55}
-            y={24}
-          >
-            <ProjectCard project={project} />
-          </ScrollReveal>
-        ))}
-      </section>
+      <ProjectCategoryTabs />
     </section>
   );
 }
