@@ -3,10 +3,11 @@ import { PageIntro } from "@/components/page-intro";
 import { GlobeIcon, LinkedInIcon } from "@/components/icons";
 import { ScrollReveal } from "@/components/scroll-reveal";
 
+export const dynamic = "force-dynamic";
+
 type Position = {
   role: string;
   dateRange: string;
-  duration: string;
   highlights: string[];
 };
 
@@ -16,12 +17,64 @@ type OrganizationGroup = {
   websiteUrl?: string;
   linkedinUrl?: string;
   dateRange: string;
-  duration: string;
   logo: string;
   location?: string;
   personalNotes?: string[];
   positions: Position[];
 };
+
+const monthIndexByShortName = {
+  Jan: 0,
+  Feb: 1,
+  Mar: 2,
+  Apr: 3,
+  May: 4,
+  Jun: 5,
+  Jul: 6,
+  Aug: 7,
+  Sep: 8,
+  Oct: 9,
+  Nov: 10,
+  Dec: 11,
+} as const;
+
+function getMonthSpan(dateRange: string, today = new Date()) {
+  const [startLabel, endLabel] = dateRange.split(" - ");
+  const start = parseMonthYear(startLabel);
+  const end = endLabel === "Present" ? today : parseMonthYear(endLabel);
+
+  return (
+    (end.getFullYear() - start.getFullYear()) * 12 +
+    end.getMonth() -
+    start.getMonth() +
+    1
+  );
+}
+
+function parseMonthYear(label: string) {
+  const [month, year] = label.split(" ");
+  const monthIndex =
+    monthIndexByShortName[month as keyof typeof monthIndexByShortName];
+
+  return new Date(Number(year), monthIndex, 1);
+}
+
+function formatDurationFromDateRange(dateRange: string) {
+  const totalMonths = getMonthSpan(dateRange);
+  const years = Math.floor(totalMonths / 12);
+  const months = totalMonths % 12;
+  const parts = [];
+
+  if (years > 0) {
+    parts.push(`${years} ${years === 1 ? "yr" : "yrs"}`);
+  }
+
+  if (months > 0) {
+    parts.push(`${months} ${months === 1 ? "mo" : "mos"}`);
+  }
+
+  return parts.join(" ") || "1 mo";
+}
 
 const organizationGroups: OrganizationGroup[] = [
   {
@@ -29,15 +82,13 @@ const organizationGroups: OrganizationGroup[] = [
     organization: "MUI Robotics",
     websiteUrl: "https://mui-robotics.asia/en/",
     linkedinUrl: "https://www.linkedin.com/company/mui-robotics/",
-    dateRange: "May 2026 - Present",
-    duration: "4 mos",
+    dateRange: "May 2026 - Aug 2026",
     logo: "/logos/experience/mui-robotics.jpg",
     location: "Thailand",
     positions: [
       {
         role: "Technology Intern (AI/ML)",
-        dateRange: "May 2026 - Present",
-        duration: "4 mos",
+        dateRange: "May 2026 - Aug 2026",
         highlights: [
           "Developed Python workflows to analyze and preprocess electronic nose and electronic tongue sensor data for sensory intelligence applications.",
           "Investigated machine learning techniques for signal preprocessing, feature engineering, model evaluation, and odor prediction using real-world sensory datasets.",
@@ -52,14 +103,12 @@ const organizationGroups: OrganizationGroup[] = [
     websiteUrl: "https://www.smuai.org/",
     linkedinUrl: "https://www.linkedin.com/company/smuai/",
     dateRange: "May 2025 - Present",
-    duration: "1 yr 4 mos",
     logo: "/logos/experience/smuai.jpg",
     location: "Singapore",
     positions: [
       {
         role: "Vice President",
         dateRange: "May 2026 - Present",
-        duration: "4 mos",
         highlights: [
           "Oversee the club’s direction across departments, helping guide priorities, initiatives, and execution alongside the executive committee.",
           "Work closely with the President on strategic alignment to ensure SMUAI’s plans, operations, and public direction stay consistent with the club’s long-term vision.",
@@ -69,7 +118,6 @@ const organizationGroups: OrganizationGroup[] = [
       {
         role: "Marketing Lead",
         dateRange: "May 2025 - Apr 2026",
-        duration: "1 yr",
         highlights: [
           "Led promotions and content direction across Instagram, LinkedIn, and other outreach materials.",
           "Refined SMUAI’s visual identity and Instagram aesthetics to create a stronger, more cohesive public presence.",
@@ -86,14 +134,12 @@ const organizationGroups: OrganizationGroup[] = [
     websiteUrl: "https://aisingapore.org/",
     linkedinUrl: "https://www.linkedin.com/company/aisingapore",
     dateRange: "Sep 2025 - Apr 2026",
-    duration: "8 mos",
     logo: "/logos/experience/ai-singapore.jpg",
     location: "Singapore",
     positions: [
       {
         role: "Data Quality Assurance Student Assistant",
         dateRange: "Sep 2025 - Apr 2026",
-        duration: "8 mos",
         highlights: [
           "Developed and reviewed over 100 prompt-response pairs to support the training and evaluation of SEA large language models.",
           "Applied structured evaluation criteria to benchmark model performance across prompt types and use cases, including mathematical reasoning, conversational flow, and sensitive content.",
@@ -107,19 +153,18 @@ const organizationGroups: OrganizationGroup[] = [
     organization: "SMU Red Cross",
     linkedinUrl: "https://www.linkedin.com/company/smu-red-cross/",
     dateRange: "Aug 2025 - Dec 2025",
-    duration: "5 mos",
     logo: "/logos/experience/smu-red-cross.jpg",
     location: "Singapore",
     positions: [
       {
         role: "Marketing Deputy (Project AC)",
         dateRange: "Aug 2025 - Dec 2025",
-        duration: "5 mos",
         highlights: [
           "Created promotional materials and presentation slides for Project AC (Project Advancing Community).",
           "Assisted with volunteer training sessions and elderly community sessions as part of the project’s programme support.",
           "Supported event documentation by taking photos and videos during activities and sessions.",
-          "Certified by the Singapore Red Cross Society as a CPR+AED Provider and Standard First Aid Provider.",
+          "Completed 100 hours of community service through Project AC.",
+          "Certified by the Singapore Red Cross Society as a CPR+AED Provider and Standard First Aid Provider, with a 100% assessment score.",
         ],
       },
     ],
@@ -131,14 +176,12 @@ const organizationGroups: OrganizationGroup[] = [
     linkedinUrl:
       "https://sg.linkedin.com/company/ellipsis-smu-computing-and-information-systems-society",
     dateRange: "May 2024 - Apr 2025",
-    duration: "1 yr",
     logo: "/logos/experience/ellipsis.jpg",
     location: "Singapore",
     positions: [
       {
         role: "Marketing Executive",
         dateRange: "May 2024 - Apr 2025",
-        duration: "1 yr",
         highlights: [
           "Designed the SMU Tech Series 2025 website in Figma to shape the event’s digital experience and visual direction.",
           "Created Instagram visuals and handled social media content to support outreach and engagement.",
@@ -152,14 +195,12 @@ const organizationGroups: OrganizationGroup[] = [
     organization: "SMU Myanmar Community",
     linkedinUrl: "https://www.linkedin.com/company/smumc/",
     dateRange: "May 2024 - Apr 2025",
-    duration: "1 yr",
     logo: "/logos/experience/smumc.jpg",
     location: "Singapore",
     positions: [
       {
         role: "Honorary General Secretary",
         dateRange: "May 2024 - Apr 2025",
-        duration: "1 yr",
         highlights: [
           "Managed core club administration, including email, records, and internal coordination.",
           "Handled event, membership, and recruitment matters through forms, participant tracking, and related logistics.",
@@ -173,7 +214,6 @@ const organizationGroups: OrganizationGroup[] = [
     organization: "The Forward Society",
     linkedinUrl: "https://mm.linkedin.com/company/theforwardsociety",
     dateRange: "Jan 2023 - Apr 2024",
-    duration: "1 yr 4 mos",
     logo: "/logos/experience/the-forward-society.jpg",
     location: "Myanmar",
     personalNotes: [
@@ -184,7 +224,6 @@ const organizationGroups: OrganizationGroup[] = [
       {
         role: "Operations Director",
         dateRange: "Sep 2023 - Apr 2024",
-        duration: "8 mos",
         highlights: [
           "Promoted to lead the Operations Management Department, where I introduced a new Research & Development team based on my vision for stronger programme design and community support.",
           "Worked closely with the CEO, Marketing & PR Director, and HR Director to keep operations aligned with the organization’s mission and improve programme quality.",
@@ -196,7 +235,6 @@ const organizationGroups: OrganizationGroup[] = [
       {
         role: "Project Development Officer",
         dateRange: "Jul 2023 - Aug 2023",
-        duration: "2 mos",
         highlights: [
           "Led the 2-day free virtual workshop Photoshop Essentials as project leader.",
           "Created the Project Development Handbook and The Forward Society profile slides.",
@@ -206,7 +244,6 @@ const organizationGroups: OrganizationGroup[] = [
       {
         role: "Graphic Designer",
         dateRange: "Apr 2023 - Aug 2023",
-        duration: "5 mos",
         highlights: [
           "Designed social media graphics and branded assets including ID cards, coupons, Zoom backgrounds, pamphlets, letterheads, and bookmarks.",
         ],
@@ -214,7 +251,6 @@ const organizationGroups: OrganizationGroup[] = [
       {
         role: "Student Affairs Officer",
         dateRange: "Apr 2023 - Jun 2023",
-        duration: "3 mos",
         highlights: [
           "Promoted from Facilitator and refined processes by reviewing past feedback and setting up new task templates.",
           "Created the Facilitators Handbook and recorded tutorial videos for database formulas and email workflows.",
@@ -224,7 +260,6 @@ const organizationGroups: OrganizationGroup[] = [
       {
         role: "Facilitator",
         dateRange: "Jan 2023 - Mar 2023",
-        duration: "3 mos",
         highlights: [
           "Created event forms and managed student-related records, attendance, and data tracking.",
           "Prepared class and event introduction slides and assisted as an emcee during virtual events.",
@@ -239,7 +274,6 @@ const organizationGroups: OrganizationGroup[] = [
     websiteUrl: "https://thatepanhub.org/",
     linkedinUrl: "https://mm.linkedin.com/company/thatepanhub",
     dateRange: "Nov 2023 - Feb 2024",
-    duration: "4 mos",
     logo: "/logos/experience/thate-pan-hub.jpg",
     location: "Myanmar",
     personalNotes: [
@@ -249,7 +283,6 @@ const organizationGroups: OrganizationGroup[] = [
       {
         role: "Computer Science Curriculum Development Team Member",
         dateRange: "Nov 2023 - Feb 2024",
-        duration: "4 mos",
         highlights: [
           "Analyzed and strengthened curriculum content across computer science courses offered by the organization.",
           "Represented Thate Pan Hub by teaching the Hour of Code 2023 course at Yangon Adventist Seminary.",
@@ -262,14 +295,12 @@ const organizationGroups: OrganizationGroup[] = [
     organization: "Start Smart",
     linkedinUrl: "https://www.linkedin.com/company/start-smart-organization/",
     dateRange: "Aug 2023 - Feb 2024",
-    duration: "7 mos",
     logo: "/logos/experience/start-smart.jpg",
     location: "Myanmar",
     positions: [
       {
         role: "Graphic Designer",
         dateRange: "Aug 2023 - Feb 2024",
-        duration: "7 mos",
         highlights: [
           "Designed social media graphics for the Start Smart Facebook page and Zoom backgrounds for events.",
           "Contributed visual materials aligned with the organization’s branding and youth-focused outreach.",
@@ -282,14 +313,12 @@ const organizationGroups: OrganizationGroup[] = [
     organization: "For The Future - Myanmar",
     linkedinUrl: "https://www.linkedin.com/company/for-the-future-myanmar/",
     dateRange: "Dec 2022 - Feb 2023",
-    duration: "3 mos",
     logo: "/logos/experience/ftf.jpg",
     location: "Myanmar",
     positions: [
       {
         role: "Media & Public Relations Team Member",
         dateRange: "Dec 2022 - Feb 2023",
-        duration: "3 mos",
         highlights: [
           "Managed the organization’s social media platforms and contributed to a structured content calendar with other teams.",
           "Coordinated communication with guest speakers and audiences to support smoother event delivery.",
@@ -302,14 +331,12 @@ const organizationGroups: OrganizationGroup[] = [
     category: "leadership",
     organization: "Galaxy Free Education Centre",
     dateRange: "May 2022 - Sep 2022",
-    duration: "5 mos",
     logo: "/logos/experience/gfec.jpg",
     location: "Myanmar",
     positions: [
       {
         role: "General English Instructor",
         dateRange: "May 2022 - Sep 2022",
-        duration: "5 mos",
         highlights: [
           "Planned and prepared lessons with presentation slides to support structured English learning.",
           "Evaluated student progress, adapted lesson plans accordingly, and provided feedback on assignments and performance.",
@@ -449,14 +476,14 @@ export default function ExperiencePage() {
                                 aria-hidden="true"
                                 className="h-1 w-1 rounded-full bg-[color:var(--border-strong)]"
                               />
-                              <p>{group.duration}</p>
+                              <p>{formatDurationFromDateRange(group.dateRange)}</p>
                             </div>
                           </div>
                         </div>
 
                         <div className="hidden shrink-0 space-y-1 text-sm text-[color:var(--muted)] md:block md:pl-4">
                           <p>{group.dateRange}</p>
-                          <p>{group.duration}</p>
+                          <p>{formatDurationFromDateRange(group.dateRange)}</p>
                         </div>
                       </div>
 
@@ -510,7 +537,7 @@ export default function ExperiencePage() {
                                         aria-hidden="true"
                                         className="h-1 w-1 rounded-full bg-[color:var(--border-strong)]"
                                       />
-                                      <p>{position.duration}</p>
+                                      <p>{formatDurationFromDateRange(position.dateRange)}</p>
                                     </div>
                                   </div>
                                 </div>
