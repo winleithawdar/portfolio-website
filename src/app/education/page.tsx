@@ -27,7 +27,7 @@ type CertificationItem = {
   issuer: string;
   issued: string;
   credentialUrl: string;
-  previewSrc?: string;
+  previewSrc: string;
 };
 
 const educationItems: EducationItem[] = [
@@ -167,11 +167,20 @@ const educationItems: EducationItem[] = [
 
 const certificationItems: CertificationItem[] = [
   {
+    name: "AWS Cloud Practitioner (CLF-C02)",
+    issuer: "DataCamp",
+    issued: "Aug 2026",
+    credentialUrl:
+      "https://www.datacamp.com/completed/statement-of-accomplishment/track/a91a497ddc1c4f249eeba3384ab9b7c7fd9a735e?utm_medium=organic_social&utm_campaign=sharewidget&utm_content=soa",
+    previewSrc: "/images/certificates/2026-aws-cloud-practitioner.jpg",
+  },
+  {
     name: "Deep Learning: Convolutional Neural Networks in Python",
     issuer: "Udemy",
     issued: "Jul 2026",
     credentialUrl:
       "https://ude.my/UC-859f7b33-31b2-447a-98bf-04c6732cddd9",
+    previewSrc: "/images/certificates/2026-deep-learning-cnn.jpg",
   },
   {
     name: "The Nuts and Bolts of Machine Learning",
@@ -179,13 +188,7 @@ const certificationItems: CertificationItem[] = [
     issued: "Jun 2026",
     credentialUrl:
       "https://www.coursera.org/account/accomplishments/records/1L48WD0G6SIF",
-  },
-  {
-    name: "Working with the OpenAI API",
-    issuer: "DataCamp",
-    issued: "Jun 2026",
-    credentialUrl:
-      "https://www.datacamp.com/completed/statement-of-accomplishment/course/1b167923683cc29287486b553fd42ff4042f813a",
+    previewSrc: "/images/certificates/2026-ml.jpg",
   },
   {
     name: "Foundations of Data Science",
@@ -193,6 +196,7 @@ const certificationItems: CertificationItem[] = [
     issued: "Jun 2026",
     credentialUrl:
       "https://www.coursera.org/account/accomplishments/records/3F9SUEGUMAX8",
+    previewSrc: "/images/certificates/2026-data-science.jpg",
   },
   {
     name: "AI4I® - Literacy in AI",
@@ -200,13 +204,7 @@ const certificationItems: CertificationItem[] = [
     issued: "Aug 2025",
     credentialUrl:
       "https://learn.aisingapore.org/certificate-verification/8395C61F7E-812FABE2CB-156E0B7AA/",
-  },
-  {
-    name: "AI4E® Theory (Badge)",
-    issuer: "AI Singapore",
-    issued: "Aug 2025",
-    credentialUrl:
-      "https://learn.aisingapore.org/certificate-verification/839BBC014D-2D01AEE69905-156E0B7AA/",
+    previewSrc: "/images/certificates/2025-ai4i.jpg",
   },
   {
     name: "SMU .Hack Enrichment Application Programme 2025",
@@ -214,6 +212,7 @@ const certificationItems: CertificationItem[] = [
     issued: "Jul 2025",
     credentialUrl:
       "https://credsverse.com/credentials/84128b41-0992-4e0f-9398-3ba25029ae7d",
+    previewSrc: "/images/certificates/2025-heap.jpg",
   },
   {
     name: "Foundations of User Experience (UX) Design",
@@ -221,6 +220,7 @@ const certificationItems: CertificationItem[] = [
     issued: "Dec 2024",
     credentialUrl:
       "https://www.coursera.org/account/accomplishments/records/83BPTQM55ITX",
+    previewSrc: "/images/certificates/2024-ux.jpg",
   },
 ] as const;
 
@@ -471,19 +471,38 @@ export default function EducationPage() {
             </p>
           </div>
 
-          <div className="space-y-0">
-            {certificationItems.map((item, index) => (
+          <div className="grid auto-rows-fr gap-4 md:grid-cols-2 md:gap-5 xl:grid-cols-3">
+            {certificationItems.map((item) => (
               <article
                 key={`${item.name}-${item.issued}`}
-                className={`flex flex-col gap-4 py-5 md:flex-row md:items-center md:justify-between md:gap-6 ${
-                  index === certificationItems.length - 1
-                    ? ""
-                    : "border-b border-[color:var(--border)]"
-                }`}
+                className="group flex h-full min-w-0 flex-col"
               >
-                <div className="min-w-0 space-y-2">
-                  <div className="flex flex-wrap items-center gap-2 text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-[color:var(--muted)]">
-                    <span>{item.issuer}</span>
+                <a
+                  href={item.credentialUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Open ${item.name} credential`}
+                  className="focus-ring relative block overflow-hidden border border-[color:var(--border)] bg-white shadow-[0_16px_34px_rgba(75,63,110,0.08)] transition duration-300 ease-out group-hover:-translate-y-2 group-hover:scale-[1.025] group-hover:border-[color:var(--border-strong)] group-hover:shadow-[0_30px_58px_rgba(75,63,110,0.16)]"
+                >
+                  <div className="aspect-[2000/1414] overflow-hidden bg-white">
+                    <Image
+                      src={item.previewSrc}
+                      alt={`${item.name} certificate preview`}
+                      width={900}
+                      height={636}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                  <div className="pointer-events-none absolute inset-0 flex items-end justify-end bg-gradient-to-t from-black/24 via-black/0 to-black/0 opacity-0 transition duration-300 ease-out group-hover:opacity-100">
+                    <span className="m-3 bg-white/92 px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[color:var(--accent-strong)] shadow-[0_10px_24px_rgba(0,0,0,0.18)]">
+                      View Credential
+                    </span>
+                  </div>
+                </a>
+
+                <div className="flex flex-1 flex-col pt-3.5">
+                  <div className="flex flex-wrap items-center gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[color:var(--muted)]">
+                    <span className="text-[color:var(--accent-strong)]">{item.issuer}</span>
                     <span
                       aria-hidden="true"
                       className="h-1 w-1 rounded-full bg-[color:var(--border-strong)]"
@@ -491,20 +510,10 @@ export default function EducationPage() {
                     <span>{item.issued}</span>
                   </div>
 
-                  <h3 className="font-[family-name:var(--font-display)] text-[1.55rem] leading-tight tracking-[-0.04em] text-[color:var(--foreground)] md:text-[1.75rem]">
+                  <h3 className="mt-2.5 font-[family-name:var(--font-display)] text-[1.05rem] leading-tight tracking-[-0.025em] text-[color:var(--foreground)] md:text-[1.14rem] xl:text-[1.18rem]">
                     {item.name}
                   </h3>
                 </div>
-
-                <a
-                  href={item.credentialUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="focus-ring inline-flex w-fit shrink-0 items-center gap-2.5 rounded-full border border-[color:var(--border)] bg-[color:var(--surface)] px-4 py-2.5 text-sm text-[color:var(--foreground)] shadow-[0_10px_22px_rgba(75,63,110,0.04)] transition hover:-translate-y-0.5 hover:border-[color:var(--border-strong)] hover:text-[color:var(--accent-strong)]"
-                >
-                  <GlobeIcon className="h-4 w-4 text-[color:var(--muted)]" />
-                  <span>View Credential</span>
-                </a>
               </article>
             ))}
           </div>

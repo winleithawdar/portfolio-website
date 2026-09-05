@@ -1,52 +1,32 @@
 import Link from "next/link";
 import {
-  CompassIcon,
   EducationIcon,
   ExperienceIcon,
-  LeafIcon,
   MoonIcon,
-  PeopleIcon,
   ProjectsIcon,
-  SparkIcon,
 } from "@/components/icons";
 import { HomeHero } from "@/components/home-hero";
 import { SkillsIconCloud } from "@/components/skills-icon-cloud";
 import { ScrollReveal } from "@/components/scroll-reveal";
 
-const homeJourneyParagraphs = [
-  "Growing up in Myanmar, I never imagined that I would one day study Computer Science overseas. My original plans looked very different, and for a long time, technology was not part of the picture I had in mind for myself.",
-  "A period of uncertainty pushed me to reconsider where I wanted to grow and what kind of future I wanted to build. That process eventually brought me to Singapore and to SMU, where I discovered an interest in technology not only as a technical discipline, but as a way to turn ideas into practical solutions.",
-  "Today, I am pursuing Computer Science alongside Strategic Management, and I find myself most interested in the space where technology, business, and human needs come together.",
-] as const;
-
-const beyondResumePillars = [
+const homeJourneyMoments = [
   {
-    icon: CompassIcon,
-    symbol: "Contribution",
-    title: "Meaningful contribution",
+    label: "Before tech",
+    title: "A very different plan",
     description:
-      "I care about work that leaves something better than before.",
+      "Growing up in Myanmar, I never expected Computer Science to become the path I would choose.",
   },
   {
-    icon: PeopleIcon,
-    symbol: "Community",
-    title: "People and community",
+    label: "Turning point",
+    title: "A route I had to rethink",
     description:
-      "I value spaces where people feel supported and heard.",
+      "Moving to Singapore pushed me to think harder about where I wanted to grow and what kind of future I wanted to build.",
   },
   {
-    icon: LeafIcon,
-    symbol: "Curiosity",
-    title: "Quietly curious",
+    label: "Now",
+    title: "Technology with purpose",
     description:
-      "I like understanding the why behind people, products, and decisions.",
-  },
-  {
-    icon: SparkIcon,
-    symbol: "Life",
-    title: "Life away from the screen",
-    description:
-      "Pilates, ukulele, and quiet cafes help me slow down and reset.",
+      "At SMU, I am most drawn to work where engineering, business, and human needs meet in practical ways.",
   },
 ] as const;
 
@@ -55,21 +35,21 @@ const homeSections = [
     href: "/education",
     title: "Education",
     icon: EducationIcon,
-    description: "Where the academic side of my story comes together.",
+    description: "The academic path, qualifications, and certifications behind the work.",
     cues: ["SMU", "Computer Science", "Qualifications"],
   },
   {
     href: "/experience",
     title: "Experience",
     icon: ExperienceIcon,
-    description: "The teams, roles, and communities that shaped how I work.",
+    description: "The internships, leadership roles, and communities that shaped how I build and lead.",
     cues: ["AI", "Leadership", "Community"],
   },
   {
     href: "/projects",
     title: "Projects",
     icon: ProjectsIcon,
-    description: "A mix of builds, experiments, and creative problem-solving.",
+    description: "The products, experiments, and design work where ideas became something real.",
     cues: ["Builds", "Design", "Hackathons"],
   },
 ] as const;
@@ -218,11 +198,34 @@ export default function HomePage() {
             y={22}
           >
             <div className="space-y-6">
-              <p className="text-sm leading-7 text-[color:var(--muted)] md:text-base md:leading-8">
-                My path into tech was not something I planned early on, but it
-                gradually became the space where curiosity, problem-solving, and
-                purpose came together.
-              </p>
+              <div className="max-w-3xl space-y-3">
+                <p className="text-sm leading-7 text-[color:var(--muted)] md:text-base md:leading-8">
+                  I did not plan on ending up in tech. It became the place where
+                  curiosity, adaptability, and practical problem-solving came together.
+                </p>
+                <p className="font-[family-name:var(--font-display)] text-[1.28rem] leading-tight tracking-[-0.035em] text-[color:var(--foreground)] md:text-[1.65rem]">
+                  Not a straight line, but the right one.
+                </p>
+              </div>
+
+              <div className="grid gap-3 md:grid-cols-3">
+                {homeJourneyMoments.map((moment) => (
+                  <div
+                    key={moment.label}
+                    className="rounded-[1.2rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)]/78 px-4 py-4"
+                  >
+                    <p className="text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-[color:var(--muted)]">
+                      {moment.label}
+                    </p>
+                    <h3 className="mt-2 font-[family-name:var(--font-display)] text-[1.08rem] leading-tight tracking-[-0.03em] text-[color:var(--foreground)] md:text-[1.22rem]">
+                      {moment.title}
+                    </h3>
+                    <p className="mt-2 text-[0.82rem] leading-6 text-[color:var(--muted)] md:text-[0.94rem] md:leading-7">
+                      {moment.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
 
               <div className="flex flex-wrap gap-2.5">
                 <span className="editorial-chip px-3 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.14em]">
@@ -232,78 +235,8 @@ export default function HomePage() {
                   Computer Science + Strategic Management
                 </span>
               </div>
-
-              <div className="space-y-4">
-                {homeJourneyParagraphs.map((paragraph) => (
-                  <p
-                    key={paragraph}
-                    className="text-sm leading-7 text-[color:var(--muted)] md:text-base md:leading-8"
-                  >
-                    {paragraph}
-                  </p>
-                ))}
-
-                <p className="pt-1 font-[family-name:var(--font-display)] text-[1.45rem] leading-tight tracking-[-0.035em] text-[color:var(--foreground)] md:text-[1.65rem]">
-                  My path was never perfectly planned, but it taught me how to adapt.
-                </p>
-              </div>
             </div>
           </ScrollReveal>
-        </ScrollReveal>
-      </section>
-
-      <HomeSectionDivider />
-
-      <section
-        id="home-beyond-resume"
-        aria-labelledby="home-beyond-resume-title"
-        className="relative pb-7 pt-7 md:pb-9 md:pt-8"
-      >
-        <ScrollReveal className="space-y-6 md:space-y-7">
-          <div className="space-y-5">
-            <div className="paper-tag px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.22em]">
-              Beyond
-            </div>
-
-            <h2
-              id="home-beyond-resume-title"
-              className="max-w-2xl font-[family-name:var(--font-display)] text-[1.95rem] leading-tight tracking-[-0.05em] text-[color:var(--foreground)] md:max-w-none md:text-5xl"
-            >
-              The person behind the work.
-            </h2>
-
-            <p className="max-w-xl text-sm leading-7 text-[color:var(--muted)] md:text-base md:leading-8">
-              The way I work is shaped by what I value and what keeps me grounded.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 gap-3">
-            {beyondResumePillars.map(({ icon: Icon, symbol, title, description }, index) => (
-              <ScrollReveal
-                key={symbol}
-                className="home-mini-block flex flex-col gap-3 rounded-[1.25rem] px-3.5 py-3.5 md:flex-row md:gap-5 md:rounded-[1.45rem] md:px-5 md:py-5"
-                delayMs={index * 70}
-                y={22}
-              >
-                <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-[0.95rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)] text-[color:var(--accent-strong)] md:h-11 md:w-11 md:rounded-[1rem]">
-                  <Icon className="h-4.5 w-4.5 md:h-5 md:w-5" />
-                </span>
-
-                <div className="min-w-0 space-y-2">
-                  <p className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-[color:var(--muted)] md:text-[0.68rem] md:tracking-[0.22em]">
-                    {symbol}
-                  </p>
-                  <h3 className="font-[family-name:var(--font-display)] text-[1.18rem] leading-tight tracking-[-0.04em] text-[color:var(--foreground)] md:text-[1.7rem]">
-                    {title}
-                  </h3>
-                  <p className="text-[0.82rem] leading-6 text-[color:var(--muted)] md:max-w-2xl md:text-base md:leading-8">
-                    {description}
-                  </p>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-
         </ScrollReveal>
       </section>
 
