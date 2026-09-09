@@ -31,6 +31,13 @@ function HeaderActions() {
   );
 }
 
+const mobileNavItems = [
+  { href: "/", label: "Home", icon: HomeIcon },
+  { href: "/education", label: "Education", icon: EducationIcon },
+  { href: "/experience", label: "Experience", icon: ExperienceIcon },
+  { href: "/projects", label: "Projects", icon: ProjectsIcon },
+] as const;
+
 export function SiteHeader() {
   const pathname = usePathname();
   const navListRef = useRef<HTMLUListElement | null>(null);
@@ -43,13 +50,6 @@ export function SiteHeader() {
   const [mobileIndicatorStyle, setMobileIndicatorStyle] = useState<CSSProperties>({
     opacity: 0,
   });
-
-  const mobileNavItems = [
-    { href: "/", label: "Home", icon: HomeIcon },
-    { href: "/education", label: "Education", icon: EducationIcon },
-    { href: "/experience", label: "Experience", icon: ExperienceIcon },
-    { href: "/projects", label: "Projects", icon: ProjectsIcon },
-  ] as const;
 
   useEffect(() => {
     const navList = navListRef.current;

@@ -391,6 +391,62 @@ button {
   }
 }
 
+.journey-image-enter-next {
+  animation: journey-image-enter-next 360ms cubic-bezier(0.22, 1, 0.36, 1);
+  animation-fill-mode: both;
+}
+
+.journey-image-enter-previous {
+  animation: journey-image-enter-previous 360ms cubic-bezier(0.22, 1, 0.36, 1);
+  animation-fill-mode: both;
+}
+
+.journey-image-exit-next {
+  animation: journey-image-exit-next 360ms cubic-bezier(0.22, 1, 0.36, 1);
+  animation-fill-mode: both;
+}
+
+.journey-image-exit-previous {
+  animation: journey-image-exit-previous 360ms cubic-bezier(0.22, 1, 0.36, 1);
+  animation-fill-mode: both;
+}
+
+@keyframes journey-image-enter-next {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes journey-image-enter-previous {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes journey-image-exit-next {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes journey-image-exit-previous {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -398,7 +454,12 @@ button {
 
   a,
   button,
-  .nav-pill-indicator {
+  .nav-pill-indicator,
+  .journey-image-enter-next,
+  .journey-image-enter-previous,
+  .journey-image-exit-next,
+  .journey-image-exit-previous {
+    animation-duration: 0ms;
     transition-duration: 0ms;
   }
 

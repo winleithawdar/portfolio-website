@@ -10,13 +10,6 @@ type SkillIconCloudProps = {
   className?: string;
 };
 
-type IconPoint = {
-  id: number;
-  x: number;
-  y: number;
-  z: number;
-};
-
 const ICON_SIZE = 38;
 const ICON_SIZE_COMPACT = 31;
 

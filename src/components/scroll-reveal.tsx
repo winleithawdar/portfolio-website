@@ -36,7 +36,6 @@ export function ScrollReveal({
 
   useEffect(() => {
     if (reduceMotion) {
-      setIsVisible(true);
       return;
     }
 
@@ -68,11 +67,12 @@ export function ScrollReveal({
     };
   }, [reduceMotion]);
 
+  const isRevealed = reduceMotion || isVisible;
   const style: CSSProperties = reduceMotion
     ? {}
     : {
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? "translate3d(0, 0, 0)" : `translate3d(0, ${y}px, 0)`,
+        opacity: isRevealed ? 1 : 0,
+        transform: isRevealed ? "translate3d(0, 0, 0)" : `translate3d(0, ${y}px, 0)`,
         transitionProperty: "opacity, transform",
         transitionDuration: "720ms",
         transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
