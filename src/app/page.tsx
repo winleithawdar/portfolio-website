@@ -6,29 +6,132 @@ import {
   ProjectsIcon,
 } from "@/components/icons";
 import { HomeHero } from "@/components/home-hero";
+import { JourneyAlbums, type JourneyAlbum } from "@/components/journey-albums";
 import { SkillsIconCloud } from "@/components/skills-icon-cloud";
 import { ScrollReveal } from "@/components/scroll-reveal";
 
-const homeJourneyMoments = [
+const homeJourneyAlbums = [
   {
-    label: "Before tech",
-    title: "A very different plan",
-    description:
-      "Growing up in Myanmar, I never expected Computer Science to become the path I would choose.",
+    label: "Myanmar",
+    title: "Home, community, first steps",
+    caption: "where a lot of my community work started",
+    images: [
+      {
+        src: "/images/journey/myanmar-01.jpg",
+        alt: "Teaching a coding session in Myanmar",
+        objectPosition: "50% 45%",
+      },
+      {
+        src: "/images/journey/myanmar-02.jpg",
+        alt: "The Forward Society event team in Myanmar",
+        objectPosition: "center",
+      },
+      {
+        src: "/images/journey/myanmar-03.jpg",
+        alt: "A Myanmar community milestone",
+        objectPosition: "50% 42%",
+      },
+      {
+        src: "/images/journey/myanmar-04.jpg",
+        alt: "A group moment from Myanmar",
+        objectPosition: "50% 42%",
+      },
+    ],
   },
   {
-    label: "Turning point",
-    title: "A route I had to rethink",
-    description:
-      "Moving to Singapore pushed me to think harder about where I wanted to grow and what kind of future I wanted to build.",
+    label: "Singapore",
+    title: "City, campus, community",
+    caption: "the everyday chapter I am still growing through",
+    images: [
+      {
+        src: "/images/journey/singapore-01.jpg",
+        label: "SMU",
+        alt: "Singapore campus photo",
+        objectPosition: "50% 42%",
+      },
+      {
+        src: "/images/journey/singapore-02.jpg",
+        label: "Clubs",
+        alt: "Singapore club photo",
+        objectPosition: "50% 42%",
+      },
+      {
+        src: "/images/journey/singapore-03.jpg",
+        label: "Friends",
+        alt: "Singapore friends photo",
+        objectPosition: "50% 42%",
+      },
+      {
+        src: "/images/journey/singapore-04.jpg",
+        label: "City",
+        alt: "Singapore city photo",
+        objectPosition: "50% 42%",
+      },
+    ],
   },
   {
-    label: "Now",
-    title: "Technology with purpose",
-    description:
-      "At SMU, I am most drawn to work where engineering, business, and human needs meet in practical ways.",
+    label: "Global",
+    title: "Places that shaped me",
+    caption: "home, study, travel, and the little memories in between",
+    images: [
+      {
+        src: "/images/journey/global-01.jpg",
+        label: "Myanmar",
+        alt: "Myanmar memory photo",
+        objectPosition: "50% 42%",
+      },
+      {
+        src: "/images/journey/global-02.jpg",
+        label: "Singapore",
+        alt: "Singapore memory photo",
+        objectPosition: "50% 42%",
+      },
+      {
+        src: "/images/journey/global-03.jpg",
+        label: "Korea",
+        alt: "Korea memory photo",
+        objectPosition: "50% 38%",
+      },
+      {
+        src: "/images/journey/global-04.jpg",
+        label: "Thailand",
+        alt: "Thailand memory photo",
+        objectPosition: "50% 38%",
+      },
+    ],
   },
-] as const;
+  {
+    label: "Hobbies",
+    title: "Off-screen things",
+    caption: "drawing, music, quiet days, and whatever keeps me grounded",
+    images: [
+      {
+        src: "/images/journey/hobbies-01.jpg",
+        label: "Drawing",
+        alt: "Drawing photo",
+        objectPosition: "50% 42%",
+      },
+      {
+        src: "/images/journey/hobbies-02.jpg",
+        label: "Sketchbook",
+        alt: "Sketchbook photo",
+        objectPosition: "50% 42%",
+      },
+      {
+        src: "/images/journey/hobbies-03.jpg",
+        label: "Music",
+        alt: "Music photo",
+        objectPosition: "50% 42%",
+      },
+      {
+        src: "/images/journey/hobbies-04.jpg",
+        label: "Quiet days",
+        alt: "Quiet day photo",
+        objectPosition: "50% 42%",
+      },
+    ],
+  },
+] satisfies readonly JourneyAlbum[];
 
 const homeSections = [
   {
@@ -181,61 +284,19 @@ export default function HomePage() {
         <ScrollReveal className="space-y-5 md:space-y-6">
           <div className="space-y-5">
             <div className="paper-tag px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.22em]">
-              Journey
+              Outside The Resume
             </div>
 
             <h2
               id="home-story-title"
               className="font-[family-name:var(--font-display)] text-[1.95rem] leading-tight tracking-[-0.05em] text-[color:var(--foreground)] md:text-5xl"
             >
-              An unexpected path into technology.
+              A little life outside the resume.
             </h2>
           </div>
 
-          <ScrollReveal
-            className="home-feature-block rounded-[2rem] px-5 py-6 md:px-7 md:py-7"
-            delayMs={90}
-            y={22}
-          >
-            <div className="space-y-6">
-              <div className="max-w-3xl space-y-3">
-                <p className="text-sm leading-7 text-[color:var(--muted)] md:text-base md:leading-8">
-                  I did not plan on ending up in tech. It became the place where
-                  curiosity, adaptability, and practical problem-solving came together.
-                </p>
-                <p className="font-[family-name:var(--font-display)] text-[1.28rem] leading-tight tracking-[-0.035em] text-[color:var(--foreground)] md:text-[1.65rem]">
-                  Not a straight line, but the right one.
-                </p>
-              </div>
-
-              <div className="grid gap-3 md:grid-cols-3">
-                {homeJourneyMoments.map((moment) => (
-                  <div
-                    key={moment.label}
-                    className="rounded-[1.2rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)]/78 px-4 py-4"
-                  >
-                    <p className="text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-[color:var(--muted)]">
-                      {moment.label}
-                    </p>
-                    <h3 className="mt-2 font-[family-name:var(--font-display)] text-[1.08rem] leading-tight tracking-[-0.03em] text-[color:var(--foreground)] md:text-[1.22rem]">
-                      {moment.title}
-                    </h3>
-                    <p className="mt-2 text-[0.82rem] leading-6 text-[color:var(--muted)] md:text-[0.94rem] md:leading-7">
-                      {moment.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex flex-wrap gap-2.5">
-                <span className="editorial-chip px-3 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.14em]">
-                  Myanmar to Singapore
-                </span>
-                <span className="editorial-chip px-3 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.14em]">
-                  Computer Science + Strategic Management
-                </span>
-              </div>
-            </div>
+          <ScrollReveal delayMs={90} y={22}>
+            <JourneyAlbums albums={homeJourneyAlbums} />
           </ScrollReveal>
         </ScrollReveal>
       </section>
