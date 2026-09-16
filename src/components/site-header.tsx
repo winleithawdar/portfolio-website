@@ -40,28 +40,22 @@ const mobileNavItems = [
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const mobileActiveIndex = mobileNavItems.findIndex((item) => item.href === pathname);
   const navListRef = useRef<HTMLUListElement | null>(null);
   const linkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
-  const mobileNavListRef = useRef<HTMLUListElement | null>(null);
-  const mobileLinkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
   const [indicatorStyle, setIndicatorStyle] = useState<CSSProperties>({
-    opacity: 0,
-  });
-  const [mobileIndicatorStyle, setMobileIndicatorStyle] = useState<CSSProperties>({
     opacity: 0,
   });
 
   useEffect(() => {
     const navList = navListRef.current;
-    const mobileNavList = mobileNavListRef.current;
 
-    if (!navList && !mobileNavList) {
+    if (!navList) {
       return;
     }
 
     const updateIndicator = () => {
       const targetDesktopLink = linkRefs.current[pathname];
-      const targetMobileLink = mobileLinkRefs.current[pathname];
 
       if (!targetDesktopLink) {
         setIndicatorStyle((current) =>
@@ -76,18 +70,6 @@ export function SiteHeader() {
         });
       }
 
-      if (!targetMobileLink) {
-        setMobileIndicatorStyle((current) =>
-          current.opacity === 0 ? current : { opacity: 0 },
-        );
-      } else {
-        setMobileIndicatorStyle({
-          opacity: 1,
-          width: `${targetMobileLink.offsetWidth}px`,
-          height: `${targetMobileLink.offsetHeight}px`,
-          transform: `translate3d(${targetMobileLink.offsetLeft}px, 0, 0)`,
-        });
-      }
     };
 
     updateIndicator();
@@ -108,18 +90,6 @@ export function SiteHeader() {
       }
     });
 
-    mobileNavItems.forEach(({ href }) => {
-      const link = mobileLinkRefs.current[href];
-
-      if (link) {
-        resizeObserver.observe(link);
-      }
-    });
-
-    if (mobileNavList) {
-      resizeObserver.observe(mobileNavList);
-    }
-
     window.addEventListener("resize", updateIndicator);
 
     return () => {
@@ -129,8 +99,8 @@ export function SiteHeader() {
   }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-40 pt-3 md:pt-4 lg:pt-5">
-      <div className="page-shell backdrop-blur-[6px]">
+    <header className="site-header sticky top-0 z-40 pt-3 md:pt-4 lg:pt-5">
+      <div className="page-shell relative">
         <div className="flex items-center justify-between gap-3 md:hidden">
           <Link
             href="/"
@@ -204,51 +174,31 @@ export function SiteHeader() {
 
       <nav
         aria-label="Mobile primary"
-        className="fixed inset-x-0 bottom-4 z-50 px-4 md:hidden"
+        className="fixed inset-x-0 bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-50 px-4 md:hidden"
       >
-        <div className="page-shell">
-          <ul
-            ref={mobileNavListRef}
-            className="nav-pill relative mx-auto grid w-full max-w-[22rem] grid-cols-4 items-center gap-1 rounded-full border border-[color:var(--border)] bg-[color:var(--surface)]/92 px-2.5 py-2 shadow-[0_18px_36px_rgba(75,63,110,0.14)] backdrop-blur-[18px]"
-          >
-            <span
-              aria-hidden="true"
-              className="nav-pill-indicator absolute left-0 top-2 rounded-full border border-[color:var(--border)]/40 bg-[color:var(--accent-strong)] shadow-[0_12px_24px_rgba(75,63,110,0.18)]"
-              style={mobileIndicatorStyle}
-            />
-            {mobileNavItems.map(({ href, label, icon: Icon }) => {
-              const isActive = pathname === href;
-
-              return (
-                <li key={href}>
-                  <Link
-                    href={href}
-                    ref={(element) => {
-                      mobileLinkRefs.current[href] = element;
-                    }}
-                    aria-label={label}
-                    aria-current={isActive ? "page" : undefined}
-                    className={`focus-ring relative z-10 inline-flex h-11 w-full items-center justify-center rounded-full transition duration-200 active:scale-95 ${
-                      isActive
-                        ? "text-[color:var(--surface)]"
-                        : "text-[color:var(--muted)] hover:text-[color:var(--foreground)]"
-                    }`}
-                  >
-                    <span
-                      className={`inline-flex items-center justify-center transition duration-300 ${
-                        isActive
-                          ? "-translate-y-0.5 scale-[1.12]"
-                          : "scale-100"
-                      }`}
-                    >
-                      <Icon className="h-5 w-5" />
-                    </span>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+        <ul
+          className="mobile-tab-bar mx-auto grid w-full max-w-[22rem] auto-cols-fr grid-flow-col rounded-full border border-[color:var(--border-strong)] bg-[color:var(--surface)] p-2 shadow-[0_8px_28px_rgba(0,0,0,0.18)]"
+          style={{ "--tab-count": mobileNavItems.length, "--active-tab": Math.max(0, mobileActiveIndex), "--indicator-opacity": mobileActiveIndex < 0 ? 0 : 1 } as CSSProperties}
+        >
+          {mobileNavItems.map(({ href, label, icon: Icon }) => {
+            const isActive = pathname === href;
+            return (
+              <li key={href}>
+                <Link
+                  href={href}
+                  aria-label={label}
+                  aria-current={isActive ? "page" : undefined}
+                  className="focus-ring mobile-tab-link relative z-10 flex h-12 w-full items-center justify-center rounded-full"
+                  style={{ color: isActive ? "#24182f" : "var(--muted)" }}
+                >
+                  <span className="mobile-tab-icon inline-flex h-10 w-12 items-center justify-center">
+                    <Icon className="h-6 w-6" />
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
       </nav>
     </header>
   );

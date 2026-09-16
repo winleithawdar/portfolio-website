@@ -12,14 +12,14 @@ export function PageIntro({
   titleId,
 }: PageIntroProps) {
   return (
-    <div className="space-y-5 px-1 md:space-y-6">
-      <div className="paper-tag w-fit px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.24em]">
+    <div className="page-intro">
+      <div className="inline-flex w-fit max-w-full items-center rounded-full border border-[color:var(--border-strong)] bg-[color:var(--accent-soft)] px-3.5 py-1.5 text-[0.68rem] font-semibold uppercase leading-5 tracking-[0.16em] text-[color:var(--accent-strong)]">
         {label}
       </div>
 
       <h1
         id={titleId}
-        className="max-w-5xl font-[family-name:var(--font-display)] text-[2.1rem] leading-tight tracking-[-0.05em] text-[color:var(--foreground)] md:text-[3rem] lg:text-[4.2rem]"
+        className="page-title"
       >
         {title}
       </h1>

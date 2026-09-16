@@ -305,3 +305,23 @@ export function SparkIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function LearningOutlineIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="0.85" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <rect x="6" y="5" width="20" height="15" rx="2" />
+      <path d="M6 20 3 25a1 1 0 0 0 1 1h24a1 1 0 0 0 1-1l-3-5M13 23h6M13 10l-3 3 3 3m6-6 3 3-3 3" />
+    </svg>
+  );
+}
+
+export function CommunityOutlineIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="0.85" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <circle cx="16" cy="10" r="3.5" />
+      <circle cx="6.5" cy="13" r="2.5" />
+      <circle cx="25.5" cy="13" r="2.5" />
+      <path d="M9 26v-2a7 7 0 0 1 14 0v2ZM2 24v-1.5a4.5 4.5 0 0 1 5-4.5m23 6v-1.5a4.5 4.5 0 0 0-5-4.5" />
+    </svg>
+  );
+}
