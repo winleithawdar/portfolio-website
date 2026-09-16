@@ -179,7 +179,7 @@ export function JourneyAlbums({ albums }: JourneyAlbumsProps) {
           return (
             <article
               key={album.title}
-              className="group min-w-0 transition duration-300 hover:-translate-y-1"
+              className="gallery-card group min-w-0"
             >
               <div className="overflow-hidden rounded-[0.9rem] border border-[color:var(--border)] bg-[color:var(--surface)] transition duration-300 group-hover:border-[color:var(--border-strong)] md:rounded-[1.05rem]">
                 <div className="relative aspect-[5/4] overflow-hidden">

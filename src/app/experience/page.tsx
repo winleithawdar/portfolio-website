@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { SectionHeading } from "@/components/section-heading";
 import { PageIntro } from "@/components/page-intro";
 import { GlobeIcon, LinkedInIcon } from "@/components/icons";
 import { ScrollReveal } from "@/components/scroll-reveal";
@@ -363,17 +364,17 @@ const experienceSections = [
 
 export default function ExperiencePage() {
   return (
-    <section aria-labelledby="experience-title" className="w-full space-y-6">
+    <section aria-labelledby="experience-title" className="page-stack">
       <ScrollReveal y={20}>
         <PageIntro
           label="Experience"
           title="Work & Leadership Journey"
-          description="A chronological timeline of organizations, roles, and resume-style highlights."
+          description="The teams I’ve contributed to, the communities I’ve supported, and what I’ve learned along the way."
           titleId="experience-title"
         />
       </ScrollReveal>
 
-      <div className="space-y-4 md:space-y-5">
+      <div className="page-stack">
         {experienceSections.map((section, sectionIndex) => (
           <ScrollReveal
             key={section.title}
@@ -382,16 +383,9 @@ export default function ExperiencePage() {
           >
             <section
               aria-labelledby={section.title}
-              className="elevated-card rounded-[1.85rem] px-4 py-5 md:rounded-[2.2rem] md:px-8 md:py-8"
+              className="min-w-0"
             >
-              <div className="mb-4 md:mb-6">
-                <h2
-                  id={section.title}
-                  className="text-sm font-semibold uppercase tracking-[0.18em] text-[color:var(--muted)]"
-                >
-                  {section.title}
-                </h2>
-              </div>
+              <SectionHeading id={section.title} title={section.title} />
 
               <div className="space-y-0">
                   {section.items.map((group, index) => (
@@ -433,7 +427,7 @@ export default function ExperiencePage() {
 
                             <div className="min-w-0 flex-1">
                               <div className="flex flex-wrap items-center gap-1.5 md:gap-2">
-                                <h3 className="font-[family-name:var(--font-display)] text-[1.26rem] leading-tight tracking-[-0.04em] text-[color:var(--foreground)] md:text-[2rem]">
+                                <h3 className="card-title">
                                   {group.organization}
                                 </h3>
                                 {group.linkedinUrl ? (
@@ -491,7 +485,7 @@ export default function ExperiencePage() {
                         {group.positions.map((position) => (
                           <section
                             key={`${position.role}-${position.dateRange}`}
-                            className="w-full rounded-[1.25rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)]/55 px-3.5 py-3 md:rounded-[1.6rem] md:px-5 md:py-5"
+                            className="portfolio-card w-full p-5"
                           >
                             <div className="flex gap-2.5 md:gap-3">
                               <span

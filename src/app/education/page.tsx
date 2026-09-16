@@ -1,6 +1,7 @@
 import Image from "next/image";
+import { SectionHeading } from "@/components/section-heading";
 import { PageIntro } from "@/components/page-intro";
-import { FacebookIcon, GlobeIcon } from "@/components/icons";
+import { EducationIcon, FacebookIcon, GlobeIcon } from "@/components/icons";
 import { ScrollReveal } from "@/components/scroll-reveal";
 
 type EducationSection = {
@@ -276,7 +277,7 @@ function EducationTimelineItem({
 
             <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-center gap-1.5 md:gap-2">
-                <h2 className="font-[family-name:var(--font-display)] text-[1.24rem] leading-tight tracking-[-0.04em] text-[color:var(--foreground)] md:text-[2rem]">
+                <h2 className="card-title">
                   {item.institution}
                 </h2>
                 {item.websiteUrl ? (
@@ -319,10 +320,21 @@ function EducationTimelineItem({
             <p className="text-[color:var(--muted)]">{item.period}</p>
           </div>
 
-          <div className="min-w-0">
-            <p className="mt-1.5 text-[0.88rem] leading-5.5 text-[color:var(--foreground)]/82 md:mt-2 md:text-base md:leading-7">
+        </div>
+
+        <p className="hidden shrink-0 text-sm text-[color:var(--muted)] md:block md:pl-6 md:text-right">
+          {item.period}
+        </p>
+      </div>
+          <div className="portfolio-card mt-4 w-full p-5 md:mt-5">
+            <div className="flex gap-2.5 md:gap-3">
+              <span aria-hidden="true" className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-[0.9rem] border border-[color:var(--border)] bg-[color:var(--surface)] text-[color:var(--accent-strong)] md:h-9 md:w-9 md:rounded-[1rem]">
+                <EducationIcon className="h-5 w-5" />
+              </span>
+              <div className="min-w-0 flex-1">
+            <h3 className="text-[0.92rem] font-semibold leading-snug tracking-[-0.02em] text-[color:var(--foreground)] md:text-base">
               {item.credential}
-            </p>
+            </h3>
 
             {item.result || item.note ? (
               <div className="mt-2.5 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[0.78rem] text-[color:var(--muted)] md:mt-3 md:gap-x-4 md:gap-y-2 md:text-sm">
@@ -384,35 +396,27 @@ function EducationTimelineItem({
               </div>
             ) : null}
           </div>
-        </div>
-
-        <p className="hidden shrink-0 text-sm text-[color:var(--muted)] md:block md:pl-6 md:text-right">
-          {item.period}
-        </p>
-      </div>
+            </div>
+          </div>
     </article>
   );
 }
 
 export default function EducationPage() {
   return (
-    <section aria-labelledby="education-title" className="w-full space-y-6">
+    <section aria-labelledby="education-title" className="page-stack">
       <ScrollReveal y={20}>
         <PageIntro
           label="Education"
           title="Academic Background"
-          description="A timeline of schools, qualifications, selected subjects, and certifications."
+          description="The studies, experiences, and continued learning that shape how I think and build."
           titleId="education-title"
         />
       </ScrollReveal>
 
       <ScrollReveal delayMs={70} y={22}>
-        <section className="soft-panel rounded-[1.85rem] px-4 py-5 md:rounded-[2rem] md:px-8 md:py-8">
-        <div className="mb-4 md:mb-6">
-          <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-[color:var(--muted)]">
-            Formal Education
-          </h2>
-        </div>
+        <section className="min-w-0">
+        <SectionHeading title="Formal education" />
 
         <div className="space-y-0">
           {primaryEducationItems.map((item, index) => (
@@ -456,33 +460,23 @@ export default function EducationPage() {
       <ScrollReveal delayMs={120} y={22}>
         <section
           aria-labelledby="education-certifications-title"
-          className="elevated-card rounded-[2rem] px-6 py-7 md:px-8 md:py-8"
+          className="min-w-0"
         >
         <div className="space-y-6">
-          <div className="space-y-3">
-            <h2
-              id="education-certifications-title"
-              className="text-sm font-semibold uppercase tracking-[0.18em] text-[color:var(--muted)]"
-            >
-              Selected Certifications
-            </h2>
-            <p className="max-w-2xl text-sm leading-7 text-[color:var(--muted)] md:text-base md:leading-8">
-              Short courses and credentials that support my learning.
-            </p>
-          </div>
+          <SectionHeading id="education-certifications-title" title="Certifications" description="Courses and credentials that complement my academic foundation." />
 
-          <div className="grid auto-rows-fr gap-4 md:grid-cols-2 md:gap-5 xl:grid-cols-3">
+          <div className="grid auto-rows-fr grid-cols-2 gap-3 md:gap-5 xl:grid-cols-3">
             {certificationItems.map((item) => (
               <article
                 key={`${item.name}-${item.issued}`}
-                className="group flex h-full min-w-0 flex-col"
+                className="portfolio-card gallery-card group flex h-full min-w-0 flex-col overflow-hidden"
               >
                 <a
                   href={item.credentialUrl}
                   target="_blank"
                   rel="noreferrer"
                   aria-label={`Open ${item.name} credential`}
-                  className="focus-ring relative block overflow-hidden border border-[color:var(--border)] bg-white shadow-[0_16px_34px_rgba(75,63,110,0.08)] transition duration-300 ease-out group-hover:-translate-y-2 group-hover:scale-[1.025] group-hover:border-[color:var(--border-strong)] group-hover:shadow-[0_30px_58px_rgba(75,63,110,0.16)]"
+                  className="focus-ring relative block overflow-hidden border-b border-[color:var(--border)] bg-white"
                 >
                   <div className="aspect-[2000/1414] overflow-hidden bg-white">
                     <Image
@@ -493,14 +487,14 @@ export default function EducationPage() {
                       className="h-full w-full object-cover"
                     />
                   </div>
-                  <div className="pointer-events-none absolute inset-0 flex items-end justify-end bg-gradient-to-t from-black/24 via-black/0 to-black/0 opacity-0 transition duration-300 ease-out group-hover:opacity-100">
-                    <span className="m-3 bg-white/92 px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[color:var(--accent-strong)] shadow-[0_10px_24px_rgba(0,0,0,0.18)]">
+                  <div className="pointer-events-none absolute inset-0 flex items-end justify-end bg-gradient-to-t from-black/24 via-black/0 to-black/0">
+                    <span className="m-1.5 rounded-full bg-white/92 px-2 py-1 text-[0.55rem] md:m-3 md:px-3 md:py-1.5 md:text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[#4b3f6e] shadow-[0_10px_24px_rgba(0,0,0,0.18)]">
                       View Credential
                     </span>
                   </div>
                 </a>
 
-                <div className="flex flex-1 flex-col pt-3.5">
+                <div className="flex min-w-0 flex-1 flex-col p-3 md:p-5">
                   <div className="flex flex-wrap items-center gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[color:var(--muted)]">
                     <span className="text-[color:var(--accent-strong)]">{item.issuer}</span>
                     <span
@@ -510,7 +504,7 @@ export default function EducationPage() {
                     <span>{item.issued}</span>
                   </div>
 
-                  <h3 className="mt-2.5 font-[family-name:var(--font-display)] text-[1.05rem] leading-tight tracking-[-0.025em] text-[color:var(--foreground)] md:text-[1.14rem] xl:text-[1.18rem]">
+                  <h3 className="mt-2 break-words text-sm font-semibold leading-snug text-[color:var(--foreground)] md:mt-3 md:text-xl">
                     {item.name}
                   </h3>
                 </div>

@@ -6,7 +6,7 @@ const quickLinks = navItems;
 
 export function SiteFooter() {
   return (
-    <footer className="page-shell pb-8 pt-5 md:pb-12 md:pt-8">
+    <footer className="page-shell pb-[calc(6rem_+_env(safe-area-inset-bottom))] pt-5 md:pb-12 md:pt-8">
       <div className="border-t border-[color:var(--border)]/72 pt-4 md:pt-6">
         <div className="flex flex-col gap-4 px-1 md:gap-6">
           <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between md:gap-4">
@@ -54,7 +54,7 @@ export function SiteFooter() {
               <p className="text-[0.76rem] font-semibold uppercase tracking-[0.16em] text-[color:var(--muted)] md:text-sm md:tracking-[0.18em]">
                 Connect
               </p>
-              <div className="flex w-full flex-nowrap items-center justify-between gap-1.5 md:flex md:w-auto md:flex-wrap md:justify-end md:gap-2.5">
+              <div className="flex w-full flex-wrap items-center gap-2 md:w-auto md:justify-end md:gap-2.5">
                 {footerSocialLinks.map(({ href, label, icon: Icon }) => (
                   <a
                     key={label}
@@ -63,7 +63,7 @@ export function SiteFooter() {
                     rel="noreferrer"
                     aria-label={label}
                     title={label}
-                    className="focus-ring inline-flex h-[2.125rem] w-[2.125rem] shrink-0 items-center justify-center rounded-[0.78rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)] text-[color:var(--muted)] transition hover:-translate-y-0.5 hover:border-[color:var(--border-strong)] hover:text-[color:var(--accent-strong)] md:h-10 md:w-10 md:rounded-[0.95rem]"
+                    className="focus-ring inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-[0.78rem] border border-[color:var(--border)] bg-[color:var(--surface-soft)] text-[color:var(--muted)] transition hover:-translate-y-0.5 hover:border-[color:var(--border-strong)] hover:text-[color:var(--accent-strong)] md:h-10 md:w-10 md:rounded-[0.95rem]"
                   >
                     <Icon className="h-4 w-4 md:h-4.5 md:w-4.5" />
                   </a>

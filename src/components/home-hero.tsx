@@ -17,9 +17,7 @@ function HeroAction({
   primary?: boolean;
   icon?: typeof MailIcon;
 }) {
-  const className = primary
-    ? "focus-ring inline-flex w-full min-h-[2.9rem] items-center justify-center gap-1.5 rounded-[0.95rem] border border-[color:var(--accent)] bg-[color:var(--accent-strong)] px-3 py-2 text-[0.88rem] font-semibold tracking-[-0.01em] text-[color:var(--surface)] shadow-[0_10px_18px_rgba(75,63,110,0.12)] transition hover:-translate-y-0.5 hover:bg-[color:var(--accent)] md:min-h-[3.75rem] md:w-auto md:gap-3 md:rounded-[1.15rem] md:px-6 md:text-base md:shadow-[0_18px_34px_rgba(75,63,110,0.16)]"
-    : "focus-ring inline-flex w-full min-h-[2.9rem] items-center justify-center gap-1.5 rounded-[0.95rem] border border-[color:var(--border)] bg-[color:var(--surface)] px-3 py-2 text-[0.88rem] font-semibold tracking-[-0.01em] text-[color:var(--foreground)] shadow-[0_6px_14px_rgba(75,63,110,0.05)] transition hover:-translate-y-0.5 hover:border-[color:var(--accent)]/45 hover:bg-[color:var(--surface-soft)] hover:text-[color:var(--accent-strong)] md:min-h-[3.75rem] md:w-auto md:gap-3 md:rounded-[1.15rem] md:px-6 md:text-base md:shadow-[0_10px_24px_rgba(75,63,110,0.06)]";
+  const className = `focus-ring action-link w-full md:w-auto ${primary ? "action-link-primary" : ""}`;
 
   const content = (
     <>
@@ -54,8 +52,8 @@ function HeroAction({
 function ScrollCue() {
   return (
     <a
-      href="#home-story"
-      aria-label="Scroll to story"
+      href="#home-projects"
+      aria-label="Scroll to selected projects"
       className="focus-ring inline-flex flex-col items-center gap-2 text-[color:var(--muted)] transition hover:-translate-y-0.5 hover:text-[color:var(--accent-strong)]"
     >
       <span className="text-[0.68rem] font-semibold uppercase tracking-[0.22em]">
@@ -253,7 +251,7 @@ export function HomeHero() {
 
                 <div className="flex justify-end pt-1">
                   <div className="relative flex h-[11.75rem] w-full max-w-[8.8rem] items-center justify-center overflow-visible">
-                    <div className="relative h-full w-full overflow-hidden rounded-[999px] border border-[rgba(108,95,141,0.34)] bg-[color:var(--surface-strong)] shadow-[0_22px_40px_rgba(75,63,110,0.14)] dark:border-[color:var(--accent)]/38">
+                    <div className="relative h-full w-full overflow-hidden rounded-[999px] border border-[rgba(108,95,141,0.34)] bg-[color:var(--surface-strong)] shadow-[0_12px_28px_rgba(75,63,110,0.07)] dark:border-[color:var(--accent)]/38">
                       <div className="pointer-events-none absolute inset-[0.5rem] z-10 rounded-[999px] border border-[rgba(108,95,141,0.22)] dark:border-white/28" />
                       <Image
                         src="/images/profile/my-profile.png"
@@ -296,9 +294,9 @@ export function HomeHero() {
                   <div className="relative flex h-[18rem] w-full max-w-[14rem] items-center justify-center overflow-visible">
                     <div
                       aria-hidden="true"
-                      className="absolute inset-x-[10%] top-[16%] h-[60%] rounded-[999px] bg-[color:var(--accent)]/18 blur-[46px]"
+                      className="absolute inset-x-[10%] top-[16%] h-[60%] rounded-[999px] bg-[color:var(--accent)]/7 blur-[46px]"
                     />
-                    <div className="relative h-full w-full overflow-hidden rounded-[999px] border border-[rgba(108,95,141,0.34)] bg-[color:var(--surface-strong)] shadow-[0_24px_46px_rgba(75,63,110,0.14)] dark:border-[color:var(--accent)]/38">
+                    <div className="relative h-full w-full overflow-hidden rounded-[999px] border border-[rgba(108,95,141,0.34)] bg-[color:var(--surface-strong)] shadow-[0_14px_30px_rgba(75,63,110,0.07)] dark:border-[color:var(--accent)]/38">
                       <div className="pointer-events-none absolute inset-[0.65rem] z-10 rounded-[999px] border border-[rgba(108,95,141,0.22)] dark:border-white/28" />
                       <Image
                         src="/images/profile/my-profile.png"
@@ -395,11 +393,11 @@ export function HomeHero() {
             >
               <div
                 aria-hidden="true"
-                className="absolute inset-x-[14%] top-[18%] h-[58%] rounded-[999px] bg-[color:var(--accent)]/20 blur-[72px]"
+                className="absolute inset-x-[14%] top-[18%] h-[58%] rounded-[999px] bg-[color:var(--accent)]/8 blur-[72px]"
                 style={portraitGlowStyle}
               />
               <div aria-hidden="true" className="hero-portrait-ring" />
-              <div className="relative h-[82%] w-[70%] overflow-hidden rounded-[999px] border border-[rgba(108,95,141,0.34)] bg-[color:var(--surface-strong)] shadow-[0_30px_58px_rgba(75,63,110,0.15)] dark:border-[color:var(--accent)]/38 sm:h-[76%] sm:w-[64%] md:h-[68%] md:w-[58%]">
+              <div className="relative h-[82%] w-[70%] overflow-hidden rounded-[999px] border border-[rgba(108,95,141,0.34)] bg-[color:var(--surface-strong)] shadow-[0_16px_36px_rgba(75,63,110,0.08)] dark:border-[color:var(--accent)]/38 sm:h-[76%] sm:w-[64%] md:h-[68%] md:w-[58%]">
                 <div className="pointer-events-none absolute inset-[0.7rem] z-10 rounded-[999px] border border-[rgba(108,95,141,0.22)] dark:border-white/28" />
                 <Image
                   src="/images/profile/my-profile.png"

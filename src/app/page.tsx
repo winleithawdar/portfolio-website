@@ -1,9 +1,13 @@
+import { FeaturedProjects } from "@/components/project-gallery";
+import { heroEmail } from "@/lib/navigation";
+import { SectionHeading } from "@/components/section-heading";
 import Link from "next/link";
 import {
   EducationIcon,
   ExperienceIcon,
+  LearningOutlineIcon,
+  CommunityOutlineIcon,
   MoonIcon,
-  ProjectsIcon,
 } from "@/components/icons";
 import { HomeHero } from "@/components/home-hero";
 import { JourneyAlbums, type JourneyAlbum } from "@/components/journey-albums";
@@ -133,28 +137,9 @@ const homeJourneyAlbums = [
   },
 ] satisfies readonly JourneyAlbum[];
 
-const homeSections = [
-  {
-    href: "/education",
-    title: "Education",
-    icon: EducationIcon,
-    description: "The academic path, qualifications, and certifications behind the work.",
-    cues: ["SMU", "Computer Science", "Qualifications"],
-  },
-  {
-    href: "/experience",
-    title: "Experience",
-    icon: ExperienceIcon,
-    description: "The internships, leadership roles, and communities that shaped how I build and lead.",
-    cues: ["AI", "Leadership", "Community"],
-  },
-  {
-    href: "/projects",
-    title: "Projects",
-    icon: ProjectsIcon,
-    description: "The products, experiments, and design work where ideas became something real.",
-    cues: ["Builds", "Design", "Hackathons"],
-  },
+const homeBackground = [
+  { href: "/education", title: "Learning at SMU", icon: EducationIcon, watermark: LearningOutlineIcon, description: "Computer Science, specialising in Artificial Intelligence, with a second major in Strategic Management.", link: "Education & certifications" },
+  { href: "/experience", title: "Building with teams & communities", icon: ExperienceIcon, watermark: CommunityOutlineIcon, description: "From an AI/ML internship at MUI Robotics to leadership at SMUAI and community work in Myanmar.", link: "Experience & leadership" },
 ] as const;
 
 const skillCloudItems: ReadonlyArray<{
@@ -276,28 +261,36 @@ export default function HomePage() {
         <HomeSectionDivider />
       </div>
 
-      <section
-        id="home-story"
-        aria-labelledby="home-story-title"
-        className="relative pb-7 pt-7 md:pb-9 md:pt-8"
-      >
-        <ScrollReveal className="space-y-5 md:space-y-6">
-          <div className="space-y-5">
-            <div className="paper-tag px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.22em]">
-              Outside The Resume
-            </div>
+      <section id="home-projects" aria-labelledby="home-projects-title" className="home-section">
+        <ScrollReveal>
+          <SectionHeading id="home-projects-title" label="Selected projects" title="A few things I’ve built." description="A selection of software, product, and design work. Open a project to see the thinking and details behind it." />
+          <FeaturedProjects />
+          <Link href="/projects" className="focus-ring action-link mt-6">View all projects <ArrowUpRightIcon className="h-4 w-4" /></Link>
+        </ScrollReveal>
+      </section>
 
-            <h2
-              id="home-story-title"
-              className="font-[family-name:var(--font-display)] text-[1.95rem] leading-tight tracking-[-0.05em] text-[color:var(--foreground)] md:text-5xl"
-            >
-              A little life outside the resume.
-            </h2>
+      <HomeSectionDivider />
+
+      <section aria-labelledby="home-background-title" className="home-section">
+        <ScrollReveal>
+          <SectionHeading id="home-background-title" label="Background" title="What shapes my work." />
+          <div className="grid gap-6 md:grid-cols-2">
+            {homeBackground.map(({ href, title, icon: Icon, watermark: Watermark, description, link }) => (
+              <article key={href} className="portfolio-card gallery-card relative isolate overflow-hidden p-5 md:p-6">
+                <Watermark
+                  aria-hidden="true"
+                  focusable="false"
+                  style={{ position: "absolute", right: 0, bottom: 0, transform: "translate(15%, 10%)", width: "clamp(10rem, 45%, 16rem)", height: "auto", color: "var(--accent-strong)", opacity: 0.09, pointerEvents: "none", zIndex: 0 }}
+                />
+                <div className="relative z-10">
+                <Icon className="h-6 w-6 text-[color:var(--accent-strong)]" />
+                <h3 className="card-title mt-4">{title}</h3>
+                <p className="mt-3 text-sm leading-7 text-[color:var(--muted)]">{description}</p>
+                <Link href={href} className="focus-ring mt-4 inline-flex min-h-11 items-center gap-2 rounded-sm text-sm font-semibold text-[color:var(--accent-strong)]">{link}<ArrowUpRightIcon className="h-4 w-4" /></Link>
+                </div>
+              </article>
+            ))}
           </div>
-
-          <ScrollReveal delayMs={90} y={22}>
-            <JourneyAlbums albums={homeJourneyAlbums} />
-          </ScrollReveal>
         </ScrollReveal>
       </section>
 
@@ -306,21 +299,10 @@ export default function HomePage() {
       <section
         id="home-skills"
         aria-labelledby="home-skills-title"
-        className="relative pb-6 pt-6 md:pb-8 md:pt-8"
+        className="home-section"
       >
         <ScrollReveal className="space-y-5 md:space-y-6">
-          <div className="space-y-5">
-            <div className="paper-tag px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.22em]">
-              Skills
-            </div>
-
-            <h2
-              id="home-skills-title"
-              className="max-w-4xl font-[family-name:var(--font-display)] text-[1.95rem] leading-tight tracking-[-0.05em] text-[color:var(--foreground)] md:text-5xl"
-            >
-              Tools I build with.
-            </h2>
-          </div>
+          <SectionHeading id="home-skills-title" label="Skills" title="Tools I build with." description="The toolkit behind the work above, from interface design and web development to machine learning." />
 
           <ScrollReveal
             className="home-feature-block overflow-hidden rounded-[2rem] px-5 py-5 md:px-7 md:py-5.5"
@@ -329,10 +311,10 @@ export default function HomePage() {
           >
             <div className="grid gap-5 lg:grid-cols-[minmax(17rem,1.08fr)_minmax(0,0.92fr)] lg:items-center lg:gap-6">
               <div className="order-1">
-                <div className="mx-auto w-full max-w-[19rem] sm:max-w-[21rem] md:max-w-[24rem] lg:max-w-[34rem]">
+                <div className="mx-auto w-full max-w-[16rem] md:max-w-[20rem]">
                   <SkillsIconCloud
                     items={skillCloudImages}
-                    className="max-w-[18rem] sm:max-w-[20rem] md:max-w-[23rem] lg:max-w-[29rem]"
+                    className="max-w-[16rem] md:max-w-[20rem]"
                   />
                 </div>
               </div>
@@ -342,10 +324,10 @@ export default function HomePage() {
                   Core Categories
                 </p>
 
-                <div className="space-y-3">
+                <div className="grid grid-cols-2 gap-4">
                   {skillCategoryList.map((category) => (
                     <div key={category.title} className="pb-1">
-                      <p className="font-[family-name:var(--font-display)] text-[1.2rem] leading-tight tracking-[-0.04em] text-[color:var(--foreground)] md:text-[1.45rem]">
+                      <p className="text-sm font-semibold leading-6 text-[color:var(--foreground)]">
                         {category.title}
                       </p>
                     </div>
@@ -358,7 +340,7 @@ export default function HomePage() {
                   </p>
                   <Link
                     href="/projects"
-                    className="focus-ring mt-3 inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] bg-[color:var(--surface-soft)] px-4 py-2.5 text-sm font-semibold text-[color:var(--foreground)] shadow-[0_10px_22px_rgba(75,63,110,0.06)] transition hover:-translate-y-0.5 hover:border-[color:var(--border-strong)] hover:text-[color:var(--accent-strong)]"
+                    className="focus-ring action-link mt-3"
                   >
                     <span>See what I&apos;ve built</span>
                     <ArrowUpRightIcon className="h-4 w-4" />
@@ -373,79 +355,25 @@ export default function HomePage() {
       <HomeSectionDivider />
 
       <section
-        id="home-overview"
-        aria-labelledby="home-overview-title"
-        className="relative pb-6 pt-7 md:pb-8 md:pt-8"
+        id="home-story"
+        aria-labelledby="home-story-title"
+        className="home-section"
       >
         <ScrollReveal className="space-y-5 md:space-y-6">
-          <div className="space-y-4">
-              <div className="paper-tag px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.22em]">
-                Explore
-              </div>
+          <SectionHeading id="home-story-title" label="Outside the resume" title="A little life outside the resume." />
 
-              <h2
-                id="home-overview-title"
-                className="max-w-5xl font-[family-name:var(--font-display)] text-[1.95rem] leading-tight tracking-[-0.05em] text-[color:var(--foreground)] md:text-5xl"
-              >
-                Start with the chapter you want to know first.
-              </h2>
-          </div>
+          <ScrollReveal delayMs={90} y={22}>
+            <JourneyAlbums albums={homeJourneyAlbums} />
+          </ScrollReveal>
+        </ScrollReveal>
+      </section>
 
-          <div className="grid grid-cols-3 gap-3 md:gap-4">
-            {homeSections.map(({ href, title, description, icon: Icon, cues }, index) => (
-              <ScrollReveal
-                key={href}
-                className="home-overview-card group min-h-[9.5rem] rounded-[1.25rem] px-3 py-3.5 md:min-h-[17rem] md:rounded-[1.9rem] md:px-6 md:py-6"
-                delayMs={index * 80}
-                y={24}
-              >
-                <Link href={href} className="focus-ring block h-full rounded-[inherit]">
-                  <div className="relative flex h-full flex-col justify-between gap-4 md:gap-8">
-                    <div className="flex items-start justify-between gap-2 md:gap-4">
-                      <span className="inline-flex h-9 w-9 items-center justify-center rounded-[0.9rem] border border-[color:var(--border)] bg-[color:var(--surface)]/82 text-[color:var(--accent-strong)] shadow-[0_10px_22px_rgba(75,63,110,0.06)] md:h-11 md:w-11 md:rounded-[1rem]">
-                        <Icon className="h-4.5 w-4.5 md:h-5 md:w-5" />
-                      </span>
-                      <span className="text-[0.58rem] font-semibold uppercase tracking-[0.16em] text-[color:var(--muted)] md:text-[0.68rem] md:tracking-[0.2em]">
-                        0{index + 1}
-                      </span>
-                    </div>
+      <HomeSectionDivider />
 
-                    <div className="space-y-2 md:space-y-4">
-                      <div className="space-y-1.5 md:space-y-2">
-                        <h3 className="font-[family-name:var(--font-display)] text-[1.15rem] leading-tight tracking-[-0.04em] text-[color:var(--foreground)] md:text-3xl md:tracking-[-0.045em]">
-                          {title}
-                        </h3>
-
-                        <p className="hidden max-w-sm text-sm leading-7 text-[color:var(--muted)] md:block md:text-base md:leading-8">
-                          {description}
-                        </p>
-                      </div>
-
-                      <div className="hidden flex-wrap gap-2 md:flex">
-                        {cues.map((cue) => (
-                          <span
-                            key={cue}
-                            className="editorial-chip px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.14em]"
-                          >
-                            {cue}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="flex items-center justify-between gap-3">
-                      <span className="hidden text-sm font-medium text-[color:var(--foreground)]/84 md:inline">
-                        Open page
-                      </span>
-                      <span className="inline-flex h-8 min-w-8 items-center justify-center rounded-full border border-[color:var(--border)] bg-[color:var(--surface)]/82 px-2 text-[color:var(--foreground)] transition group-hover:border-[color:var(--border-strong)] group-hover:text-[color:var(--accent-strong)] md:h-9 md:min-w-9 md:px-3">
-                        <ArrowUpRightIcon className="h-3.5 w-3.5 md:h-4 md:w-4" />
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              </ScrollReveal>
-            ))}
-          </div>
+      <section aria-labelledby="home-contact-title" className="home-section">
+        <ScrollReveal className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+          <div><h2 id="home-contact-title" className="section-title">Let’s connect.</h2><p className="mt-3 text-sm leading-7 text-[color:var(--muted)]">Have a project, an opportunity, or something you’d like to talk about?</p></div>
+          <a href={`mailto:${heroEmail}`} className="focus-ring action-link w-fit">Get in touch <ArrowUpRightIcon className="h-4 w-4" /></a>
         </ScrollReveal>
       </section>
     </>
