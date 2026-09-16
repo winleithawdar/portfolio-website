@@ -409,7 +409,7 @@ export default function EducationPage() {
         <PageIntro
           label="Education"
           title="Academic Background"
-          description="The studies, experiences, and continued learning that shape how I think and build."
+          description="I study Computer Science at SMU, specialising in Artificial Intelligence, with a second major in Strategic Management."
           titleId="education-title"
         />
       </ScrollReveal>
@@ -463,7 +463,7 @@ export default function EducationPage() {
           className="min-w-0"
         >
         <div className="space-y-6">
-          <SectionHeading id="education-certifications-title" title="Certifications" description="Courses and credentials that complement my academic foundation." />
+          <SectionHeading id="education-certifications-title" title="Certifications" description="Courses I’ve completed alongside my studies." />
 
           <div className="grid auto-rows-fr grid-cols-2 gap-3 md:gap-5 xl:grid-cols-3">
             {certificationItems.map((item) => (

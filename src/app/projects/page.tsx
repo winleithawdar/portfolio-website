@@ -9,8 +9,8 @@ export default function ProjectsPage() {
       <ScrollReveal y={20}>
         <PageIntro
           label="Projects"
-          title="Ideas Brought to Life"
-          description="A visual collection of projects shaped through design, development, experimentation, and collaboration."
+          title="What I’ve Been Working On"
+          description="Club websites, hackathon builds, coursework, and Figma prototypes. Some are individual projects; others were built with a team."
           titleId="projects-title"
         />
       </ScrollReveal>

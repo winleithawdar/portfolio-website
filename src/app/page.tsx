@@ -263,7 +263,7 @@ export default function HomePage() {
 
       <section id="home-projects" aria-labelledby="home-projects-title" className="home-section">
         <ScrollReveal>
-          <SectionHeading id="home-projects-title" label="Selected projects" title="A few things I’ve built." description="A selection of software, product, and design work. Open a project to see the thinking and details behind it." />
+          <SectionHeading id="home-projects-title" label="Selected projects" title="A few things I’ve built." description="A club website I designed and built, a team hackathon project, and a student housing app prototype." />
           <FeaturedProjects />
           <Link href="/projects" className="focus-ring action-link mt-6">View all projects <ArrowUpRightIcon className="h-4 w-4" /></Link>
         </ScrollReveal>
@@ -273,20 +273,20 @@ export default function HomePage() {
 
       <section aria-labelledby="home-background-title" className="home-section">
         <ScrollReveal>
-          <SectionHeading id="home-background-title" label="Background" title="What shapes my work." />
-          <div className="grid gap-6 md:grid-cols-2">
+          <SectionHeading id="home-background-title" label="Background" title="Where I learn and contribute." />
+          <div className="grid grid-cols-2 gap-3 md:gap-6">
             {homeBackground.map(({ href, title, icon: Icon, watermark: Watermark, description, link }) => (
-              <article key={href} className="portfolio-card gallery-card relative isolate overflow-hidden p-5 md:p-6">
+              <article key={href} className="portfolio-card gallery-card relative isolate min-w-0 overflow-hidden p-3 md:p-6">
                 <Watermark
                   aria-hidden="true"
                   focusable="false"
-                  style={{ position: "absolute", right: 0, bottom: 0, transform: "translate(15%, 10%)", width: "clamp(10rem, 45%, 16rem)", height: "auto", color: "var(--accent-strong)", opacity: 0.09, pointerEvents: "none", zIndex: 0 }}
+                  style={{ position: "absolute", right: 0, bottom: 0, transform: "translate(15%, 10%)", width: "clamp(6rem, 65%, 16rem)", height: "auto", color: "var(--accent-strong)", opacity: 0.09, pointerEvents: "none", zIndex: 0 }}
                 />
-                <div className="relative z-10">
+                <div className="relative z-10 flex h-full min-w-0 flex-col">
                 <Icon className="h-6 w-6 text-[color:var(--accent-strong)]" />
-                <h3 className="card-title mt-4">{title}</h3>
-                <p className="mt-3 text-sm leading-7 text-[color:var(--muted)]">{description}</p>
-                <Link href={href} className="focus-ring mt-4 inline-flex min-h-11 items-center gap-2 rounded-sm text-sm font-semibold text-[color:var(--accent-strong)]">{link}<ArrowUpRightIcon className="h-4 w-4" /></Link>
+                <h3 className="mt-3 text-sm font-semibold leading-snug text-[color:var(--foreground)] md:mt-4 md:text-xl">{title}</h3>
+                <p className="mt-2 text-xs leading-5 md:mt-3 md:text-sm md:leading-7 text-[color:var(--muted)]">{description}</p>
+                <Link href={href} className="focus-ring mt-auto inline-flex min-h-11 items-center gap-1.5 rounded-sm pt-3 text-xs md:gap-2 md:pt-4 md:text-sm font-semibold text-[color:var(--accent-strong)]">{link}<ArrowUpRightIcon className="h-4 w-4 shrink-0" /></Link>
                 </div>
               </article>
             ))}
@@ -302,7 +302,7 @@ export default function HomePage() {
         className="home-section"
       >
         <ScrollReveal className="space-y-5 md:space-y-6">
-          <SectionHeading id="home-skills-title" label="Skills" title="Tools I build with." description="The toolkit behind the work above, from interface design and web development to machine learning." />
+          <SectionHeading id="home-skills-title" label="Skills" title="Tools I build with." description="Tools I’ve used across my projects and coursework." />
 
           <ScrollReveal
             className="home-feature-block overflow-hidden rounded-[2rem] px-5 py-5 md:px-7 md:py-5.5"
@@ -360,7 +360,7 @@ export default function HomePage() {
         className="home-section"
       >
         <ScrollReveal className="space-y-5 md:space-y-6">
-          <SectionHeading id="home-story-title" label="Outside the resume" title="A little life outside the resume." />
+          <SectionHeading id="home-story-title" label="Outside the resume" title="Campus, community, and off-screen days." />
 
           <ScrollReveal delayMs={90} y={22}>
             <JourneyAlbums albums={homeJourneyAlbums} />
@@ -372,7 +372,7 @@ export default function HomePage() {
 
       <section aria-labelledby="home-contact-title" className="home-section">
         <ScrollReveal className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
-          <div><h2 id="home-contact-title" className="section-title">Let’s connect.</h2><p className="mt-3 text-sm leading-7 text-[color:var(--muted)]">Have a project, an opportunity, or something you’d like to talk about?</p></div>
+          <div><h2 id="home-contact-title" className="section-title">Let’s connect.</h2><p className="mt-3 text-sm leading-7 text-[color:var(--muted)]">Want to ask about a project or work together? Send me an email.</p></div>
           <a href={`mailto:${heroEmail}`} className="focus-ring action-link w-fit">Get in touch <ArrowUpRightIcon className="h-4 w-4" /></a>
         </ScrollReveal>
       </section>

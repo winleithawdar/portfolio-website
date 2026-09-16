@@ -420,3 +420,16 @@ button {
   .mobile-tab-link[aria-current="page"] .mobile-tab-icon,
   .mobile-tab-link:active .mobile-tab-icon { transform: none; }
 }
+
+/* Fade only the header backdrop; foreground controls remain crisp. */
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 -1rem;
+  pointer-events: none;
+  background: color-mix(in srgb, var(--background) 72%, transparent);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 65%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 0%, black 65%, transparent 100%);
+}

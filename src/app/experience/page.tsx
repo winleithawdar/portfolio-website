@@ -368,8 +368,8 @@ export default function ExperiencePage() {
       <ScrollReveal y={20}>
         <PageIntro
           label="Experience"
-          title="Work & Leadership Journey"
-          description="The teams I’ve contributed to, the communities I’ve supported, and what I’ve learned along the way."
+          title="Work, Leadership & Community"
+          description="My internships, student-club roles, and volunteering, with the work I contributed in each role."
           titleId="experience-title"
         />
       </ScrollReveal>

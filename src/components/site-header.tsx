@@ -99,8 +99,8 @@ export function SiteHeader() {
   }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-40 pt-3 md:pt-4 lg:pt-5">
-      <div className="page-shell backdrop-blur-[6px]">
+    <header className="site-header sticky top-0 z-40 pt-3 md:pt-4 lg:pt-5">
+      <div className="page-shell relative">
         <div className="flex items-center justify-between gap-3 md:hidden">
           <Link
             href="/"

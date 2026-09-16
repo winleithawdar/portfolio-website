@@ -15,6 +15,7 @@ type ProjectItem = {
   year: string;
   format: string;
   domain: string;
+  summary: string;
   description: string;
   highlightLabel?: string;
   highlights: string[];
@@ -29,15 +30,17 @@ type ProjectItem = {
 const projectItems: ProjectItem[] = [
   {
     title: "SMUAI Website",
+    summary: "Official website for SMU’s AI club, with event information and a club chatbot.",
     year: "2026",
     format: "SMU CCA Development Project",
     domain: "Tech",
     description:
-      "Official website for SMU Artificial Intelligence Club, designed and developed end-to-end for the club’s public presence and information needs.",
+      "The official website for SMU Artificial Intelligence Club, with information about membership, events, and club activities, plus a chatbot for answering visitors’ questions.",
+    highlightLabel: "My contribution",
     highlights: [
-      "Independently designed and developed the official SMUAI website using Next.js, TypeScript, and Tailwind CSS, covering information architecture, UI/UX, and responsive development.",
-      "Integrated an AI-powered chatbot using an LLM API to answer questions about membership, events, and club activities.",
-      "Deployed and maintained the production website through GitHub and Vercel at smuai.org.",
+      "Rebuilt the entire site from scratch, designing the UI and implementing the responsive website with Next.js, TypeScript, and Tailwind CSS.",
+      "Integrated an LLM-powered chatbot to answer questions about membership, events, and club activities.",
+      "Deployed the website on Vercel through GitHub at smuai.org.",
     ],
     technologies: [
       "Next.js",
@@ -60,11 +63,12 @@ const projectItems: ProjectItem[] = [
   },
   {
     title: "OpenEval",
+    summary: "A one-day team build for the OpenAI Codex Hackathon in Singapore.",
     year: "2026",
     format: "OpenAI Codex Hackathon - Singapore",
     domain: "Tech",
     description:
-      "Hackathon project built for the OpenAI Codex Hackathon - Singapore in February 2026, developed and shipped in a fast-paced build setting.",
+      "A team project built in one day at the OpenAI Codex Hackathon in Singapore, February 2026.",
     highlights: [
       "Built as part of the OpenAI Codex Hackathon - Singapore.",
       "Developed and shipped within a fast-paced one-day hackathon workflow.",
@@ -85,6 +89,7 @@ const projectItems: ProjectItem[] = [
   },
   {
     title: "Nomi",
+    summary: "A caregiver support tool that flags changes in a senior’s daily routine.",
     year: "2026",
     format: "Ellipsis Tech Series Hackathon 2026",
     domain: "Tech",
@@ -112,11 +117,12 @@ const projectItems: ProjectItem[] = [
   },
   {
     title: "Resource-Constrained Scheduling Solver",
+    summary: "A solver for scheduling tasks with limited resources.",
     year: "2026",
     format: "Team Project",
     domain: "Tech",
     description:
-      "Python-based solver project for resource-constrained project scheduling, combining heuristic search, exact optimization, and comparative evaluation workflows.",
+      "A Python scheduling solver that compares heuristic search with exact branch-and-bound solutions under resource constraints.",
     highlights: [
       "Built a heuristic RCPSP solver for scheduling under resource constraints across benchmark instances.",
       "Extended the project with an exact branch-and-bound solver to support optimality checks and solver comparison.",
@@ -148,6 +154,7 @@ const projectItems: ProjectItem[] = [
   },
   {
     title: "Pawsitive",
+    summary: "A pet healthcare mobile app for managing pet care.",
     year: "2026",
     format: "Team Project",
     domain: "Tech",
@@ -180,6 +187,7 @@ const projectItems: ProjectItem[] = [
   },
   {
     title: "TariffEase",
+    summary: "A trade-data application with secure accounts and private user records.",
     year: "2025",
     format: "Team Project",
     domain: "Tech",
@@ -217,6 +225,7 @@ const projectItems: ProjectItem[] = [
   },
   {
     title: "AutoGreen.sg",
+    summary: "A shopping platform and browser extension for greener checkout choices.",
     year: "2025",
     format: "Team Project",
     domain: "Tech",
@@ -254,6 +263,7 @@ const projectItems: ProjectItem[] = [
   },
   {
     title: "RentLah!",
+    summary: "A student housing platform with verified listings, maps, and live chat.",
     year: "2025",
     format: "Team Project",
     domain: "Tech",
@@ -290,14 +300,15 @@ const projectItems: ProjectItem[] = [
   },
   {
     title: "Ellipsis Tech Series 2025 Website Design",
+    summary: "An event website prototype for discovering Ellipsis Tech Series activities.",
     year: "2025",
     format: "Personal Project",
     domain: "Creative",
     description:
-      "Individual Figma prototype for the Ellipsis Tech Series website, focused on information hierarchy, mobile flows, and interaction details.",
+      "I prototyped the Ellipsis Tech Series website in Figma, organising event information and designing the mobile navigation.",
     highlights: [
-      "Explored a modular event website system with clearer navigation and event discovery.",
-      "Focused on mobile responsiveness, hierarchy, and interaction flow inside the prototype.",
+      "I organised the event pages and navigation in a modular website prototype.",
+      "I worked through the mobile layouts and interactions in Figma.",
     ],
     technologies: ["Figma", "UI Design", "Prototyping", "Design Systems"],
     links: [
@@ -312,11 +323,12 @@ const projectItems: ProjectItem[] = [
   },
   {
     title: "AfterClass UI Competition",
+    summary: "A Figma interface prototype for the AfterClass UI competition.",
     year: "2025",
     format: "Team Project",
     domain: "Creative",
     description:
-      "Module submission emphasizing clean layout systems and user-centric flows across screens and states.",
+      "A team Figma submission for the AfterClass UI competition, covering screen layouts, components, and interaction states.",
     highlights: [
       "Designed around consistency across screens, states, and interaction patterns.",
       "Focused on clarity, flow, and structured component thinking within the competition deliverable.",
@@ -336,6 +348,7 @@ const projectItems: ProjectItem[] = [
   },
   {
     title: "Graphic Design Portfolio",
+    summary: "A collection of branding, social graphics, event materials, and artwork.",
     year: "2024",
     format: "Personal Project",
     domain: "Creative",
@@ -364,6 +377,7 @@ const projectItems: ProjectItem[] = [
   },
   {
     title: "Parade Card Game",
+    summary: "A digital card game with multiplayer and human-versus-AI modes.",
     year: "2025",
     format: "Team Project",
     domain: "Tech",
@@ -392,6 +406,7 @@ const projectItems: ProjectItem[] = [
   },
   {
     title: "SMU Nest",
+    summary: "A housing app prototype with student reviews and travel-time information.",
     year: "2024",
     format: "Team Project",
     domain: "Creative",
@@ -424,6 +439,7 @@ const projectItems: ProjectItem[] = [
   },
   {
     title: "Portfolio Website V1",
+    summary: "The earlier version of my personal portfolio website.",
     year: "2025",
     format: "Personal Project",
     domain: "Tech",
@@ -753,7 +769,7 @@ function ProjectCard({ project, onOpen }: { project: ProjectItem; onOpen: () => 
             <span>{project.domain === "Tech" ? "Technical" : "Design"}</span><span>{project.year}</span>
           </span>
           <span className="mt-2 break-words text-sm font-semibold leading-snug tracking-tight text-[color:var(--foreground)] md:mt-3 md:text-xl">{project.title}</span>
-          <span className="mt-2 line-clamp-2 text-xs leading-5 md:mt-3 md:text-sm md:leading-6 text-[color:var(--muted)]">{project.description}</span>
+          <span className="mt-2 text-xs leading-5 md:mt-3 md:text-sm md:leading-6 text-[color:var(--muted)]">{project.summary}</span>
           <span className="mt-auto flex items-center justify-between gap-2 pt-3 text-xs md:gap-3 md:pt-5 text-[color:var(--accent-strong)]">
             <span className="hidden min-w-0 truncate md:block">{project.technologies.slice(0, 2).join(" · ")}</span>
             <span className="inline-flex shrink-0 items-center gap-1.5 font-semibold">View details <ArrowUpRightIcon className="h-3.5 w-3.5" /></span>
@@ -950,7 +966,7 @@ export function ProjectCategoryTabs() {
 
 export function FeaturedProjects() {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
-  const featuredTitles = ["SMUAI Website", "Nomi", "Ellipsis Tech Series 2025 Website Design"];
+  const featuredTitles = ["SMUAI Website", "Nomi", "SMU Nest"];
   const projects = featuredTitles.flatMap((title) => {
     const project = projectItems.find((item) => item.title === title);
     return project ? [project] : [];
