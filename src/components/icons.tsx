@@ -80,6 +80,24 @@ export function MailIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+export function ResumeIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" {...props}>
+      <path
+        d="M14 3.25H7.5a2.25 2.25 0 0 0-2.25 2.25v13a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25V8L14 3.25Z"
+        strokeLinejoin="round"
+        strokeWidth="1.8"
+      />
+      <path
+        d="M14 3.5V8h4.5M8.75 12.5h6.5M8.75 16h4.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.8"
+      />
+    </svg>
+  );
+}
+
 export function GlobeIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" {...props}>

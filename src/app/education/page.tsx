@@ -36,7 +36,7 @@ const educationItems: EducationItem[] = [
     institution: "Singapore Management University",
     credential:
       "Bachelor of Science (Computer Science), Specialisation in Artificial Intelligence, Second Major in Strategic Management",
-    period: "Aug 2024 - Apr 2028",
+    period: "Aug 2024 - Jun 2028",
     location: "Singapore",
     websiteUrl: "https://www.smu.edu.sg/",
     note: "ASEAN Undergraduate Scholarship",

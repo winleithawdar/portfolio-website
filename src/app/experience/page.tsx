@@ -4,7 +4,8 @@ import { PageIntro } from "@/components/page-intro";
 import { GlobeIcon, LinkedInIcon } from "@/components/icons";
 import { ScrollReveal } from "@/components/scroll-reveal";
 
-export const dynamic = "force-dynamic";
+// Re-render daily so "Present" durations stay current.
+export const revalidate = 86400;
 
 type Position = {
   role: string;

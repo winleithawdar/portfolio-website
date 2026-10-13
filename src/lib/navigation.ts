@@ -26,6 +26,8 @@ export const navItems = [
 
 export const heroEmail = "winleithawdar2005@gmail.com";
 
+export const resumeHref = "/resume/WinLeiThawdar-Resume-Web.pdf";
+
 export const heroSocialLinks: SocialLink[] = [
   {
     href: "https://www.linkedin.com/in/winleithawdar/",

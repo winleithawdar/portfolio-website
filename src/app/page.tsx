@@ -1,4 +1,4 @@
-import { FeaturedProjects } from "@/components/project-gallery";
+import { FeaturedProjects, projectCount } from "@/components/project-gallery";
 import { heroEmail } from "@/lib/navigation";
 import { SectionHeading } from "@/components/section-heading";
 import Link from "next/link";
@@ -138,8 +138,24 @@ const homeJourneyAlbums = [
 ] satisfies readonly JourneyAlbum[];
 
 const homeBackground = [
-  { href: "/education", title: "Learning at SMU", icon: EducationIcon, watermark: LearningOutlineIcon, description: "Computer Science, specialising in Artificial Intelligence, with a second major in Strategic Management.", link: "Education & certifications" },
-  { href: "/experience", title: "Building with teams & communities", icon: ExperienceIcon, watermark: CommunityOutlineIcon, description: "From an AI/ML internship at MUI Robotics to leadership at SMUAI and community work in Myanmar.", link: "Experience & leadership" },
+  {
+    href: "/education",
+    title: "Learning at SMU",
+    icon: EducationIcon,
+    watermark: LearningOutlineIcon,
+    description: "Computer Science (AI specialisation), second major in Strategic Management.",
+    facts: ["BSc, Class of 2028", "ASEAN Undergraduate Scholar"],
+    link: "Education & certifications",
+  },
+  {
+    href: "/experience",
+    title: "Building with teams & communities",
+    icon: ExperienceIcon,
+    watermark: CommunityOutlineIcon,
+    description: "Industry roles in AI, plus leadership in student and community groups.",
+    facts: ["Technology Intern (AI/ML), MUI Robotics", "Vice President, SMUAI", "Data QA Student Assistant, AI Singapore"],
+    link: "Experience & leadership",
+  },
 ] as const;
 
 const skillCloudItems: ReadonlyArray<{
@@ -265,7 +281,7 @@ export default function HomePage() {
         <ScrollReveal>
           <SectionHeading id="home-projects-title" label="Selected projects" title="A few things I’ve built." description="A club website I designed and built, a team hackathon project, and a student housing app prototype." />
           <FeaturedProjects />
-          <Link href="/projects" className="focus-ring action-link mt-6">View all projects <ArrowUpRightIcon className="h-4 w-4" /></Link>
+          <Link href="/projects" className="focus-ring action-link mt-6">See all {projectCount} projects <ArrowUpRightIcon className="h-4 w-4" /></Link>
         </ScrollReveal>
       </section>
 
@@ -275,7 +291,7 @@ export default function HomePage() {
         <ScrollReveal>
           <SectionHeading id="home-background-title" label="Background" title="Where I learn and contribute." />
           <div className="grid grid-cols-2 gap-3 md:gap-6">
-            {homeBackground.map(({ href, title, icon: Icon, watermark: Watermark, description, link }) => (
+            {homeBackground.map(({ href, title, icon: Icon, watermark: Watermark, description, facts, link }) => (
               <article key={href} className="portfolio-card gallery-card relative isolate min-w-0 overflow-hidden p-3 md:p-6">
                 <Watermark
                   aria-hidden="true"
@@ -286,6 +302,14 @@ export default function HomePage() {
                 <Icon className="h-6 w-6 text-[color:var(--accent-strong)]" />
                 <h3 className="mt-3 text-sm font-semibold leading-snug text-[color:var(--foreground)] md:mt-4 md:text-xl">{title}</h3>
                 <p className="mt-2 text-xs leading-5 md:mt-3 md:text-sm md:leading-7 text-[color:var(--muted)]">{description}</p>
+                <ul className="mt-2 space-y-1 md:mt-3 md:space-y-1.5">
+                  {facts.map((fact) => (
+                    <li key={fact} className="flex gap-2 text-xs leading-5 font-medium text-[color:var(--foreground)] md:text-sm md:leading-6">
+                      <span aria-hidden="true" className="mt-[0.45rem] h-1 w-1 shrink-0 rounded-full bg-[color:var(--accent-strong)] md:mt-[0.6rem]" />
+                      {fact}
+                    </li>
+                  ))}
+                </ul>
                 <Link href={href} className="focus-ring mt-auto inline-flex min-h-11 items-center gap-1.5 rounded-sm pt-3 text-xs md:gap-2 md:pt-4 md:text-sm font-semibold text-[color:var(--accent-strong)]">{link}<ArrowUpRightIcon className="h-4 w-4 shrink-0" /></Link>
                 </div>
               </article>

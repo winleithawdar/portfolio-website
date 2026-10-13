@@ -3,21 +3,23 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { MailIcon, ProjectsIcon } from "@/components/icons";
-import { heroEmail, heroSocialLinks } from "@/lib/navigation";
+import { MailIcon, ProjectsIcon, ResumeIcon } from "@/components/icons";
+import { heroEmail, heroSocialLinks, resumeHref } from "@/lib/navigation";
 
 function HeroAction({
   href,
   children,
   primary = false,
   icon: Icon,
+  className: extraClassName = "",
 }: {
   href: string;
   children: string;
   primary?: boolean;
   icon?: typeof MailIcon;
+  className?: string;
 }) {
-  const className = `focus-ring action-link w-full md:w-auto ${primary ? "action-link-primary" : ""}`;
+  const className = `focus-ring action-link w-full md:w-auto ${primary ? "action-link-primary" : ""} ${extraClassName}`;
 
   const content = (
     <>
@@ -29,6 +31,14 @@ function HeroAction({
   if (href.startsWith("#")) {
     return (
       <a href={href} className={className}>
+        {content}
+      </a>
+    );
+  }
+
+  if (href.endsWith(".pdf")) {
+    return (
+      <a href={href} target="_blank" rel="noreferrer" className={className}>
         {content}
       </a>
     );
@@ -119,8 +129,11 @@ export function HomeHero() {
 
   const heroActions = (
     <>
-      <HeroAction href="/projects" primary icon={ProjectsIcon}>
+      <HeroAction href="/projects" primary icon={ProjectsIcon} className="col-span-2">
         View Projects
+      </HeroAction>
+      <HeroAction href={resumeHref} icon={ResumeIcon}>
+        Résumé
       </HeroAction>
       <HeroAction href={`mailto:${heroEmail}`} icon={MailIcon}>
         Get In Touch

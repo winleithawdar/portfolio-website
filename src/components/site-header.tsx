@@ -9,13 +9,24 @@ import {
   HomeIcon,
   LinktreeIcon,
   ProjectsIcon,
+  ResumeIcon,
 } from "@/components/icons";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { navItems } from "@/lib/navigation";
+import { navItems, resumeHref } from "@/lib/navigation";
 
 function HeaderActions() {
   return (
     <div className="flex items-center gap-2">
+      <a
+        href={resumeHref}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Résumé (PDF)"
+        title="Résumé"
+        className="focus-ring inline-flex h-9 w-9 items-center justify-center rounded-full border border-[color:var(--border)] bg-[color:var(--surface-soft)] text-[color:var(--foreground)] hover:border-[color:var(--border-strong)] hover:bg-[color:var(--surface-strong)] md:h-10 md:w-10"
+      >
+        <ResumeIcon className="h-4.5 w-4.5" />
+      </a>
       <a
         href="https://linktr.ee/winleithawdar"
         target="_blank"

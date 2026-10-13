@@ -59,7 +59,7 @@ const projectItems: ProjectItem[] = [
     ],
     credit: "Individual Project | SMUAI",
     previewLabel: "Website preview",
-    screenshotSrc: "/images/projects/smuai.png",
+    screenshotSrc: "/images/projects/smuai.webp",
   },
   {
     title: "OpenEval",
@@ -85,7 +85,7 @@ const projectItems: ProjectItem[] = [
     credit:
       "Team: Anson Koh, Darrius Ng, Htet Shwe Win Than, Win Lei Thawdar",
     previewLabel: "Hackathon project preview",
-    screenshotSrc: "/images/projects/openeval.png",
+    screenshotSrc: "/images/projects/openeval.webp",
   },
   {
     title: "Nomi",
@@ -113,7 +113,7 @@ const projectItems: ProjectItem[] = [
     credit:
       "Team: Ang Cheng Zuo, Eric Law, Julius Yeo, Su Myat Myat Htay, Su Pyae Pyae Zaw, Win Lei Thawdar",
     previewLabel: "Hackathon project preview",
-    screenshotSrc: "/images/projects/nomi.png",
+    screenshotSrc: "/images/projects/nomi.webp",
   },
   {
     title: "Resource-Constrained Scheduling Solver",
@@ -150,7 +150,7 @@ const projectItems: ProjectItem[] = [
     credit:
       "Team: Chai Yi Khuen, Chong Wei Choon, Lau Wei Bin, Win Lei Thawdar, Yeo Ben Shin",
     previewLabel: "Scheduling solver project preview",
-    screenshotSrc: "/images/projects/rcpsp.png",
+    screenshotSrc: "/images/projects/rcpsp.webp",
   },
   {
     title: "Pawsitive",
@@ -183,7 +183,7 @@ const projectItems: ProjectItem[] = [
     credit:
       "Team: Aung Ye Thant Hein, Chue Myat Sandy, Darrius Ng, Lin Khant Pe Thein, Rayner Sim, Win Lei Thawdar",
     previewLabel: "Pet healthcare app preview",
-    screenshotSrc: "/images/projects/pawsitive.png",
+    screenshotSrc: "/images/projects/pawsitive.webp",
   },
   {
     title: "TariffEase",
@@ -221,7 +221,7 @@ const projectItems: ProjectItem[] = [
     credit:
       "Team: Chai Yi Khuen, Htet Shwe Win Than, Lau Wei Bin, Tai Wei Sin, Win Lei Thawdar",
     previewLabel: "TariffEase project preview",
-    screenshotSrc: "/images/projects/tariffease.png",
+    screenshotSrc: "/images/projects/tariffease.webp",
   },
   {
     title: "AutoGreen.sg",
@@ -256,7 +256,7 @@ const projectItems: ProjectItem[] = [
       },
     ],
     previewLabel: "Product preview",
-    screenshotSrc: "/images/projects/autogreen.png",
+    screenshotSrc: "/images/projects/autogreen.webp",
     note: "Ellipsis Tech Series Hackathon | Top 10 Team",
     credit:
       "Team: Aung Ye Thant Hein, Chue Myat Sandy, Htet Shwe Win Than, Win Lei Thawdar, Wunna Aung",
@@ -293,7 +293,7 @@ const projectItems: ProjectItem[] = [
       },
     ],
     previewLabel: "Housing app preview",
-    screenshotSrc: "/images/projects/rentlah.png",
+    screenshotSrc: "/images/projects/rentlah.webp",
     note: "HEAP Program",
     credit:
       "Team: Aung Ye Thant Hein, Chue Myat Sandy, Htet Shwe Win Than, Lin Khant Pe Thein, Win Lei Thawdar",
@@ -319,7 +319,7 @@ const projectItems: ProjectItem[] = [
     ],
     credit: "Individual Project | Ellipsis",
     previewLabel: "Design preview",
-    screenshotSrc: "/images/projects/ellipsis-tech-series.png",
+    screenshotSrc: "/images/projects/ellipsis-tech-series.webp",
   },
   {
     title: "AfterClass UI Competition",
@@ -344,7 +344,7 @@ const projectItems: ProjectItem[] = [
     credit:
       "Team: Htet Shwe Win Than, Tai Wei Sin, Win Lei Thawdar",
     previewLabel: "Interface preview",
-    screenshotSrc: "/images/projects/afterclass-ui.png",
+    screenshotSrc: "/images/projects/afterclass-ui.webp",
   },
   {
     title: "Graphic Design Portfolio",
@@ -373,7 +373,7 @@ const projectItems: ProjectItem[] = [
     ],
     credit: "Individual Project",
     previewLabel: "Design portfolio preview",
-    screenshotSrc: "/images/projects/graphic-design-portfolio.png",
+    screenshotSrc: "/images/projects/graphic-design-portfolio.webp",
   },
   {
     title: "Parade Card Game",
@@ -402,7 +402,7 @@ const projectItems: ProjectItem[] = [
     credit:
       "Team: Aum Jiwoo, Brandon Boo, Chua Qihan, Darrius Ng, Rayner Sim, Win Lei Thawdar",
     previewLabel: "Game preview",
-    screenshotSrc: "/images/projects/parade-card-game.png",
+    screenshotSrc: "/images/projects/parade-card-game.webp",
   },
   {
     title: "SMU Nest",
@@ -435,7 +435,7 @@ const projectItems: ProjectItem[] = [
     credit:
       "Team: Ho Xin Yu, Htet Shwe Win Than, Kaitlin Gardner, Sierra Colvin, Win Lei Thawdar",
     previewLabel: "Mobile preview",
-    screenshotSrc: "/images/projects/smunest.png",
+    screenshotSrc: "/images/projects/smunest.webp",
   },
   {
     title: "Portfolio Website V1",
@@ -459,7 +459,7 @@ const projectItems: ProjectItem[] = [
     ],
     credit: "Individual Project",
     previewLabel: "Portfolio preview",
-    screenshotSrc: "/images/projects/portfolio.png",
+    screenshotSrc: "/images/projects/portfolio.webp",
   },
 ];
 
@@ -963,6 +963,8 @@ export function ProjectCategoryTabs() {
     </section>
   );
 }
+
+export const projectCount = projectItems.length;
 
 export function FeaturedProjects() {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);

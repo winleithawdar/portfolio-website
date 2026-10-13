@@ -4,13 +4,13 @@ Personal portfolio website built with Next.js App Router, TypeScript, Tailwind C
 
 ## Project overview
 
-- Responsive personal portfolio with a shared floating header and persistent theme toggle
-- Introductory home hero with profile image, project CTA, contact CTA, and social links
-- Home page sections for journey, values, interactive skills overview, and quick navigation to other pages
+- Responsive personal portfolio with a shared floating header, résumé and Linktree shortcuts, and a persistent theme toggle
+- Introductory home hero with profile image, project, résumé, and contact CTAs, and social links
+- Home page that works as a one-page summary: selected projects, education and experience highlights, interactive skills cloud, photo albums, and contact
 - Timeline-based education and experience pages
 - Project showcase page with previews, links, highlights, and team context
 - Mobile-first refinements including a bottom navigation bar and compact responsive cards
-- Light mode by default, with dark mode support powered by `next-themes`
+- Dark mode by default, with a light mode toggle powered by `next-themes`
 
 ## Tech stack
 
@@ -19,6 +19,7 @@ Personal portfolio website built with Next.js App Router, TypeScript, Tailwind C
 - TypeScript
 - Tailwind CSS 4
 - `next-themes`
+- Vercel Analytics
 - ESLint
 
 ## Local development
@@ -52,16 +53,21 @@ npm run dev
 - `/projects`
 - `/about` redirects to `/education`
 
+`/experience` is statically generated and revalidated daily (`revalidate = 86400`) so durations for ongoing roles stay current.
+
 ## Folder structure
 
 ```text
 public/
   images/
+    certificates/
+    journey/
     profile/
     projects/
   logos/
     education/
     experience/
+  resume/
 
 src/
   app/
@@ -76,7 +82,11 @@ src/
   components/
     home-hero.tsx
     icons.tsx
+    journey-albums.tsx
     page-intro.tsx
+    project-gallery.tsx
+    scroll-reveal.tsx
+    section-heading.tsx
     site-footer.tsx
     site-header.tsx
     skills-icon-cloud.tsx
@@ -86,12 +96,19 @@ src/
     navigation.ts
 ```
 
+## Updating content
+
+- **Résumé:** place the PDF in `public/resume/` and point `resumeHref` in `src/lib/navigation.ts` at it. Browsers show the PDF's embedded Title in the tab, and Google Docs sets it to the document name, so name the Google Doc "Win Lei Thawdar – Résumé" before exporting.
+- **Projects:** entries live in `projectItems` in `src/components/project-gallery.tsx`. `featuredTitles` controls which appear on the home page.
+- **Experience and education:** entries live in their page files under `src/app/`.
+- **Images:** save screenshots as WebP, at most 2000px wide (aim for under ~200 KB). `next/image` handles responsive sizing.
+
 ## Theme direction
 
 - Calm, editorial, spacious, and personal
 - Soft lavender and muted plum accents over warm beige and off-white neutrals
 - Minimal motion, subtle borders, rounded forms, and clean contrast in both themes
-- Light mode is the default theme
+- Dark mode is the default theme
 - Theme selection persists between visits
 
 ## Deployment on Vercel
