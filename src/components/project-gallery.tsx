@@ -257,7 +257,7 @@ const projectItems: ProjectItem[] = [
     ],
     previewLabel: "Product preview",
     screenshotSrc: "/images/projects/autogreen.webp",
-    note: "Ellipsis Tech Series Hackathon | Top 10 Team",
+    note: "Ellipsis Tech Series Hackathon 2025 | Top 10 Team",
     credit:
       "Team: Aung Ye Thant Hein, Chue Myat Sandy, Htet Shwe Win Than, Win Lei Thawdar, Wunna Aung",
   },

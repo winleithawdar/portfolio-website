@@ -1,7 +1,15 @@
 import Image from "next/image";
 import { SectionHeading } from "@/components/section-heading";
 import { PageIntro } from "@/components/page-intro";
-import { EducationIcon, FacebookIcon, GlobeIcon } from "@/components/icons";
+import {
+  EducationIcon,
+  FacebookIcon,
+  GlobeIcon,
+  MedalIcon,
+  RibbonIcon,
+  RocketIcon,
+  TrophyIcon,
+} from "@/components/icons";
 import { ScrollReveal } from "@/components/scroll-reveal";
 
 type EducationSection = {
@@ -21,6 +29,21 @@ type EducationItem = {
   note?: string;
   logo?: string;
   sections?: EducationSection[];
+};
+
+const awardIcons = {
+  trophy: TrophyIcon,
+  medal: MedalIcon,
+  ribbon: RibbonIcon,
+  rocket: RocketIcon,
+} as const;
+
+type AwardItem = {
+  icon: keyof typeof awardIcons;
+  placement: string;
+  event: string;
+  year?: string;
+  description?: string;
 };
 
 type CertificationItem = {
@@ -163,6 +186,51 @@ const educationItems: EducationItem[] = [
         ],
       },
     ],
+  },
+] as const;
+
+const awardItems: AwardItem[] = [
+  {
+    icon: "trophy",
+    placement: "Winner",
+    event: "TicTacCode 2026",
+    year: "2026",
+    description: "Solved terminal-based debugging and system investigation challenges.",
+  },
+  {
+    icon: "ribbon",
+    placement: "Top 9",
+    event: "UBS Global Coding Challenge",
+    year: "2026",
+    description: "Solved algorithmic programming challenges.",
+  },
+  {
+    icon: "ribbon",
+    placement: "Top 10",
+    event: "Ellipsis Tech Series Hackathon",
+    year: "2026",
+    description: "Built a caregiver support tool that flags changes in a senior’s daily routine.",
+  },
+  {
+    icon: "rocket",
+    placement: "Top 30 Teams",
+    event: "AI+X SoulMate Pioneers",
+    year: "2026",
+    description: "Represented in an international AI accelerator program in South Korea.",
+  },
+  {
+    icon: "medal",
+    placement: "2nd Runner-Up",
+    event: "Manus AI Mini-Hack",
+    year: "2025",
+    description: "Built a data-driven market expansion strategy for Chengdu Bowl.",
+  },
+  {
+    icon: "ribbon",
+    placement: "Top 10",
+    event: "Ellipsis Tech Series Hackathon",
+    year: "2025",
+    description: "Built a gamified sustainable shopping browser extension.",
   },
 ] as const;
 
@@ -454,6 +522,49 @@ export default function EducationPage() {
             </div>
           </details>
         ) : null}
+        </section>
+      </ScrollReveal>
+
+      <ScrollReveal delayMs={100} y={22}>
+        <section aria-labelledby="education-awards-title" className="min-w-0">
+          <div className="space-y-6">
+            <SectionHeading id="education-awards-title" title="Awards" description="Competitions and hackathons I’ve placed in." />
+
+            <ul className="grid grid-cols-2 gap-3 md:gap-5 xl:grid-cols-3">
+              {awardItems.map((item) => {
+                const Icon = awardIcons[item.icon];
+
+                return (
+                <li
+                  key={`${item.event}-${item.year ?? ""}-${item.placement}`}
+                  className="portfolio-card gallery-card relative isolate flex min-w-0 flex-col overflow-hidden p-3 md:p-5"
+                >
+                  <Icon
+                    aria-hidden="true"
+                    focusable="false"
+                    className="pointer-events-none absolute -bottom-4 -right-4 -z-10 h-24 w-24 text-[color:var(--accent-strong)] opacity-[0.07] md:h-32 md:w-32"
+                  />
+                  <p className="font-[family-name:var(--font-display)] text-lg leading-tight tracking-[-0.03em] text-[color:var(--accent-strong)] md:text-2xl">
+                    {item.placement}
+                  </p>
+                  <h3 className="mt-2 break-words text-sm font-semibold leading-snug text-[color:var(--foreground)] md:mt-3 md:text-base">
+                    {item.event}
+                  </h3>
+                  {item.description ? (
+                    <p className="mt-1.5 text-xs leading-5 text-[color:var(--muted)] md:mt-2 md:text-sm md:leading-6">
+                      {item.description}
+                    </p>
+                  ) : null}
+                  {item.year ? (
+                    <p className="mt-auto pt-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[color:var(--muted)] md:pt-3">
+                      {item.year}
+                    </p>
+                  ) : null}
+                </li>
+                );
+              })}
+            </ul>
+          </div>
         </section>
       </ScrollReveal>
 

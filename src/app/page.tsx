@@ -144,8 +144,8 @@ const homeBackground = [
     icon: EducationIcon,
     watermark: LearningOutlineIcon,
     description: "Computer Science (AI specialisation), second major in Strategic Management.",
-    facts: ["BSc, Class of 2028", "ASEAN Undergraduate Scholar"],
-    link: "Education & certifications",
+    facts: ["BSc, Class of 2028", "ASEAN Undergraduate Scholar", "Winner, TicTacCode 2026"],
+    link: "Education, awards & certifications",
   },
   {
     href: "/experience",

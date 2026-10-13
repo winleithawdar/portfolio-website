@@ -98,6 +98,77 @@ export function ResumeIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+export function TrophyIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" {...props}>
+      <path
+        d="M7.25 4.25h9.5v4.5a4.75 4.75 0 0 1-9.5 0v-4.5Z"
+        strokeLinejoin="round"
+        strokeWidth="1.8"
+      />
+      <path
+        d="M7.25 6H4.75v1.25A3 3 0 0 0 7.6 10.2M16.75 6h2.5v1.25a3 3 0 0 1-2.85 2.95M12 13.5v3.25M8.5 19.75h7M9.75 16.75h4.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.8"
+      />
+    </svg>
+  );
+}
+
+export function MedalIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" {...props}>
+      <path
+        d="m8.25 3.75 2.6 5.1M15.75 3.75l-2.6 5.1"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.8"
+      />
+      <circle cx="12" cy="14.5" r="5.25" strokeWidth="1.8" />
+      <circle cx="12" cy="14.5" r="2.25" strokeWidth="1.6" />
+    </svg>
+  );
+}
+
+export function RibbonIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" {...props}>
+      <circle cx="12" cy="9" r="5.25" strokeWidth="1.8" />
+      <path
+        d="m8.6 13 -1.35 7.25L12 17.75l4.75 2.5L15.4 13"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.8"
+      />
+      <path
+        d="m12 6.6.75 1.5 1.65.25-1.2 1.15.3 1.65L12 10.35l-1.5.8.3-1.65-1.2-1.15 1.65-.25.75-1.5Z"
+        strokeLinejoin="round"
+        strokeWidth="1.4"
+      />
+    </svg>
+  );
+}
+
+export function RocketIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" {...props}>
+      <path
+        d="M14.5 4.75c2.5-1 4.75-1 4.75-1s0 2.25-1 4.75c-.9 2.25-3 4.4-5.25 5.75L9.75 11.5c1.35-2.25 3.5-4.35 4.75-6.75Z"
+        strokeLinejoin="round"
+        strokeWidth="1.8"
+      />
+      <path
+        d="M9.75 11.5 6.5 11l2.25-2.75h3M13 14.25l.5 3.25 2.75-2.25v-3M7.25 16.75c-1 .5-1.75 2.25-1.75 2.25s1.75-.75 2.25-1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.8"
+      />
+      <circle cx="15.25" cy="8.75" r="1.25" strokeWidth="1.6" />
+    </svg>
+  );
+}
+
 export function GlobeIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" {...props}>
@@ -256,70 +327,6 @@ export function LinktreeIcon(props: SVGProps<SVGSVGElement>) {
       <path d="m6.11 4.65 1.47-1.47 3.66 3.66-1.47 1.47-3.66-3.66ZM17.89 4.65l-3.66 3.66-1.47-1.47 3.66-3.66 1.47 1.47Z" />
       <path d="m7.58 13.81-1.47-1.47 3.66-3.66 1.47 1.47-3.66 3.66ZM17.89 12.34l-1.47 1.47-3.66-3.66 1.47-1.47 3.66 3.66Z" />
       <path d="M10.96 14.97h2.08V18l2.86-2.86 1.47 1.47L12 21.98l-5.37-5.37 1.47-1.47L10.96 18v-3.03Z" />
-    </svg>
-  );
-}
-
-export function CompassIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" {...props}>
-      <circle cx="12" cy="12" r="8.5" strokeWidth="1.8" />
-      <path
-        d="m9 15 2.1-6.1L17 7l-2 5.9L9 15Z"
-        strokeLinejoin="round"
-        strokeWidth="1.8"
-      />
-      <circle cx="12" cy="12" r="1.1" fill="currentColor" stroke="none" />
-    </svg>
-  );
-}
-
-export function PeopleIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" {...props}>
-      <circle cx="9" cy="9" r="2.75" strokeWidth="1.8" />
-      <circle cx="16.5" cy="10" r="2.25" strokeWidth="1.8" />
-      <path
-        d="M4.75 18c.45-2.58 2.5-4 5.25-4s4.8 1.42 5.25 4"
-        strokeLinecap="round"
-        strokeWidth="1.8"
-      />
-      <path
-        d="M14.5 17.75c.34-1.7 1.6-2.8 3.5-3.15"
-        strokeLinecap="round"
-        strokeWidth="1.8"
-      />
-    </svg>
-  );
-}
-
-export function LeafIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" {...props}>
-      <path
-        d="M18.5 5.5c-6.8 0-11 4.08-11 9.4 0 2.1 1.46 3.6 3.55 3.6 5.34 0 9.45-4.3 9.45-11.1 0-1.05-.45-1.9-2-1.9Z"
-        strokeLinejoin="round"
-        strokeWidth="1.8"
-      />
-      <path
-        d="M9 16c2.1-2.6 4.4-4.76 7.5-6.5"
-        strokeLinecap="round"
-        strokeWidth="1.8"
-      />
-    </svg>
-  );
-}
-
-export function SparkIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" {...props}>
-      <path
-        d="m12 3 1.95 5.05L19 10l-5.05 1.95L12 17l-1.95-5.05L5 10l5.05-1.95L12 3Z"
-        strokeLinejoin="round"
-        strokeWidth="1.8"
-      />
-      <path d="M19.5 4.5v2M20.5 5.5h-2" strokeLinecap="round" strokeWidth="1.8" />
-      <path d="M4.5 17.5v2M5.5 18.5h-2" strokeLinecap="round" strokeWidth="1.8" />
     </svg>
   );
 }
