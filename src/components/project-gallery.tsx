@@ -59,7 +59,7 @@ const projectItems: ProjectItem[] = [
     ],
     credit: "Individual Project | SMUAI",
     previewLabel: "Website preview",
-    screenshotSrc: "/images/projects/smuai.png",
+    screenshotSrc: "/images/projects/smuai.webp",
   },
   {
     title: "OpenEval",
@@ -85,7 +85,7 @@ const projectItems: ProjectItem[] = [
     credit:
       "Team: Anson Koh, Darrius Ng, Htet Shwe Win Than, Win Lei Thawdar",
     previewLabel: "Hackathon project preview",
-    screenshotSrc: "/images/projects/openeval.png",
+    screenshotSrc: "/images/projects/openeval.webp",
   },
   {
     title: "Nomi",
@@ -113,7 +113,7 @@ const projectItems: ProjectItem[] = [
     credit:
       "Team: Ang Cheng Zuo, Eric Law, Julius Yeo, Su Myat Myat Htay, Su Pyae Pyae Zaw, Win Lei Thawdar",
     previewLabel: "Hackathon project preview",
-    screenshotSrc: "/images/projects/nomi.png",
+    screenshotSrc: "/images/projects/nomi.webp",
   },
   {
     title: "Resource-Constrained Scheduling Solver",
@@ -150,23 +150,25 @@ const projectItems: ProjectItem[] = [
     credit:
       "Team: Chai Yi Khuen, Chong Wei Choon, Lau Wei Bin, Win Lei Thawdar, Yeo Ben Shin",
     previewLabel: "Scheduling solver project preview",
-    screenshotSrc: "/images/projects/rcpsp.png",
+    screenshotSrc: "/images/projects/rcpsp.webp",
   },
   {
     title: "Pawsitive",
-    summary: "A pet healthcare mobile app for managing pet care.",
+    summary: "A cross-platform pet health app with AI-powered health monitoring and vet consultations.",
     year: "2026",
     format: "Team Project",
     domain: "Tech",
     description:
-      "Pet health care app built with a mobile-first product setup, combining an Expo React Native frontend, FastAPI backend, and Supabase database layer.",
+      "Mobile app connecting pet owners with veterinarians through AI-powered health monitoring, enabling early disease detection and efficient veterinary consultations. I worked as Product Designer and Mobile App Developer.",
+    highlightLabel: "My contribution",
     highlights: [
-      "Structured as a full product stack with an Expo React Native mobile app, FastAPI backend, and Supabase Postgres schema.",
-      "Designed around pet care workflows, with room for health-related features, backend services, and database-driven product flows.",
-      "Repository setup also supports optional AI and video call integrations for expanded healthcare and support experiences.",
+      "Designed and developed the cross-platform mobile app in React Native and Expo, implementing end-to-end user flows and interactive mobile interfaces.",
+      "Built and integrated FastAPI and Supabase backend services for application data and core product functionality.",
+      "Integrated computer vision capabilities into the mobile experience, translating model outputs into user-facing features and application workflows.",
     ],
     technologies: [
-      "Expo React Native",
+      "React Native",
+      "Expo",
       "FastAPI",
       "Supabase",
       "Postgres",
@@ -183,22 +185,26 @@ const projectItems: ProjectItem[] = [
     credit:
       "Team: Aung Ye Thant Hein, Chue Myat Sandy, Darrius Ng, Lin Khant Pe Thein, Rayner Sim, Win Lei Thawdar",
     previewLabel: "Pet healthcare app preview",
-    screenshotSrc: "/images/projects/pawsitive.png",
+    screenshotSrc: "/images/projects/pawsitive.webp",
   },
   {
     title: "TariffEase",
-    summary: "A trade-data application with secure accounts and private user records.",
+    summary: "A tariff calculation platform with route-risk assessment, built by an Agile team I led as Scrum Master.",
     year: "2025",
     format: "Team Project",
     domain: "Tech",
     description:
-      "Secure application project built for collaborative software development, combining authenticated user flows, PostgreSQL storage, and trade-data API integration.",
+      "Full-stack tariff calculation platform with route-risk assessment and transaction history, backed by secure accounts and external trade data. I worked as Scrum Master and Frontend Developer.",
+    highlightLabel: "My contribution",
     highlights: [
-      "Built with JWT authentication for secure user registration and login flows.",
-      "Designed around user-owned data, where each user can only access their own records.",
-      "Integrated external trade data through the WITS API alongside a PostgreSQL-backed backend architecture.",
+      "Led sprint planning, task allocation, and progress tracking for the full-stack Agile team using Jira.",
+      "Developed responsive frontend interfaces and user flows for tariff calculation, route-risk assessment, and transaction history using Next.js, TypeScript, and Tailwind CSS.",
+      "Collaborated with backend developers to integrate Spring Boot REST APIs, JWT authentication, and PostgreSQL-backed services with the frontend.",
     ],
     technologies: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
       "Spring Boot",
       "Spring Security",
       "PostgreSQL",
@@ -206,6 +212,7 @@ const projectItems: ProjectItem[] = [
       "AWS RDS",
       "Maven",
       "WITS API",
+      "Jira",
     ],
     links: [
       {
@@ -221,7 +228,7 @@ const projectItems: ProjectItem[] = [
     credit:
       "Team: Chai Yi Khuen, Htet Shwe Win Than, Lau Wei Bin, Tai Wei Sin, Win Lei Thawdar",
     previewLabel: "TariffEase project preview",
-    screenshotSrc: "/images/projects/tariffease.png",
+    screenshotSrc: "/images/projects/tariffease.webp",
   },
   {
     title: "AutoGreen.sg",
@@ -256,8 +263,8 @@ const projectItems: ProjectItem[] = [
       },
     ],
     previewLabel: "Product preview",
-    screenshotSrc: "/images/projects/autogreen.png",
-    note: "Ellipsis Tech Series Hackathon | Top 10 Team",
+    screenshotSrc: "/images/projects/autogreen.webp",
+    note: "Ellipsis Tech Series Hackathon 2025 | Top 10 Team",
     credit:
       "Team: Aung Ye Thant Hein, Chue Myat Sandy, Htet Shwe Win Than, Win Lei Thawdar, Wunna Aung",
   },
@@ -293,7 +300,7 @@ const projectItems: ProjectItem[] = [
       },
     ],
     previewLabel: "Housing app preview",
-    screenshotSrc: "/images/projects/rentlah.png",
+    screenshotSrc: "/images/projects/rentlah.webp",
     note: "HEAP Program",
     credit:
       "Team: Aung Ye Thant Hein, Chue Myat Sandy, Htet Shwe Win Than, Lin Khant Pe Thein, Win Lei Thawdar",
@@ -319,7 +326,7 @@ const projectItems: ProjectItem[] = [
     ],
     credit: "Individual Project | Ellipsis",
     previewLabel: "Design preview",
-    screenshotSrc: "/images/projects/ellipsis-tech-series.png",
+    screenshotSrc: "/images/projects/ellipsis-tech-series.webp",
   },
   {
     title: "AfterClass UI Competition",
@@ -344,7 +351,7 @@ const projectItems: ProjectItem[] = [
     credit:
       "Team: Htet Shwe Win Than, Tai Wei Sin, Win Lei Thawdar",
     previewLabel: "Interface preview",
-    screenshotSrc: "/images/projects/afterclass-ui.png",
+    screenshotSrc: "/images/projects/afterclass-ui.webp",
   },
   {
     title: "Graphic Design Portfolio",
@@ -373,7 +380,7 @@ const projectItems: ProjectItem[] = [
     ],
     credit: "Individual Project",
     previewLabel: "Design portfolio preview",
-    screenshotSrc: "/images/projects/graphic-design-portfolio.png",
+    screenshotSrc: "/images/projects/graphic-design-portfolio.webp",
   },
   {
     title: "Parade Card Game",
@@ -402,7 +409,7 @@ const projectItems: ProjectItem[] = [
     credit:
       "Team: Aum Jiwoo, Brandon Boo, Chua Qihan, Darrius Ng, Rayner Sim, Win Lei Thawdar",
     previewLabel: "Game preview",
-    screenshotSrc: "/images/projects/parade-card-game.png",
+    screenshotSrc: "/images/projects/parade-card-game.webp",
   },
   {
     title: "SMU Nest",
@@ -435,7 +442,7 @@ const projectItems: ProjectItem[] = [
     credit:
       "Team: Ho Xin Yu, Htet Shwe Win Than, Kaitlin Gardner, Sierra Colvin, Win Lei Thawdar",
     previewLabel: "Mobile preview",
-    screenshotSrc: "/images/projects/smunest.png",
+    screenshotSrc: "/images/projects/smunest.webp",
   },
   {
     title: "Portfolio Website V1",
@@ -459,7 +466,7 @@ const projectItems: ProjectItem[] = [
     ],
     credit: "Individual Project",
     previewLabel: "Portfolio preview",
-    screenshotSrc: "/images/projects/portfolio.png",
+    screenshotSrc: "/images/projects/portfolio.webp",
   },
 ];
 
@@ -964,9 +971,11 @@ export function ProjectCategoryTabs() {
   );
 }
 
+export const projectCount = projectItems.length;
+
 export function FeaturedProjects() {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
-  const featuredTitles = ["SMUAI Website", "Nomi", "SMU Nest"];
+  const featuredTitles = ["SMUAI Website", "Nomi", "Pawsitive", "TariffEase"];
   const projects = featuredTitles.flatMap((title) => {
     const project = projectItems.find((item) => item.title === title);
     return project ? [project] : [];
@@ -974,7 +983,7 @@ export function FeaturedProjects() {
 
   return (
     <>
-      <div className="grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-3">
+      <div className="grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-4">
         {projects.map((project) => <ProjectCard key={project.title} project={project} onOpen={() => setSelectedProject(project)} />)}
       </div>
       {selectedProject ? <ProjectDetails project={selectedProject} onClose={() => setSelectedProject(null)} /> : null}

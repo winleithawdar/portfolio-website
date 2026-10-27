@@ -1,7 +1,8 @@
-import { FeaturedProjects } from "@/components/project-gallery";
+import { FeaturedProjects, projectCount } from "@/components/project-gallery";
 import { heroEmail } from "@/lib/navigation";
 import { SectionHeading } from "@/components/section-heading";
 import Link from "next/link";
+import { Fragment } from "react";
 import {
   EducationIcon,
   ExperienceIcon,
@@ -138,8 +139,24 @@ const homeJourneyAlbums = [
 ] satisfies readonly JourneyAlbum[];
 
 const homeBackground = [
-  { href: "/education", title: "Learning at SMU", icon: EducationIcon, watermark: LearningOutlineIcon, description: "Computer Science, specialising in Artificial Intelligence, with a second major in Strategic Management.", link: "Education & certifications" },
-  { href: "/experience", title: "Building with teams & communities", icon: ExperienceIcon, watermark: CommunityOutlineIcon, description: "From an AI/ML internship at MUI Robotics to leadership at SMUAI and community work in Myanmar.", link: "Experience & leadership" },
+  {
+    href: "/education",
+    title: "Learning at SMU",
+    icon: EducationIcon,
+    watermark: LearningOutlineIcon,
+    description: "Computer Science (AI specialisation), second major in Strategic Management.",
+    facts: ["BSc, Class of 2028"],
+    link: "Education, awards & certifications",
+  },
+  {
+    href: "/experience",
+    title: "Building with teams & communities",
+    icon: ExperienceIcon,
+    watermark: CommunityOutlineIcon,
+    description: "Industry roles in AI, plus leadership in student and community groups.",
+    facts: ["Vice President, SMUAI"],
+    link: "Experience & leadership",
+  },
 ] as const;
 
 const skillCloudItems: ReadonlyArray<{
@@ -200,24 +217,12 @@ const skillCloudImages = [
 ];
 
 const skillCategoryList = [
-  {
-    title: "Frontend Development",
-  },
-  {
-    title: "Backend Development",
-  },
-  {
-    title: "Machine Learning",
-  },
-  {
-    title: "Data & Tooling",
-  },
-  {
-    title: "Product & Design",
-  },
-  {
-    title: "Cloud & Deployment",
-  },
+  { title: "Frontend Development", skills: ["React", "Next.js", "TypeScript", "Tailwind CSS"] },
+  { title: "Backend Development", skills: ["FastAPI", "Spring Boot", "Node.js", "Supabase"] },
+  { title: "Machine Learning", skills: ["PyTorch", "scikit-learn", "Model evaluation"] },
+  { title: "Data & Tooling", skills: ["Python", "PostgreSQL", "Pandas", "Jupyter"] },
+  { title: "Product & Design", skills: ["Figma", "Prototyping", "Agile/Scrum", "Jira"] },
+  { title: "Cloud & Deployment", skills: ["AWS", "Docker", "Vercel", "GitHub Actions"] },
 ] as const;
 
 function ArrowUpRightIcon({ className }: { className?: string }) {
@@ -263,9 +268,9 @@ export default function HomePage() {
 
       <section id="home-projects" aria-labelledby="home-projects-title" className="home-section">
         <ScrollReveal>
-          <SectionHeading id="home-projects-title" label="Selected projects" title="A few things I’ve built." description="A club website I designed and built, a team hackathon project, and a student housing app prototype." />
+          <SectionHeading id="home-projects-title" label="Selected projects" title="A few things I’ve built." description="A club website I designed and built, a hackathon project, a mobile app with computer vision, and a team platform I led as Scrum Master." />
           <FeaturedProjects />
-          <Link href="/projects" className="focus-ring action-link mt-6">View all projects <ArrowUpRightIcon className="h-4 w-4" /></Link>
+          <Link href="/projects" className="focus-ring action-link mt-6">See all {projectCount} projects <ArrowUpRightIcon className="h-4 w-4" /></Link>
         </ScrollReveal>
       </section>
 
@@ -275,7 +280,7 @@ export default function HomePage() {
         <ScrollReveal>
           <SectionHeading id="home-background-title" label="Background" title="Where I learn and contribute." />
           <div className="grid grid-cols-2 gap-3 md:gap-6">
-            {homeBackground.map(({ href, title, icon: Icon, watermark: Watermark, description, link }) => (
+            {homeBackground.map(({ href, title, icon: Icon, watermark: Watermark, description, facts, link }) => (
               <article key={href} className="portfolio-card gallery-card relative isolate min-w-0 overflow-hidden p-3 md:p-6">
                 <Watermark
                   aria-hidden="true"
@@ -286,6 +291,14 @@ export default function HomePage() {
                 <Icon className="h-6 w-6 text-[color:var(--accent-strong)]" />
                 <h3 className="mt-3 text-sm font-semibold leading-snug text-[color:var(--foreground)] md:mt-4 md:text-xl">{title}</h3>
                 <p className="mt-2 text-xs leading-5 md:mt-3 md:text-sm md:leading-7 text-[color:var(--muted)]">{description}</p>
+                <ul className="mt-2 space-y-1 md:mt-3 md:space-y-1.5">
+                  {facts.map((fact) => (
+                    <li key={fact} className="flex gap-2 text-xs leading-5 font-medium text-[color:var(--foreground)] md:text-sm md:leading-6">
+                      <span aria-hidden="true" className="mt-[0.45rem] h-1 w-1 shrink-0 rounded-full bg-[color:var(--accent-strong)] md:mt-[0.6rem]" />
+                      {fact}
+                    </li>
+                  ))}
+                </ul>
                 <Link href={href} className="focus-ring mt-auto inline-flex min-h-11 items-center gap-1.5 rounded-sm pt-3 text-xs md:gap-2 md:pt-4 md:text-sm font-semibold text-[color:var(--accent-strong)]">{link}<ArrowUpRightIcon className="h-4 w-4 shrink-0" /></Link>
                 </div>
               </article>
@@ -305,11 +318,11 @@ export default function HomePage() {
           <SectionHeading id="home-skills-title" label="Skills" title="Tools I build with." description="Tools I’ve used across my projects and coursework." />
 
           <ScrollReveal
-            className="home-feature-block overflow-hidden rounded-[2rem] px-5 py-5 md:px-7 md:py-5.5"
+            className="home-feature-block overflow-hidden rounded-[2rem] px-5 py-6 md:px-8 md:py-8"
             delayMs={90}
             y={22}
           >
-            <div className="grid gap-5 lg:grid-cols-[minmax(17rem,1.08fr)_minmax(0,0.92fr)] lg:items-center lg:gap-6">
+            <div className="grid gap-6 lg:grid-cols-[minmax(15rem,20rem)_minmax(0,1fr)] lg:items-center lg:gap-12">
               <div className="order-1">
                 <div className="mx-auto w-full max-w-[16rem] md:max-w-[20rem]">
                   <SkillsIconCloud
@@ -319,32 +332,29 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="order-2 space-y-4 lg:order-2">
+              <div className="order-2 space-y-5">
                 <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-[color:var(--muted)]">
                   Core Categories
                 </p>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-x-5 gap-y-5 md:gap-x-10 md:gap-y-6">
                   {skillCategoryList.map((category) => (
-                    <div key={category.title} className="pb-1">
+                    <div key={category.title} className="border-t border-[color:var(--border)] pt-3">
                       <p className="text-sm font-semibold leading-6 text-[color:var(--foreground)]">
                         {category.title}
                       </p>
+                      <p className="mt-0.5 text-xs leading-5 text-[color:var(--muted)] md:text-[0.8rem]">
+                        {category.skills.map((skill, index) => (
+                          <Fragment key={skill}>
+                            <span className="whitespace-nowrap">
+                              {skill}
+                              {index < category.skills.length - 1 ? " ·" : null}
+                            </span>{" "}
+                          </Fragment>
+                        ))}
+                      </p>
                     </div>
                   ))}
-                </div>
-
-                <div className="pt-1.5">
-                  <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-[color:var(--muted)]">
-                    Projects
-                  </p>
-                  <Link
-                    href="/projects"
-                    className="focus-ring action-link mt-3"
-                  >
-                    <span>See what I&apos;ve built</span>
-                    <ArrowUpRightIcon className="h-4 w-4" />
-                  </Link>
                 </div>
               </div>
             </div>

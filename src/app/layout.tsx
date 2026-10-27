@@ -29,9 +29,25 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
+const siteDescription =
+  "Computer Science (AI) student at SMU. Projects, experience, and awards of Win Lei Thawdar.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.winleithawdar.com"),
   title: "Win Lei Thawdar | Portfolio",
-  description: "Personal portfolio of Win Lei Thawdar.",
+  description: siteDescription,
+  openGraph: {
+    title: "Win Lei Thawdar | Portfolio",
+    description: siteDescription,
+    url: "/",
+    siteName: "Win Lei Thawdar",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Win Lei Thawdar | Portfolio",
+    description: siteDescription,
+  },
   icons: {
     icon: "/icon.svg",
   },

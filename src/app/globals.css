@@ -154,17 +154,15 @@ button {
   text-shadow: 0 0 0 currentColor;
 }
 
+/* Soft radial gradients instead of a large blur filter, so the glow stays cheap to animate. */
 .hero-orb {
   position: absolute;
   border-radius: 999px;
-  filter: blur(80px);
-  will-change: transform, opacity;
-  mix-blend-mode: multiply;
+  will-change: transform;
   opacity: 0.9;
 }
 
 .dark .hero-orb {
-  mix-blend-mode: screen;
   opacity: 1;
 }
 
@@ -174,8 +172,7 @@ button {
   height: min(28rem, 46vw);
   width: min(28rem, 46vw);
   background:
-    radial-gradient(circle at 35% 35%, rgba(108, 95, 141, 0.22), transparent 58%),
-    radial-gradient(circle at 70% 65%, rgba(75, 63, 110, 0.14), transparent 70%);
+    radial-gradient(circle at 50% 50%, rgba(108, 95, 141, 0.26), transparent 70%);
   animation: hero-orb-float 12s ease-in-out infinite;
 }
 
@@ -185,21 +182,18 @@ button {
   height: min(34rem, 54vw);
   width: min(34rem, 54vw);
   background:
-    radial-gradient(circle at 40% 45%, rgba(108, 95, 141, 0.2), transparent 56%),
-    radial-gradient(circle at 72% 60%, rgba(75, 63, 110, 0.12), transparent 72%);
+    radial-gradient(circle at 50% 50%, rgba(108, 95, 141, 0.24), transparent 70%);
   animation: hero-orb-float 15s ease-in-out infinite reverse;
 }
 
 .dark .hero-orb-left {
   background:
-    radial-gradient(circle at 35% 35%, rgba(223, 207, 231, 0.28), transparent 62%),
-    radial-gradient(circle at 70% 65%, rgba(195, 175, 209, 0.22), transparent 70%);
+    radial-gradient(circle at 50% 50%, rgba(223, 207, 231, 0.24), transparent 70%);
 }
 
 .dark .hero-orb-right {
   background:
-    radial-gradient(circle at 40% 45%, rgba(223, 207, 231, 0.24), transparent 58%),
-    radial-gradient(circle at 72% 60%, rgba(195, 175, 209, 0.18), transparent 72%);
+    radial-gradient(circle at 50% 50%, rgba(223, 207, 231, 0.22), transparent 70%);
 }
 
 .hero-mesh {
