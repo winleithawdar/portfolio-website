@@ -27,10 +27,11 @@ export function SkillsIconCloud({
   const animationFrameRef = useRef<number>(0);
   const rotationRef = useRef({ x: -0.26, y: 0.48 });
   const dragStartRef = useRef({ x: 0, y: 0 });
-  const [isDragging, setIsDragging] = useState(false);
+  const isDraggingRef = useRef(false);
+  const pointerRef = useRef({ x: 210, y: 210 });
+  const requestDrawRef = useRef<() => void>(() => {});
   const [cloudSize, setCloudSize] = useState(420);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-  const [pointerPosition, setPointerPosition] = useState({ x: 210, y: 210 });
 
   const iconPoints = useMemo(() => {
     const total = Math.max(items.length, 1);
@@ -76,7 +77,7 @@ export function SkillsIconCloud({
       const nextWidth = entry.contentRect.width;
       const nextSize = clamp(Math.round(nextWidth - 12), 244, 540);
       setCloudSize(nextSize);
-      setPointerPosition({ x: nextSize / 2, y: nextSize / 2 });
+      pointerRef.current = { x: nextSize / 2, y: nextSize / 2 };
     });
 
     resizeObserver.observe(element);
@@ -99,6 +100,7 @@ export function SkillsIconCloud({
       image.onload = () => {
         if (!isCancelled) {
           loadedImagesRef.current[index] = image;
+          requestDrawRef.current();
         }
       };
     });
@@ -133,15 +135,18 @@ export function SkillsIconCloud({
     const depth = cloudSize * (isCompact ? 1.08 : 1.18);
     const center = cloudSize / 2;
 
+    let isVisible = false;
+
     const draw = () => {
+      animationFrameRef.current = 0;
       context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
       context.clearRect(0, 0, cloudSize, cloudSize);
       context.imageSmoothingEnabled = true;
 
-      const dx = pointerPosition.x - center;
-      const dy = pointerPosition.y - center;
+      const dx = pointerRef.current.x - center;
+      const dy = pointerRef.current.y - center;
 
-      if (!prefersReducedMotion && !isDragging) {
+      if (!prefersReducedMotion && !isDraggingRef.current) {
         rotationRef.current = {
           x: rotationRef.current.x + dy * 0.00001,
           y: rotationRef.current.y + 0.0019 + dx * 0.00001,
@@ -212,10 +217,7 @@ export function SkillsIconCloud({
           return;
         }
 
-        context.save();
         context.globalAlpha = icon.opacity;
-        context.shadowColor = "rgba(75, 63, 110, 0.11)";
-        context.shadowBlur = 10;
         context.drawImage(
           image,
           icon.x + offsetX - icon.size / 2,
@@ -223,43 +225,64 @@ export function SkillsIconCloud({
           icon.size,
           icon.size,
         );
-        context.restore();
       });
+      context.globalAlpha = 1;
 
-      if (!prefersReducedMotion || isDragging) {
+      // Keep spinning only while the cloud is on screen.
+      if (isVisible && !prefersReducedMotion) {
         animationFrameRef.current = window.requestAnimationFrame(draw);
       }
     };
 
+    const requestDraw = () => {
+      if (!animationFrameRef.current) {
+        animationFrameRef.current = window.requestAnimationFrame(draw);
+      }
+    };
+    requestDrawRef.current = requestDraw;
+
+    const visibilityObserver = new IntersectionObserver(([entry]) => {
+      isVisible = entry.isIntersecting;
+
+      if (isVisible) {
+        requestDraw();
+      }
+    });
+    visibilityObserver.observe(canvas);
+
     draw();
 
     return () => {
+      visibilityObserver.disconnect();
+      requestDrawRef.current = () => {};
+
       if (animationFrameRef.current) {
         window.cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = 0;
       }
     };
-  }, [cloudSize, iconPoints, isDragging, pointerPosition, prefersReducedMotion]);
+  }, [cloudSize, iconPoints, prefersReducedMotion]);
 
   const handlePointerDown = (event: React.PointerEvent<HTMLCanvasElement>) => {
-    setIsDragging(true);
+    isDraggingRef.current = true;
     dragStartRef.current = { x: event.clientX, y: event.clientY };
     const rect = event.currentTarget.getBoundingClientRect();
-    setPointerPosition({
+    pointerRef.current = {
       x: event.clientX - rect.left,
       y: event.clientY - rect.top,
-    });
+    };
     event.preventDefault();
     event.currentTarget.setPointerCapture(event.pointerId);
   };
 
   const handlePointerMove = (event: React.PointerEvent<HTMLCanvasElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
-    setPointerPosition({
+    pointerRef.current = {
       x: event.clientX - rect.left,
       y: event.clientY - rect.top,
-    });
+    };
 
-    if (!isDragging) {
+    if (!isDraggingRef.current) {
       return;
     }
 
@@ -272,15 +295,16 @@ export function SkillsIconCloud({
     };
 
     dragStartRef.current = { x: event.clientX, y: event.clientY };
+    requestDrawRef.current();
   };
 
   const handlePointerUp = (event: React.PointerEvent<HTMLCanvasElement>) => {
-    setIsDragging(false);
+    isDraggingRef.current = false;
     event.currentTarget.releasePointerCapture(event.pointerId);
   };
 
   const handlePointerCancel = () => {
-    setIsDragging(false);
+    isDraggingRef.current = false;
   };
 
   return (
@@ -296,7 +320,7 @@ export function SkillsIconCloud({
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
         onPointerCancel={handlePointerCancel}
-        onPointerLeave={() => setIsDragging(false)}
+        onPointerLeave={handlePointerCancel}
         className="relative z-10 h-full w-full touch-none cursor-grab rounded-full active:cursor-grabbing"
         aria-label="Interactive skills icon cloud"
         role="img"

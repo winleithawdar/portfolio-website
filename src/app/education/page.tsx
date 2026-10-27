@@ -50,7 +50,7 @@ type CertificationItem = {
   name: string;
   issuer: string;
   issued: string;
-  credentialUrl: string;
+  credentialUrl?: string;
   previewSrc: string;
 };
 
@@ -290,6 +290,18 @@ const certificationItems: CertificationItem[] = [
     credentialUrl:
       "https://www.coursera.org/account/accomplishments/records/83BPTQM55ITX",
     previewSrc: "/images/certificates/2024-ux.jpg",
+  },
+  {
+    name: "ASEAN Data Science Explorers 2024: SAP Analytics Cloud & SAP Build Apps",
+    issuer: "SAP & ASEAN Foundation",
+    issued: "May 2024",
+    previewSrc: "/images/certificates/2024-adse.jpg",
+  },
+  {
+    name: "Beyond Success: Leadership & Personal Growth",
+    issuer: "John C. Maxwell (EQUIP)",
+    issued: "Jan 2023",
+    previewSrc: "/images/certificates/2023-leadership.jpg",
   },
 ] as const;
 
@@ -583,10 +595,10 @@ export default function EducationPage() {
                 className="portfolio-card gallery-card group flex h-full min-w-0 flex-col overflow-hidden"
               >
                 <a
-                  href={item.credentialUrl}
+                  href={item.credentialUrl ?? item.previewSrc}
                   target="_blank"
                   rel="noreferrer"
-                  aria-label={`Open ${item.name} credential`}
+                  aria-label={`Open ${item.name} ${item.credentialUrl ? "credential" : "certificate"}`}
                   className="focus-ring relative block overflow-hidden border-b border-[color:var(--border)] bg-white"
                 >
                   <div className="aspect-[2000/1414] overflow-hidden bg-white">
@@ -600,7 +612,7 @@ export default function EducationPage() {
                   </div>
                   <div className="pointer-events-none absolute inset-0 flex items-end justify-end bg-gradient-to-t from-black/24 via-black/0 to-black/0">
                     <span className="m-1.5 rounded-full bg-white/92 px-2 py-1 text-[0.55rem] md:m-3 md:px-3 md:py-1.5 md:text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[#4b3f6e] shadow-[0_10px_24px_rgba(0,0,0,0.18)]">
-                      View Credential
+                      {item.credentialUrl ? "View Credential" : "View Certificate"}
                     </span>
                   </div>
                 </a>

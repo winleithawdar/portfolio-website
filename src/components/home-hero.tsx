@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import { MailIcon, ProjectsIcon, ResumeIcon } from "@/components/icons";
 import { heroEmail, heroSocialLinks, resumeHref } from "@/lib/navigation";
 
@@ -59,6 +59,16 @@ function HeroAction({
   );
 }
 
+// Scroll-linked effects, applied straight to the marked elements so only they restyle.
+const parallaxEffects: Record<string, (progress: number) => Partial<CSSStyleDeclaration>> = {
+  headline: (p) => ({ transform: `translateY(${p * -70}px) scale(${1 - p * 0.045})`, opacity: `${1 - p * 0.1}` }),
+  body: (p) => ({ transform: `translateY(${p * -42}px)`, opacity: `${1 - p * 0.08}` }),
+  lower: (p) => ({ transform: `translateY(${p * -24}px)`, opacity: `${1 - p * 0.06}` }),
+  portrait: (p) => ({ transform: `translateY(${p * 58}px) scale(${1 - p * 0.05})`, opacity: `${1 - p * 0.08}` }),
+  glow: (p) => ({ transform: `translateY(${p * 76}px) scale(${1.02 + p * 0.12})`, opacity: `${0.68 - p * 0.12}` }),
+  cue: (p) => ({ transform: `translateY(${p * 12}px)`, opacity: `${1 - p * 0.9}` }),
+};
+
 function ScrollCue() {
   return (
     <a
@@ -77,7 +87,6 @@ function ScrollCue() {
 }
 
 export function HomeHero() {
-  const heroFocusAreas = ["CS", "AI", "Product", "Design"];
   const heroSparkles = [
     { left: "8%", top: "20%", size: "0.5rem", delay: "0s", duration: "7.2s" },
     { left: "18%", top: "72%", size: "0.38rem", delay: "1.6s", duration: "8.4s" },
@@ -91,21 +100,39 @@ export function HomeHero() {
     { left: "68%", top: "14%", size: "0.26rem", delay: "3s", duration: "8.8s" },
     { left: "82%", top: "78%", size: "0.3rem", delay: "1.9s", duration: "7.1s" },
   ] as const;
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
 
+  // Scroll progress is applied directly to the DOM so scrolling never re-renders the hero.
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const section = sectionRef.current;
 
-    if (mediaQuery.matches) {
+    if (mediaQuery.matches || !section) {
       return;
     }
 
     let frameId = 0;
+    let lastProgress = -1;
+    const targets = Array.from(
+      section.querySelectorAll<HTMLElement>("[data-parallax]"),
+    );
 
     const updateProgress = () => {
       frameId = 0;
       const nextProgress = Math.min(window.scrollY / 280, 1);
-      setScrollProgress(nextProgress);
+
+      if (nextProgress === lastProgress) {
+        return;
+      }
+
+      lastProgress = nextProgress;
+      targets.forEach((target) => {
+        const effect = parallaxEffects[target.dataset.parallax ?? ""];
+
+        if (effect) {
+          Object.assign(target.style, effect(nextProgress));
+        }
+      });
     };
 
     const onScroll = () => {
@@ -159,48 +186,10 @@ export function HomeHero() {
     </>
   );
 
-  const headlineStyle = {
-    transform: `translateY(${scrollProgress * -70}px) scale(${1 - scrollProgress * 0.045})`,
-    opacity: 1 - scrollProgress * 0.1,
-  };
-
-  const bodyStyle = {
-    transform: `translateY(${scrollProgress * -42}px)`,
-    opacity: 1 - scrollProgress * 0.08,
-  };
-
-  const lowerContentStyle = {
-    transform: `translateY(${scrollProgress * -24}px)`,
-    opacity: 1 - scrollProgress * 0.06,
-  };
-
-  const portraitStyle = {
-    transform: `translateY(${scrollProgress * 58}px) scale(${1 - scrollProgress * 0.05})`,
-    opacity: 1 - scrollProgress * 0.08,
-  };
-
-  const portraitGlowStyle = {
-    transform: `translateY(${scrollProgress * 76}px) scale(${1.02 + scrollProgress * 0.12})`,
-    opacity: 0.68 - scrollProgress * 0.12,
-  };
-
-  const leftAuraStyle = {
-    transform: `translate3d(${scrollProgress * -18}px, ${scrollProgress * 30}px, 0) scale(${1 + scrollProgress * 0.06})`,
-    opacity: 0.9 - scrollProgress * 0.08,
-  };
-
-  const rightAuraStyle = {
-    transform: `translate3d(${scrollProgress * 24}px, ${scrollProgress * -14}px, 0) scale(${1 + scrollProgress * 0.04})`,
-    opacity: 0.84 - scrollProgress * 0.06,
-  };
-
-  const scrollCueStyle = {
-    opacity: 1 - scrollProgress * 0.9,
-    transform: `translateY(${scrollProgress * 12}px)`,
-  };
 
   return (
     <section
+      ref={sectionRef}
       aria-labelledby="home-title"
       className="relative left-1/2 -mt-4 w-screen -translate-x-1/2 md:-mt-5 lg:-mt-11 lg:min-h-[calc(100svh-5.25rem)]"
     >
@@ -209,14 +198,8 @@ export function HomeHero() {
           aria-hidden="true"
           className="pointer-events-none absolute inset-x-0 -top-28 bottom-0 overflow-hidden md:-top-32 lg:-top-40"
         >
-          <div
-            className="hero-orb hero-orb-left"
-            style={leftAuraStyle}
-          />
-          <div
-            className="hero-orb hero-orb-right"
-            style={rightAuraStyle}
-          />
+          <div className="hero-orb hero-orb-left" />
+          <div className="hero-orb hero-orb-right" />
           <div className="hero-mesh" />
           {heroSparkles.map((sparkle, index) => (
             <span
@@ -229,14 +212,13 @@ export function HomeHero() {
                 height: sparkle.size,
                 animationDelay: sparkle.delay,
                 animationDuration: sparkle.duration,
-                transform: `translateY(${scrollProgress * (index % 2 === 0 ? 18 : -14)}px)`,
               }}
             />
           ))}
         </div>
         <div className="page-shell relative grid w-full gap-8 py-4 md:gap-10 md:py-8 lg:min-h-[calc(100svh-5.25rem)] lg:items-center lg:py-4 lg:grid-cols-[minmax(0,1.05fr)_minmax(22rem,0.95fr)] lg:gap-x-12">
           <div className="max-w-4xl self-center lg:pr-6">
-            <div className="md:hidden" style={headlineStyle}>
+            <div className="md:hidden" data-parallax="headline">
               <div className="grid grid-cols-[minmax(0,1fr)_8.8rem] items-start gap-3">
                 <div className="min-w-0">
                   <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-[color:var(--muted)]">
@@ -280,7 +262,7 @@ export function HomeHero() {
               </div>
             </div>
 
-            <div className="hidden md:block lg:hidden" style={headlineStyle}>
+            <div className="hidden md:block lg:hidden" data-parallax="headline">
               <div className="grid grid-cols-[minmax(0,1fr)_14rem] items-start gap-7">
                 <div className="min-w-0">
                   <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-[color:var(--muted)]">
@@ -325,7 +307,7 @@ export function HomeHero() {
               </div>
             </div>
 
-            <div className="hidden lg:block" style={headlineStyle}>
+            <div className="hidden lg:block" data-parallax="headline">
               <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-[color:var(--muted)]">
                 Hello, I&apos;m
               </p>
@@ -343,30 +325,18 @@ export function HomeHero() {
               </h1>
             </div>
 
-            <div className="mt-5 max-w-[35rem] space-y-3 md:mt-6 lg:mt-8" style={bodyStyle}>
+            <div className="mt-5 max-w-[35rem] space-y-3 md:mt-6 lg:mt-8" data-parallax="body">
               <p className="hidden text-lg leading-8 text-[color:var(--foreground)]/88 lg:block lg:text-[1.25rem] lg:leading-9 [text-wrap:balance]">
                 Also known as <strong>Winnie</strong>.
               </p>
               <p className="text-sm leading-7 text-[color:var(--muted)] md:text-base md:leading-8 [text-wrap:balance]">
-                I&apos;m a Computer Science undergraduate at SMU and a curious
-                builder exploring AI, product development, and human-centred
-                design, with a strong interest in the intersection of
-                technology and business.
+                I&apos;m a Computer Science student at SMU and a curious builder
+                exploring AI, product development, and human-centred design, and
+                how technology can solve real problems in people&apos;s daily lives.
               </p>
             </div>
 
-            <div style={lowerContentStyle}>
-              <div className="mt-6 flex flex-wrap gap-2.5">
-                {heroFocusAreas.map((area) => (
-                  <span
-                    key={area}
-                    className="inline-flex items-center rounded-full border border-[color:var(--border)] bg-[color:var(--surface-soft)]/88 px-3.5 py-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-[color:var(--muted)] shadow-[0_10px_22px_rgba(75,63,110,0.05)]"
-                  >
-                    {area}
-                  </span>
-                ))}
-              </div>
-
+            <div data-parallax="lower">
               <div className="mt-8 hidden items-center gap-3 md:flex md:flex-wrap lg:mt-10 lg:gap-3.5">
                 {heroActions}
               </div>
@@ -402,12 +372,13 @@ export function HomeHero() {
           <div className="hidden justify-center pt-1 sm:pt-2 lg:flex lg:justify-end">
             <div
               className="relative flex h-[20rem] w-full max-w-[18rem] items-center justify-center overflow-visible sm:h-[24rem] sm:max-w-[20rem] md:-translate-y-8 md:h-[41rem] md:max-w-[31rem] lg:-translate-y-10 lg:h-[50rem] lg:max-w-[37rem] lg:translate-x-8"
-              style={portraitStyle}
+              data-parallax="portrait"
             >
               <div
                 aria-hidden="true"
                 className="absolute inset-x-[14%] top-[18%] h-[58%] rounded-[999px] bg-[color:var(--accent)]/8 blur-[72px]"
-                style={portraitGlowStyle}
+                data-parallax="glow"
+                style={{ opacity: 0.68, transform: "scale(1.02)" }}
               />
               <div aria-hidden="true" className="hero-portrait-ring" />
               <div className="relative h-[82%] w-[70%] overflow-hidden rounded-[999px] border border-[rgba(108,95,141,0.34)] bg-[color:var(--surface-strong)] shadow-[0_16px_36px_rgba(75,63,110,0.08)] dark:border-[color:var(--accent)]/38 sm:h-[76%] sm:w-[64%] md:h-[68%] md:w-[58%]">
@@ -426,7 +397,7 @@ export function HomeHero() {
         </div>
 
         <div className="pointer-events-none absolute inset-x-0 bottom-5 hidden justify-center md:flex">
-          <div className="pointer-events-auto" style={scrollCueStyle}>
+          <div className="pointer-events-auto" data-parallax="cue">
             <ScrollCue />
           </div>
         </div>

@@ -11,6 +11,7 @@ Personal portfolio website built with Next.js App Router, TypeScript, Tailwind C
 - Project showcase page with previews, links, highlights, and team context
 - Mobile-first refinements including a bottom navigation bar and compact responsive cards
 - Dark mode by default, with a light mode toggle powered by `next-themes`
+- Open Graph and X link previews, with the preview image generated at build time from `src/app/opengraph-image.tsx`
 
 ## Tech stack
 
@@ -78,6 +79,7 @@ src/
     globals.css
     icon.svg
     layout.tsx
+    opengraph-image.tsx
     page.tsx
   components/
     home-hero.tsx
@@ -101,6 +103,7 @@ src/
 - **Résumé:** place the PDF in `public/resume/` and point `resumeHref` in `src/lib/navigation.ts` at it. Browsers show the PDF's embedded Title in the tab, and Google Docs sets it to the document name, so name the Google Doc "Win Lei Thawdar – Résumé" before exporting.
 - **Projects:** entries live in `projectItems` in `src/components/project-gallery.tsx`. `featuredTitles` controls which appear on the home page.
 - **Experience and education:** entries live in their page files under `src/app/`. Awards and certifications are `awardItems` and `certificationItems` in `src/app/education/page.tsx`.
+- **Footer "Last updated":** set automatically from the build date in `next.config.ts`, so it changes on each deploy.
 - **Images:** save screenshots as WebP, at most 2000px wide (aim for under ~200 KB). `next/image` handles responsive sizing.
 
 ## Theme direction

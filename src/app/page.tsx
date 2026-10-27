@@ -2,6 +2,7 @@ import { FeaturedProjects, projectCount } from "@/components/project-gallery";
 import { heroEmail } from "@/lib/navigation";
 import { SectionHeading } from "@/components/section-heading";
 import Link from "next/link";
+import { Fragment } from "react";
 import {
   EducationIcon,
   ExperienceIcon,
@@ -144,7 +145,7 @@ const homeBackground = [
     icon: EducationIcon,
     watermark: LearningOutlineIcon,
     description: "Computer Science (AI specialisation), second major in Strategic Management.",
-    facts: ["BSc, Class of 2028", "ASEAN Undergraduate Scholar", "Winner, TicTacCode 2026"],
+    facts: ["BSc, Class of 2028"],
     link: "Education, awards & certifications",
   },
   {
@@ -153,7 +154,7 @@ const homeBackground = [
     icon: ExperienceIcon,
     watermark: CommunityOutlineIcon,
     description: "Industry roles in AI, plus leadership in student and community groups.",
-    facts: ["Technology Intern (AI/ML), MUI Robotics", "Vice President, SMUAI", "Data QA Student Assistant, AI Singapore"],
+    facts: ["Vice President, SMUAI"],
     link: "Experience & leadership",
   },
 ] as const;
@@ -216,24 +217,12 @@ const skillCloudImages = [
 ];
 
 const skillCategoryList = [
-  {
-    title: "Frontend Development",
-  },
-  {
-    title: "Backend Development",
-  },
-  {
-    title: "Machine Learning",
-  },
-  {
-    title: "Data & Tooling",
-  },
-  {
-    title: "Product & Design",
-  },
-  {
-    title: "Cloud & Deployment",
-  },
+  { title: "Frontend Development", skills: ["React", "Next.js", "TypeScript", "Tailwind CSS"] },
+  { title: "Backend Development", skills: ["FastAPI", "Spring Boot", "Node.js", "Supabase"] },
+  { title: "Machine Learning", skills: ["PyTorch", "scikit-learn", "Model evaluation"] },
+  { title: "Data & Tooling", skills: ["Python", "PostgreSQL", "Pandas", "Jupyter"] },
+  { title: "Product & Design", skills: ["Figma", "Prototyping", "Agile/Scrum", "Jira"] },
+  { title: "Cloud & Deployment", skills: ["AWS", "Docker", "Vercel", "GitHub Actions"] },
 ] as const;
 
 function ArrowUpRightIcon({ className }: { className?: string }) {
@@ -279,7 +268,7 @@ export default function HomePage() {
 
       <section id="home-projects" aria-labelledby="home-projects-title" className="home-section">
         <ScrollReveal>
-          <SectionHeading id="home-projects-title" label="Selected projects" title="A few things I’ve built." description="A club website I designed and built, a team hackathon project, and a student housing app prototype." />
+          <SectionHeading id="home-projects-title" label="Selected projects" title="A few things I’ve built." description="A club website I designed and built, a hackathon project, a mobile app with computer vision, and a team platform I led as Scrum Master." />
           <FeaturedProjects />
           <Link href="/projects" className="focus-ring action-link mt-6">See all {projectCount} projects <ArrowUpRightIcon className="h-4 w-4" /></Link>
         </ScrollReveal>
@@ -329,11 +318,11 @@ export default function HomePage() {
           <SectionHeading id="home-skills-title" label="Skills" title="Tools I build with." description="Tools I’ve used across my projects and coursework." />
 
           <ScrollReveal
-            className="home-feature-block overflow-hidden rounded-[2rem] px-5 py-5 md:px-7 md:py-5.5"
+            className="home-feature-block overflow-hidden rounded-[2rem] px-5 py-6 md:px-8 md:py-8"
             delayMs={90}
             y={22}
           >
-            <div className="grid gap-5 lg:grid-cols-[minmax(17rem,1.08fr)_minmax(0,0.92fr)] lg:items-center lg:gap-6">
+            <div className="grid gap-6 lg:grid-cols-[minmax(15rem,20rem)_minmax(0,1fr)] lg:items-center lg:gap-12">
               <div className="order-1">
                 <div className="mx-auto w-full max-w-[16rem] md:max-w-[20rem]">
                   <SkillsIconCloud
@@ -343,32 +332,29 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="order-2 space-y-4 lg:order-2">
+              <div className="order-2 space-y-5">
                 <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-[color:var(--muted)]">
                   Core Categories
                 </p>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-x-5 gap-y-5 md:gap-x-10 md:gap-y-6">
                   {skillCategoryList.map((category) => (
-                    <div key={category.title} className="pb-1">
+                    <div key={category.title} className="border-t border-[color:var(--border)] pt-3">
                       <p className="text-sm font-semibold leading-6 text-[color:var(--foreground)]">
                         {category.title}
                       </p>
+                      <p className="mt-0.5 text-xs leading-5 text-[color:var(--muted)] md:text-[0.8rem]">
+                        {category.skills.map((skill, index) => (
+                          <Fragment key={skill}>
+                            <span className="whitespace-nowrap">
+                              {skill}
+                              {index < category.skills.length - 1 ? " ·" : null}
+                            </span>{" "}
+                          </Fragment>
+                        ))}
+                      </p>
                     </div>
                   ))}
-                </div>
-
-                <div className="pt-1.5">
-                  <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-[color:var(--muted)]">
-                    Projects
-                  </p>
-                  <Link
-                    href="/projects"
-                    className="focus-ring action-link mt-3"
-                  >
-                    <span>See what I&apos;ve built</span>
-                    <ArrowUpRightIcon className="h-4 w-4" />
-                  </Link>
                 </div>
               </div>
             </div>

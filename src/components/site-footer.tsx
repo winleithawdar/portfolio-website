@@ -4,6 +4,13 @@ import { footerSocialLinks, heroEmail, navItems } from "@/lib/navigation";
 
 const quickLinks = navItems;
 
+const buildDate = new Date(process.env.BUILD_DATE ?? Date.now());
+const lastUpdated = buildDate.toLocaleDateString("en-SG", {
+  month: "long",
+  year: "numeric",
+  timeZone: "Asia/Singapore",
+});
+
 export function SiteFooter() {
   return (
     <footer className="page-shell pb-[calc(6rem_+_env(safe-area-inset-bottom))] pt-5 md:pb-12 md:pt-8">
@@ -15,8 +22,7 @@ export function SiteFooter() {
                 Win Lei Thawdar
               </p>
               <p className="max-w-xl text-[0.82rem] leading-5.5 text-[color:var(--muted)] md:text-[0.95rem] md:leading-7">
-                Computer Science and Strategic Management student building at the
-                intersection of technology, design, and meaningful impact.
+                Computer Science (AI) undergraduate @ SMU | AI/ML &amp; Product
               </p>
             </div>
 
@@ -73,10 +79,8 @@ export function SiteFooter() {
           </div>
 
           <div className="flex flex-col gap-1 border-t border-[color:var(--border)]/55 pt-3 text-[0.78rem] text-[color:var(--muted)] md:flex-row md:items-center md:justify-between md:pt-4 md:text-sm">
-            <p>© 2026 Win Lei Thawdar</p>
-            <div className="flex flex-col gap-1 text-[0.72rem] md:items-end md:text-xs">
-              <p>Last updated: August 2026</p>
-            </div>
+            <p>© {buildDate.getFullYear()} Win Lei Thawdar</p>
+            <p className="text-[0.72rem] md:text-xs">Last updated: {lastUpdated}</p>
           </div>
         </div>
       </div>
