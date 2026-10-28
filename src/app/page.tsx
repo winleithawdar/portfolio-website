@@ -11,7 +11,7 @@ import {
 } from "@/components/icons";
 import { HomeHero } from "@/components/home-hero";
 import { JourneyAlbums, type JourneyAlbum } from "@/components/journey-albums";
-import { SkillsIconCloud } from "@/components/skills-icon-cloud";
+import { SkillsBoard } from "@/components/skills-board";
 import { ScrollReveal } from "@/components/scroll-reveal";
 
 const homeJourneyAlbums = [
@@ -158,74 +158,12 @@ const homeBackground = [
   },
 ] as const;
 
-const skillCloudItems: ReadonlyArray<{
-  label: string;
-  slug: string;
-  src?: string;
-}> = [
-  { label: "Python", slug: "python" },
-  { label: "Java", slug: "java" },
-  { label: "C", slug: "c" },
-  { label: "TypeScript", slug: "typescript" },
-  { label: "JavaScript", slug: "javascript" },
-  { label: "HTML5", slug: "html5" },
-  { label: "CSS3", slug: "css3" },
-  { label: "React", slug: "react" },
-  { label: "Next.js", slug: "nextdotjs" },
-  { label: "Tailwind CSS", slug: "tailwindcss" },
-  { label: "Node.js", slug: "nodedotjs" },
-  { label: "GitHub", slug: "github" },
-  { label: "Expo", slug: "expo" },
-  { label: "FastAPI", slug: "fastapi" },
-  { label: "Supabase", slug: "supabase" },
-  { label: "PostgreSQL", slug: "postgresql" },
-  { label: "MySQL", slug: "mysql" },
-  { label: "Linux", slug: "linux" },
-  { label: "macOS", slug: "macos" },
-  { label: "AWS", slug: "amazonaws" },
-  { label: "Docker", slug: "docker" },
-  { label: "Kubernetes", slug: "kubernetes" },
-  { label: "GitLab", slug: "gitlab" },
-  { label: "Terraform", slug: "terraform" },
-  { label: "OpenTofu", slug: "opentofu" },
-  { label: "Spring Boot", slug: "springboot" },
-  { label: "Socket.io", slug: "socketdotio" },
-  { label: "PyTorch", slug: "pytorch" },
-  { label: "scikit-learn", slug: "scikitlearn" },
-  { label: "Jupyter Notebook", slug: "jupyter" },
-  { label: "Git", slug: "git" },
-  { label: "VS Code", slug: "visualstudiocode" },
-  { label: "Canva", slug: "canva" },
-  { label: "Photoshop", slug: "adobephotoshop" },
-  { label: "Illustrator", slug: "adobeillustrator" },
-  { label: "Figma", slug: "figma" },
-  { label: "Vercel", slug: "vercel" },
-  { label: "Cursor", slug: "cursor" },
-] as const;
-
-const codexIcon = `data:image/svg+xml;utf8,${encodeURIComponent(
-  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#4b3f6e" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m8 7-4 5 4 5"/><path d="m16 7 4 5-4 5"/><path d="m13.5 5-3 14"/></svg>`,
-)}`;
-
-const javaIcon = `data:image/svg+xml;utf8,${encodeURIComponent(
-  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#4b3f6e" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M10.2 4.6c1 1-.2 1.7-.9 2.3-.6.5-.8 1.2 0 1.8"/><path d="M13.2 3.8c1.2 1.1-.2 2-.9 2.7-.7.7-1 1.6-.1 2.3"/><path d="M8.2 10.6c1.4.7 3 .9 4.6.9 1.7 0 3.2-.3 4.6-.9"/><path d="M7.5 13.2h10.2a2.3 2.3 0 0 1-2.3 2.3H9.8a2.3 2.3 0 0 1-2.3-2.3Z"/><path d="M17.7 13.6h.7a1.6 1.6 0 1 1 0 3.2h-.9"/><path d="M8.8 18.2c1.2.4 2.5.6 4 .6 2.2 0 4.1-.5 5.4-1.2"/><path d="M7.6 17.5c.6.2 1.2.5 1.9.7"/></svg>`,
-)}`;
-
-const skillCloudImages = [
-  { label: "Codex", src: codexIcon },
-  ...skillCloudItems.map(({ label, slug, src }) => ({
-    label,
-    src: src || (label === "Java" ? javaIcon : `https://cdn.simpleicons.org/${slug}`),
-  })),
-];
-
 const skillCategoryList = [
-  { title: "Frontend", skills: ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Next.js", "Tailwind CSS", "Expo"] },
-  { title: "Languages & Backend", skills: ["Python", "Java", "C", "Node.js", "FastAPI", "Spring Boot", "Socket.io"] },
-  { title: "Cloud & Infrastructure", skills: ["AWS", "Docker", "Kubernetes", "Terraform", "OpenTofu", "Linux"] },
-  { title: "Delivery & Collaboration", skills: ["Git", "GitHub", "GitLab", "CI/CD", "GitHub Actions", "Vercel", "Agile/Scrum", "Jira"] },
-  { title: "Data & Machine Learning", skills: ["PostgreSQL", "MySQL", "Supabase", "Pandas", "PyTorch", "scikit-learn", "Jupyter", "Model evaluation"] },
-  { title: "Product & Design", skills: ["Figma", "Prototyping", "Canva", "Photoshop", "Illustrator"] },
+  { title: "Cloud & DevOps", sketch: "cloud", skills: ["AWS", "Docker", "Kubernetes", "Terraform", "OpenTofu", "CI/CD", "GitLab", "GitHub Actions", "Vercel", "Linux", "Git", "GitHub"] },
+  { title: "AI & Machine Learning", sketch: "data", skills: ["PyTorch", "scikit-learn", "Model evaluation", "Pandas", "Jupyter", "Google Colab", "Claude Code", "Codex", "ChatGPT", "Gemini", "Claude"] },
+  { title: "Languages & Backend", sketch: "code", skills: ["Python", "Java", "Node.js", "C", "FastAPI", "Spring Boot", "Socket.io", "PostgreSQL", "MySQL", "Supabase", "VS Code"] },
+  { title: "Frontend", sketch: "web", skills: ["Next.js", "TypeScript", "Tailwind CSS", "React", "JavaScript", "HTML", "CSS", "Expo"] },
+  { title: "Product & Collaboration", sketch: "design", skills: ["Agile/Scrum", "Figma", "Prototyping", "Jira", "Canva", "Photoshop", "Illustrator"] },
 ] as const;
 
 function ArrowUpRightIcon({ className }: { className?: string }) {
@@ -320,40 +258,8 @@ export default function HomePage() {
         <ScrollReveal className="space-y-5 md:space-y-6">
           <SectionHeading id="home-skills-title" label="Skills" title="Tools I Build With" description="Tools I’ve used across my projects and coursework." />
 
-          <ScrollReveal
-            className="home-feature-block overflow-hidden rounded-[2rem] px-5 py-6 md:px-8 md:py-8"
-            delayMs={90}
-            y={22}
-          >
-            <div className="grid gap-6 lg:grid-cols-[minmax(15rem,20rem)_minmax(0,1fr)] lg:items-start lg:gap-8">
-              <div className="order-1 lg:sticky lg:top-28">
-                <div className="mx-auto w-full max-w-[16rem] md:max-w-[20rem]">
-                  <SkillsIconCloud
-                    items={skillCloudImages}
-                    className="max-w-[16rem] md:max-w-[20rem]"
-                  />
-                </div>
-              </div>
-
-              <div className="order-2 space-y-5">
-                <div className="grid gap-3 sm:grid-cols-2 md:gap-4">
-                  {skillCategoryList.map((category) => (
-                    <div key={category.title} className="gallery-card min-w-0 rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 md:p-5">
-                      <h3 className="text-sm font-semibold leading-6 text-[color:var(--foreground)]">
-                        {category.title}
-                      </h3>
-                      <ul className="mt-3 flex flex-wrap gap-1.5" aria-label={category.title}>
-                        {category.skills.map((skill) => (
-                          <li key={skill} className="rounded-lg bg-[color:var(--surface-soft)] px-2.5 py-1 text-xs leading-5 text-[color:var(--muted)]">
-                            {skill}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+          <ScrollReveal delayMs={90} y={22}>
+            <SkillsBoard categories={skillCategoryList} />
           </ScrollReveal>
         </ScrollReveal>
       </section>
