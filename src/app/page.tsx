@@ -2,7 +2,6 @@ import { FeaturedProjects, projectCount } from "@/components/project-gallery";
 import { heroEmail } from "@/lib/navigation";
 import { SectionHeading } from "@/components/section-heading";
 import Link from "next/link";
-import { Fragment } from "react";
 import {
   EducationIcon,
   ExperienceIcon,
@@ -185,6 +184,10 @@ const skillCloudItems: ReadonlyArray<{
   { label: "macOS", slug: "macos" },
   { label: "AWS", slug: "amazonaws" },
   { label: "Docker", slug: "docker" },
+  { label: "Kubernetes", slug: "kubernetes" },
+  { label: "GitLab", slug: "gitlab" },
+  { label: "Terraform", slug: "terraform" },
+  { label: "OpenTofu", slug: "opentofu" },
   { label: "Spring Boot", slug: "springboot" },
   { label: "Socket.io", slug: "socketdotio" },
   { label: "PyTorch", slug: "pytorch" },
@@ -217,12 +220,12 @@ const skillCloudImages = [
 ];
 
 const skillCategoryList = [
-  { title: "Frontend Development", skills: ["React", "Next.js", "TypeScript", "Tailwind CSS"] },
-  { title: "Backend Development", skills: ["FastAPI", "Spring Boot", "Node.js", "Supabase"] },
-  { title: "Machine Learning", skills: ["PyTorch", "scikit-learn", "Model evaluation"] },
-  { title: "Data & Tooling", skills: ["Python", "PostgreSQL", "Pandas", "Jupyter"] },
-  { title: "Product & Design", skills: ["Figma", "Prototyping", "Agile/Scrum", "Jira"] },
-  { title: "Cloud & Deployment", skills: ["AWS", "Docker", "Vercel", "GitHub Actions"] },
+  { title: "Frontend", skills: ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Next.js", "Tailwind CSS", "Expo"] },
+  { title: "Languages & Backend", skills: ["Python", "Java", "C", "Node.js", "FastAPI", "Spring Boot", "Socket.io"] },
+  { title: "Cloud & Infrastructure", skills: ["AWS", "Docker", "Kubernetes", "Terraform", "OpenTofu", "Linux"] },
+  { title: "Delivery & Collaboration", skills: ["Git", "GitHub", "GitLab", "CI/CD", "GitHub Actions", "Vercel", "Agile/Scrum", "Jira"] },
+  { title: "Data & Machine Learning", skills: ["PostgreSQL", "MySQL", "Supabase", "Pandas", "PyTorch", "scikit-learn", "Jupyter", "Model evaluation"] },
+  { title: "Product & Design", skills: ["Figma", "Prototyping", "Canva", "Photoshop", "Illustrator"] },
 ] as const;
 
 function ArrowUpRightIcon({ className }: { className?: string }) {
@@ -315,15 +318,15 @@ export default function HomePage() {
         className="home-section"
       >
         <ScrollReveal className="space-y-5 md:space-y-6">
-          <SectionHeading id="home-skills-title" label="Skills" title="Tools I build with." description="Tools I’ve used across my projects and coursework." />
+          <SectionHeading id="home-skills-title" label="Skills" title="Tools I Build With" description="Tools I’ve used across my projects and coursework." />
 
           <ScrollReveal
             className="home-feature-block overflow-hidden rounded-[2rem] px-5 py-6 md:px-8 md:py-8"
             delayMs={90}
             y={22}
           >
-            <div className="grid gap-6 lg:grid-cols-[minmax(15rem,20rem)_minmax(0,1fr)] lg:items-center lg:gap-12">
-              <div className="order-1">
+            <div className="grid gap-6 lg:grid-cols-[minmax(15rem,20rem)_minmax(0,1fr)] lg:items-start lg:gap-8">
+              <div className="order-1 lg:sticky lg:top-28">
                 <div className="mx-auto w-full max-w-[16rem] md:max-w-[20rem]">
                   <SkillsIconCloud
                     items={skillCloudImages}
@@ -333,26 +336,19 @@ export default function HomePage() {
               </div>
 
               <div className="order-2 space-y-5">
-                <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-[color:var(--muted)]">
-                  Core Categories
-                </p>
-
-                <div className="grid grid-cols-2 gap-x-5 gap-y-5 md:gap-x-10 md:gap-y-6">
+                <div className="grid gap-3 sm:grid-cols-2 md:gap-4">
                   {skillCategoryList.map((category) => (
-                    <div key={category.title} className="border-t border-[color:var(--border)] pt-3">
-                      <p className="text-sm font-semibold leading-6 text-[color:var(--foreground)]">
+                    <div key={category.title} className="gallery-card min-w-0 rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 md:p-5">
+                      <h3 className="text-sm font-semibold leading-6 text-[color:var(--foreground)]">
                         {category.title}
-                      </p>
-                      <p className="mt-0.5 text-xs leading-5 text-[color:var(--muted)] md:text-[0.8rem]">
-                        {category.skills.map((skill, index) => (
-                          <Fragment key={skill}>
-                            <span className="whitespace-nowrap">
-                              {skill}
-                              {index < category.skills.length - 1 ? " ·" : null}
-                            </span>{" "}
-                          </Fragment>
+                      </h3>
+                      <ul className="mt-3 flex flex-wrap gap-1.5" aria-label={category.title}>
+                        {category.skills.map((skill) => (
+                          <li key={skill} className="rounded-lg bg-[color:var(--surface-soft)] px-2.5 py-1 text-xs leading-5 text-[color:var(--muted)]">
+                            {skill}
+                          </li>
                         ))}
-                      </p>
+                      </ul>
                     </div>
                   ))}
                 </div>
