@@ -331,7 +331,10 @@ export function HomeHero() {
               </p>
               <p className="text-sm leading-7 text-[color:var(--muted)] md:text-base md:leading-8 [text-wrap:balance]">
                 I&apos;m a Computer Science student at SMU and a curious builder
-                exploring AI, product development, and human-centred design, and
+                exploring{" "}
+                <strong className="font-semibold text-[color:var(--foreground)]">AI</strong>,{" "}
+                <strong className="font-semibold text-[color:var(--foreground)]">product development</strong>, and{" "}
+                <strong className="font-semibold text-[color:var(--foreground)]">human-centred design</strong>, and
                 how technology can solve real problems in people&apos;s daily lives.
               </p>
             </div>
@@ -371,7 +374,7 @@ export function HomeHero() {
 
           <div className="hidden justify-center pt-1 sm:pt-2 lg:flex lg:justify-end">
             <div
-              className="relative flex h-[20rem] w-full max-w-[18rem] items-center justify-center overflow-visible sm:h-[24rem] sm:max-w-[20rem] md:-translate-y-8 md:h-[41rem] md:max-w-[31rem] lg:-translate-y-10 lg:h-[50rem] lg:max-w-[37rem] lg:translate-x-8"
+              className="relative flex h-[20rem] w-full max-w-[18rem] items-center justify-center overflow-visible sm:h-[24rem] sm:max-w-[20rem] md:-translate-y-8 md:h-[41rem] md:max-w-[31rem] lg:-translate-y-8 lg:h-[43rem] lg:max-w-[32rem] lg:translate-x-8"
               data-parallax="portrait"
             >
               <div

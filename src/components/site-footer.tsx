@@ -22,7 +22,8 @@ export function SiteFooter() {
                 Win Lei Thawdar
               </p>
               <p className="max-w-xl text-[0.82rem] leading-5.5 text-[color:var(--muted)] md:text-[0.95rem] md:leading-7">
-                Computer Science (AI) undergraduate @ SMU | AI/ML &amp; Product
+                Computer Science (AI) undergraduate @ SMU{" "}
+                <span className="block whitespace-nowrap md:inline"><span className="hidden md:inline">| </span>AI/ML &amp; Product</span>
               </p>
             </div>
 
