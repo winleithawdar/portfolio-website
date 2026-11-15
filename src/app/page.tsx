@@ -177,9 +177,9 @@ const journeyStops = [
 ] as const satisfies readonly JourneyStop[];
 
 const skillCategoryList = [
-  { title: "Cloud & DevOps", sketch: "cloud", skills: ["AWS", "Docker", "Kubernetes", "Terraform", "OpenTofu", "CI/CD", "GitLab", "GitHub Actions", "Vercel", "Linux", "Git", "GitHub"] },
-  { title: "AI & Machine Learning", sketch: "data", skills: ["PyTorch", "scikit-learn", "Model evaluation", "Pandas", "Jupyter", "Google Colab", "Claude Code", "Codex", "ChatGPT", "Gemini", "Claude"] },
-  { title: "Languages & Backend", sketch: "code", skills: ["Python", "Java", "Node.js", "C", "FastAPI", "Spring Boot", "Socket.io", "PostgreSQL", "MySQL", "Supabase", "VS Code"] },
+  { title: "Cloud & DevOps", sketch: "cloud", skills: ["AWS", "Docker", "Kubernetes", "Terraform", "OpenTofu", "CI/CD", "GitLab", "GitHub Actions", "Playwright", "Vercel", "Linux", "Git", "GitHub"] },
+  { title: "AI & Machine Learning", sketch: "data", skills: ["PyTorch", "scikit-learn", "Model evaluation", "Pandas", "Jupyter", "Google Colab", "GPU training", "LLM APIs"] },
+  { title: "Languages & Backend", sketch: "code", skills: ["Python", "Java", "RabbitMQ", "Flask", "FastAPI", "Spring Boot", "REST APIs", "Node.js", "Socket.io", "PostgreSQL", "MySQL", "Supabase", "C", "VS Code"] },
   { title: "Frontend", sketch: "web", skills: ["Next.js", "TypeScript", "Tailwind CSS", "React", "JavaScript", "HTML", "CSS", "Expo"] },
   { title: "Product & Collaboration", sketch: "design", skills: ["Agile/Scrum", "Figma", "Prototyping", "Jira", "Canva", "Photoshop", "Illustrator"] },
 ] as const;
