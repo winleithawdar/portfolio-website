@@ -209,7 +209,7 @@ export default function HomePage() {
 
       <section id="home-projects" aria-labelledby="home-projects-title" className="home-section">
         <ScrollReveal>
-          <SectionHeading id="home-projects-title" label="Selected projects" title="A few things I’ve built." description="A club website I designed and built, a hackathon project, a mobile app with computer vision, and a team platform I led as Scrum Master." />
+          <SectionHeading id="home-projects-title" label="Selected projects" title="A few things I’ve built." description="A microservices ticketing platform on AWS, a club website I designed and built, and a mobile app with computer vision." />
           <FeaturedProjects />
           <Link href="/projects" className="focus-ring action-link mt-6">See all {projectCount} projects <ArrowUpRightIcon className="h-4 w-4" /></Link>
         </ScrollReveal>

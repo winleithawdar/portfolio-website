@@ -29,6 +29,44 @@ type ProjectItem = {
 
 const projectItems: ProjectItem[] = [
   {
+    title: "Ticketto",
+    summary: "A microservices ticketing platform that handles release-day rushes without overselling.",
+    year: "2026",
+    format: "Team Project",
+    domain: "Tech",
+    description:
+      "Ticketing platform built as seven microservices on AWS. A waiting room controls admission during ticket releases, temporary holds prevent overselling, Stripe handles payments and refunds, and buyers receive QR tickets for one-time check-in. In load tests with 2,500 simulated buyers competing for 1,250 tickets, no tickets were oversold, even with services deliberately taken down.",
+    highlights: [
+      "Built the Event Service in Python (Flask), with publish and cancel rules, image upload, and transactional outbox publishing to RabbitMQ.",
+      "Developed the Next.js frontend for buyers and organisers, with Cognito sign-in and a server-side proxy to the backend APIs.",
+      "Deployed the frontend and Event Service on AWS, using ECS Fargate, CloudFront, and Cognito.",
+      "Built a Playwright end-to-end suite that runs event publication, ticket purchase, and cancellation against the deployed system.",
+    ],
+    technologies: [
+      "Microservices",
+      "RabbitMQ",
+      "AWS ECS",
+      "Docker",
+      "GitLab CI/CD",
+      "OpenTofu",
+      "Playwright",
+      "Flask",
+      "FastAPI",
+      "Spring Boot",
+      "Next.js",
+      "Cognito",
+      "Stripe",
+    ],
+    links: [
+      { label: "Demo Video", href: "https://youtu.be/CjnJaXu0xBc" },
+    ],
+    note: "CS302: DevOps Principles & Practices",
+    credit:
+      "Team: Chong Wei Choon, Lam Yi Nam, Nithish Singanathan, Sophia Gan, Trevor Ong, Win Lei Thawdar",
+    previewLabel: "Ticketto project preview",
+    screenshotSrc: "/images/projects/ticketto.webp",
+  },
+  {
     title: "SMUAI Website",
     summary: "Official website for SMU’s AI club, with event information and a club chatbot.",
     year: "2026",
@@ -160,7 +198,6 @@ const projectItems: ProjectItem[] = [
     domain: "Tech",
     description:
       "Mobile app connecting pet owners with veterinarians through AI-powered health monitoring, enabling early disease detection and efficient veterinary consultations. I worked as Product Designer and Mobile App Developer.",
-    highlightLabel: "My contribution",
     highlights: [
       "Designed and developed the cross-platform mobile app in React Native and Expo, implementing end-to-end user flows and interactive mobile interfaces.",
       "Built and integrated FastAPI and Supabase backend services for application data and core product functionality.",
@@ -195,7 +232,6 @@ const projectItems: ProjectItem[] = [
     domain: "Tech",
     description:
       "Full-stack tariff calculation platform with route-risk assessment and transaction history, backed by secure accounts and external trade data. I worked as Scrum Master and Frontend Developer.",
-    highlightLabel: "My contribution",
     highlights: [
       "Led sprint planning, task allocation, and progress tracking for the full-stack Agile team using Jira.",
       "Developed responsive frontend interfaces and user flows for tariff calculation, route-risk assessment, and transaction history using Next.js, TypeScript, and Tailwind CSS.",
@@ -471,8 +507,9 @@ const projectItems: ProjectItem[] = [
 ];
 
 const priorityProjectOrder = new Map([
-  ["SMUAI Website", 0],
-  ["Nomi", 1],
+  ["Ticketto", 0],
+  ["SMUAI Website", 1],
+  ["Nomi", 2],
 ]);
 
 const sortedProjectItems = [...projectItems].sort((left, right) => {
@@ -763,7 +800,7 @@ function ProjectCard({ project, onOpen }: { project: ProjectItem; onOpen: () => 
       >
         <span className="relative block aspect-[16/10] w-full overflow-hidden border-b border-[color:var(--border)] bg-[color:var(--surface-soft)]">
           {project.screenshotSrc ? (
-            <Image src={project.screenshotSrc} alt="" fill className="object-cover object-top" sizes="(max-width: 1023px) 50vw, 33vw" />
+            <Image src={project.screenshotSrc} alt="" fill className="object-cover object-top" sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw" />
           ) : (
             <span className="flex h-full flex-col justify-between p-6" style={{ background: "linear-gradient(135deg, var(--accent-soft), var(--surface))" }}>
               <span className="text-xs uppercase tracking-widest text-[color:var(--accent-strong)]">{project.previewLabel}</span>
@@ -975,7 +1012,7 @@ export const projectCount = projectItems.length;
 
 export function FeaturedProjects() {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
-  const featuredTitles = ["SMUAI Website", "Nomi", "Pawsitive", "TariffEase"];
+  const featuredTitles = ["Ticketto", "SMUAI Website", "Pawsitive"];
   const projects = featuredTitles.flatMap((title) => {
     const project = projectItems.find((item) => item.title === title);
     return project ? [project] : [];
@@ -983,7 +1020,7 @@ export function FeaturedProjects() {
 
   return (
     <>
-      <div className="grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 md:gap-6">
         {projects.map((project) => <ProjectCard key={project.title} project={project} onOpen={() => setSelectedProject(project)} />)}
       </div>
       {selectedProject ? <ProjectDetails project={selectedProject} onClose={() => setSelectedProject(null)} /> : null}
