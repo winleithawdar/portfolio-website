@@ -2,15 +2,10 @@ import { FeaturedProjects, projectCount } from "@/components/project-gallery";
 import { heroEmail } from "@/lib/navigation";
 import { SectionHeading } from "@/components/section-heading";
 import Link from "next/link";
-import {
-  EducationIcon,
-  ExperienceIcon,
-  LearningOutlineIcon,
-  CommunityOutlineIcon,
-  MoonIcon,
-} from "@/components/icons";
+import { MoonIcon } from "@/components/icons";
 import { HomeHero } from "@/components/home-hero";
 import { JourneyAlbums, type JourneyAlbum } from "@/components/journey-albums";
+import { JourneyTimeline, type JourneyStop } from "@/components/journey-timeline";
 import { SkillsBoard } from "@/components/skills-board";
 import { ScrollReveal } from "@/components/scroll-reveal";
 
@@ -137,26 +132,49 @@ const homeJourneyAlbums = [
   },
 ] satisfies readonly JourneyAlbum[];
 
-const homeBackground = [
+const journeyStops = [
   {
-    href: "/education",
-    title: "Learning at SMU",
-    icon: EducationIcon,
-    watermark: LearningOutlineIcon,
-    description: "Computer Science (AI specialisation), second major in Strategic Management.",
-    facts: ["BSc, Class of 2028"],
-    link: "Education, awards & certifications",
-  },
-  {
+    when: "2023",
+    logo: "/logos/experience/the-forward-society.jpg",
+    organization: "The Forward Society",
+    title: "Community work in Myanmar",
+    detail: "Operations Director, The Forward Society",
     href: "/experience",
-    title: "Building with teams & communities",
-    icon: ExperienceIcon,
-    watermark: CommunityOutlineIcon,
-    description: "Industry roles in AI, plus leadership in student and community groups.",
-    facts: ["Vice President, SMUAI"],
-    link: "Experience & leadership",
   },
-] as const;
+  {
+    when: "2024",
+    logo: "/logos/education/smu.jpg",
+    organization: "Singapore Management University",
+    title: "Started at SMU",
+    detail: "Computer Science (AI), second major in Strategic Management",
+    href: "/education",
+  },
+  {
+    when: "2025",
+    logo: "/logos/experience/ai-singapore.jpg",
+    organization: "AI Singapore",
+    title: "AI Singapore",
+    detail: "Data QA Student Assistant, evaluating LLMs",
+    href: "/experience",
+  },
+  {
+    when: "2026",
+    logo: "/logos/experience/mui-robotics.jpg",
+    organization: "MUI Robotics",
+    title: "MUI Robotics, Thailand",
+    detail: "Technology Intern (AI/ML)",
+    href: "/experience",
+  },
+  {
+    when: "Now",
+    logo: "/logos/experience/smuai.jpg",
+    organization: "SMU Artificial Intelligence Club",
+    title: "Vice President, SMUAI",
+    detail: "Leading SMU’s AI club",
+    href: "/experience",
+    current: true,
+  },
+] as const satisfies readonly JourneyStop[];
 
 const skillCategoryList = [
   { title: "Cloud & DevOps", sketch: "cloud", skills: ["AWS", "Docker", "Kubernetes", "Terraform", "OpenTofu", "CI/CD", "GitLab", "GitHub Actions", "Vercel", "Linux", "Git", "GitHub"] },
@@ -220,30 +238,12 @@ export default function HomePage() {
       <section aria-labelledby="home-background-title" className="home-section">
         <ScrollReveal>
           <SectionHeading id="home-background-title" label="Background" title="Where I learn and contribute." />
-          <div className="grid grid-cols-2 gap-3 md:gap-6">
-            {homeBackground.map(({ href, title, icon: Icon, watermark: Watermark, description, facts, link }) => (
-              <article key={href} className="portfolio-card gallery-card relative isolate min-w-0 overflow-hidden p-3 md:p-6">
-                <Watermark
-                  aria-hidden="true"
-                  focusable="false"
-                  style={{ position: "absolute", right: 0, bottom: 0, transform: "translate(15%, 10%)", width: "clamp(6rem, 65%, 16rem)", height: "auto", color: "var(--accent-strong)", opacity: 0.09, pointerEvents: "none", zIndex: 0 }}
-                />
-                <div className="relative z-10 flex h-full min-w-0 flex-col">
-                <Icon className="h-6 w-6 text-[color:var(--accent-strong)]" />
-                <h3 className="mt-3 text-sm font-semibold leading-snug text-[color:var(--foreground)] md:mt-4 md:text-xl">{title}</h3>
-                <p className="mt-2 text-xs leading-5 md:mt-3 md:text-sm md:leading-7 text-[color:var(--muted)]">{description}</p>
-                <ul className="mt-2 space-y-1 md:mt-3 md:space-y-1.5">
-                  {facts.map((fact) => (
-                    <li key={fact} className="flex gap-2 text-xs leading-5 font-medium text-[color:var(--foreground)] md:text-sm md:leading-6">
-                      <span aria-hidden="true" className="mt-[0.45rem] h-1 w-1 shrink-0 rounded-full bg-[color:var(--accent-strong)] md:mt-[0.6rem]" />
-                      {fact}
-                    </li>
-                  ))}
-                </ul>
-                <Link href={href} className="focus-ring mt-auto inline-flex min-h-11 items-center gap-1.5 rounded-sm pt-3 text-xs md:gap-2 md:pt-4 md:text-sm font-semibold text-[color:var(--accent-strong)]">{link}<ArrowUpRightIcon className="h-4 w-4 shrink-0" /></Link>
-                </div>
-              </article>
-            ))}
+          <div className="home-feature-block rounded-[2rem] px-5 py-6 md:px-8 md:py-8">
+            <JourneyTimeline stops={journeyStops} />
+          </div>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <Link href="/education" className="focus-ring action-link">Education, awards &amp; certifications <ArrowUpRightIcon className="h-4 w-4" /></Link>
+            <Link href="/experience" className="focus-ring action-link">Experience &amp; leadership <ArrowUpRightIcon className="h-4 w-4" /></Link>
           </div>
         </ScrollReveal>
       </section>
